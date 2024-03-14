@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/h.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styleinsc.css" />
+    <title>Authentification</title>
+  </head>
+
+  <body>
+    <a href="/"><section class="section_logo">
+      <h1 class="logo">Shifa logo</h1></a>
+      <span>votre sante en ligne</span>
+    </section>
+    <% if (err)  { %>
+      <% for( let i = 0; i < err.length; i++ ) { %>
+        <div class="alert alert-danger alert-dismissible fade show absoluteposition" id="warning" role="alert">
+          <%=err[i]%>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+      <% } %>
+      
+    <% } %>
+    <main class="contenant" id="contenant">
+      <div class="section_creer_compte">
+        <div class="head">
+          <h1>Inscription</h1>
+          <div class="levels">
+            <span class="checked level">1</span>
+            <div class="ligne"></div>
+            <span class="level">2</span>
+            <div class="ligne"></div>
+            <span class="level">3</span>
+          </div>
+        </div>
+        <form action="/signup" method="post" id="formSubmit">
+          <div class="info info1">
+            <!-- <label for="nom">Nom</label> -->
+            <input type="text" id="nom" class="borderless" name="name" placeholder="Nom" minlength="1" autocomplete="off"/>
+            <!-- <label for="prenom">Prenom</label> -->
+            <input type="text" id="prenom" class="borderless" name="fname" placeholder="Prenom" required minlength="1" autocomplete="off"/>
+            <!-- <label for="email">Email</label> -->
+            <input type="text" id="email" class="borderless" name="email" placeholder="Email" required minlength="10" autocomplete="off"/>
+          </div>
+          <div class="info info2 hidden">
+            
+             <!-- <label for="numero">Numero telephone</label> -->
+             <input type="text" id="numero" class="borderless" name="phone" placeholder="Numero telephone" required minlength="9" autocomplete="off"/>
+             <!-- <label for="datnaiss">date naissance</label> -->
+             <input type="date" id="datnaiss" class="borderless" name="Bday" pattern="\d{4}-\d{2}-\d{2}" placeholder="Date naissance" required minlength="8" autocomplete="off" min="1910-01-01" max="2006-01-01"/>
+            <!-- <label for="cin">CIN</label> -->
+            <input type="text" id="cin" class="borderless" name="cin" placeholder="Numero CIN" required minlength="12" maxlength="12" autocomplete="off"/>
+          </div>
+          <div class="info info3 hidden">
+           <!-- <label for="mdps">Mot de passe</label> -->
+           <input type="password" id="passwordInput" class="borderless" name="password" placeholder="Mot de passe" required minlength="8" autocomplete="off"/>
+           <!-- <label for="confmdps">Confirmer mot de passe</label> -->
+           <input type="password" id="confirmPasswordInput" class="borderless" placeholder="Confirmer mot de passe" required minlength="8" autocomplete="off"/>
+          </div>
+          <div class="section_btns">
+            <div class="btns">
+              <button class="btn_precedant hidden">
+                <i class="fas fa-arrow-left"></i>
+              </button>
+              <button class="btn_suivant">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+            <input class="valider hidden" type="submit" value="valider" id="submitBtn"/>
+          </div>
+        </form>
+      </div>
+      <div class="section_photo_droite"></div>
+    </main>
+    <script>
+      var btn_passage = document.getElementsByClassName("btns")[0];
+      var forms = document.getElementsByClassName("info");
+      var submit = document.getElementsByClassName("valider")[0];
+      var levels = document.getElementsByClassName("level");
+      var lignes = document.getElementsByClassName("ligne");
+      var inputs = document.getElementsByTagName("input");
+      var form = document.getElementById("formSubmit");
+      var submitBtn = document.getElementById("submitBtn");
+      var passwordInput = document.getElementById("passwordInput")
+      var confirmPasswordInput = document.getElementById("confirmPasswordInput")
+      var cmpt = 0;
+      function changer(e) {
+        var target = e.target;
+        if (
+          (target.className == "btn_suivant" ||
+            target.parentElement.className == "btn_suivant") &
+          (cmpt != 2)
+        ) {
+          forms[cmpt].classList.add("hidden");
+          levels[cmpt + 1].classList.add("checked");
+          lignes[cmpt].classList.add("checked");
+          cmpt++;
+          forms[cmpt].classList.remove("hidden");
+        } else if (
+          (target.className == "btn_precedant" ||
+            target.parentElement.className == "btn_precedant") &
+          (cmpt != 0)
+        ) {
+          forms[cmpt].classList.add("hidden");
+          cmpt--;
+          levels[cmpt + 1].classList.remove("checked");
+          lignes[cmpt].classList.remove("checked");
+          forms[cmpt].classList.remove("hidden");
+        }
+        if (cmpt > 0) {
+          btn_passage.firstElementChild.classList.remove("hidden");
+        } else {
+          btn_passage.firstElementChild.classList.add("hidden");
+        }
+        if (cmpt == 2) {
+          btn_passage.lastElementChild.classList.add("hidden");
+          submit.classList.remove("hidden");
+        } else {
+          btn_passage.lastElementChild.classList.remove("hidden");
+          submit.classList.add("hidden");
+        }
+      }
+
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('input', function() {
+            if (this.value.length === 0 ) {
+              console.log(this.value.length)
+                this.classList.remove('vert');
+                this.classList.remove('red');
+                // this.classList.add("borderless")
+            } else if(this.value.length >=this.getAttribute("minlength")){
+                this.classList.remove('red');
+                this.classList.add('vert');
+            }else if(this.value.length < this.getAttribute("minlength")){
+                this.classList.remove('vert');
+                this.classList.add('red');
+            }
+        });
+    }
+
+    form.addEventListener('submit', function(e) {
+        if (passwordInput.value !== confirmPasswordInput.value) {
+          confirmPasswordInput.style.background = "rgba(220, 95, 95, 0.612)"
+            e.preventDefault(); // Prevent form submission
+        } 
+    });
+
+      btn_passage.addEventListener("click", changer);
+    </script>
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+  </body>
+</html>

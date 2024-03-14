@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+:root {
+  --lineaire: linear-gradient(320deg, rgb(0, 238, 255), rgb(0, 0, 0));
+}
+body {
+  background: var(--lineaire);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+.contenant {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+.contenant .info1,
+.info2,
+.info3 {
+  min-width: 350px;
+  padding: 0 40px;
+}
+.info input {
+  background-color: #8e8d8d67;
+  margin: 8px 0;
+  padding: 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  width: 100%;
+
+  background-repeat: no-repeat ;
+  background-position-x: 96%;
+  background-position-y: center;
+  background-size: 22px;
+}
+
+
+.info1 input:nth-child(1){
+  background-image: url("../icons/name-32.png");
+}
+.info1 input:nth-child(2){
+  background-image: url("../icons/name-32.png");
+}
+.info1 input:nth-child(3){
+  background-image: url("../icons/email-24.png");
+}
+.info2 input:nth-child(1){
+  background-image: url("../icons/phone-number-32.png");
+}
+
+.info2 input:nth-child(3){
+  background-image: url("../icons/cin-card-32.png");
+}
+.info3 input:nth-child(1){
+  background-image: url("../icons/password-24.png");
+}
+.info3 input:nth-child(2){
+  background-image: url("../icons/password-24.png");
+}
+
+
+.section_creer_compte {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+}
+.section_photo_droite {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  border-radius: 150px 0 0 100px;
+  background: rgb(13, 123, 160);
+  background-image: url("../img/Rectangle.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.section_logo {
+  position: absolute;
+  top: 2px;
+  left: 0px;
+  display: flex;
+  padding-left: 25px;
+}
+.section_logo h1 {
+  width: 100px;
+  height: 75px;
+  text-indent: 100%;
+  overflow: hidden;
+  text-wrap: nowrap;
+  background-image: url("../img/logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: center;
+}
+.section_logo span {
+  color: #c9d6ff;
+  align-self: center;
+  font-size: 10px;
+  padding-bottom: 22px;
+}
+.levels {
+  font-weight: bold;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 30px;
+}
+.level {
+  border: 1px solid transparent;
+  width: 50px;
+  text-align: center;
+  border-radius: 47%;
+  padding: 10px;
+  background-color: rgba(171, 171, 171, 0.679);
+}
+.head {
+  margin: 30px;
+}
+.head h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.ligne {
+  background-color: rgba(171, 171, 171, 0.679);
+  height: 3px;
+  width: 50px;
+  margin-top: 18px;
+}
+.btns button {
+  background-color: rgb(13, 123, 160);
+  border: none;
+  width: 120px;
+}
+.valider {
+  font-size: 14px;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  width: 120px;
+  height: 30px;
+  background-color:  rgb(13, 123, 160);
+  color: #e3dede;
+  margin-left: 3px;
+}
+.btn_suivant,
+.btn_precedant {
+  border-radius: 20px;
+}
+
+.btns button {
+  color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  text-align: center;
+  height: 30px;
+}
+.hidden {
+  display: none;
+}
+.section_btns {
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.checked {
+  background-color: rgb(13, 123, 160);
+  color: wheat;
+  transition: 1s;
+}
+
+.borderless{
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.vert{
+  border: 2px solid rgba(0, 128, 0, 0.4);
+}
+
+.red{
+  border: 2px solid rgba(255, 0, 0, 0.4);
+}
+
+.passwordErr{
+  background-color: rgba(220, 95, 95, 0.612);
+}
+
+.absoluteposition{
+  display: block;
+  float: left;
+  position: absolute;
+  right: 20px;
+  z-index: 2000;
+  border-radius: 100px;
+}

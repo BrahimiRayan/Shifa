@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* --lineaire: linear-gradient(to bottom, rgb(0, 187, 189) 15%,rgb(0, 130, 208) 85%);  */
+    --lineaire: linear-gradient(320deg, rgb(0, 238, 255),rgb(0, 0, 0) ); 
+  }
+
+body{
+    position: relative;
+    height: 100dvh;
+    background: var(--lineaire);
+}
+
+main{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 400px;
+    margin: 60px auto;
+    background: #f8f1f1;
+    border-radius: 3px;
+    box-shadow: 3px 3px 9px black;
+}
+
+.section_logo {
+    display: flex;
+    padding-left: 25px;
+  }
+  .section_logo h1 {
+    width: 100px;
+    height: 75px;
+    text-indent: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    background-image: url("../img/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: center;
+  }
+  .section_logo span {
+    color: #c9d6ff;
+    align-self: center;
+    font-size: 10px;
+    padding-bottom: 22px;
+  }
+  .alert_container{
+    width: 100%;
+    position: absolute;
+    top : 77px;
+  }
+  .absoluteposition{
+    display: block;
+    text-align: center;
+      width: 50%;
+      margin: 0 auto;
+      background-color: rgba(255, 15, 15, 0.598);
+      color: #c9d6ff;
+  }
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 250px;
+    width: 100%;
+    /* margin-bottom: 50px; */
+}
+h2 {
+    display: block;
+    font-size: 28px;
+    margin-top: 80px;
+    text-align: center;
+    align-self: center;
+}
+form #email, form #code, form #new{
+    width: 90%;
+    height: 50px;
+    border: 1px solid grey;
+    outline: none;
+    border-radius: 7px;
+    text-indent: 10px;
+ }
+
+.btn-costum{
+    width: 60%;
+    font-size: 18px;
+    margin-bottom: 40px;
+ }
+
+ label{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    font-size: 18px;
+    align-self: flex-start;
+    font-weight: 500;
+ }
+
+ strong{
+    color: blue;
+ }
