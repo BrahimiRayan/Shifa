@@ -28,14 +28,7 @@ let errArray =[];
 let emailNotfound = null
 /************************************************************************************************* */
 //explicite middlewars : 
-
-
- /* TODO:
-    1-MIIDELEWARE TO PREVENT THE USER FROM ACCESSING THE HOME PAGE WITHOUT LOGIN
-    2-MIDLEWARE TO PREVENT THE USER FROM GOING TO INCREPTION OR LOGIN IF HE ALREADY LOGED UNTIL HE LOGS OUT
- */
-
-    // when he signs in there is no way to get out exept the log out
+    // 1-MIIDELEWARE TO PREVENT THE USER FROM ACCESSING THE HOME PAGE WITHOUT LOGIN
 exports.redirectIfnotLogedIn = function (req, res, next){
     if(!req.session.IsAuthId){
         res.redirect("/auth")
@@ -43,7 +36,7 @@ exports.redirectIfnotLogedIn = function (req, res, next){
         next();
     }
 }
-
+    // 2-MIDLEWARE TO PREVENT THE USER FROM GOING TO INCREPTION OR LOGIN IF HE ALREADY LOGED UNTIL HE LOGS OUT
 exports.redirectIfIsLogedIn = function (req, res, next){
     if(req.session.IsAuthId){
         res.redirect("/home");
@@ -51,10 +44,22 @@ exports.redirectIfIsLogedIn = function (req, res, next){
         next ();
     }
 }
+/******************************************GLOBAL FUNCTIONS******************************************************* */
+const crypto = require('crypto');
+
+function generateRandomNumber() {
+    const randomBytes = crypto.randomBytes(4);
+    const randomNumber = parseInt(randomBytes.toString('hex'), 16);
+    const eightDigitNumber = randomNumber % 100000000;
+
+    return eightDigitNumber.toString().padStart(8, '0');
+}
+
 /************************************************************************************************* */
-// email sender ??
+
 // EMAIL SENDER DONE !! FK YEAAAAAAAH !!
 const emailSender = require("../controlers/emailsender.js");
+const { userInfo } = require("os");
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!! REMAINDER : TO CHANGE MY EMAIL TO THE WEB PAGE EMAIL AND PASSWORD.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Utuliser cette fonction pour sender les email (voir les parametre)
 // emailSender.sendmail(emailSender.transporter ,emailSender.init(l'@ de receipient,titre de message, contenu de message));
@@ -97,7 +102,7 @@ exports.verifyAccountpatient = async function (req , res){
             res.redirect("/auth");
             return
         }else{
-            const samePsword = await bcrypt.compare(password_patient,compte.pswd)
+            const samePsword = await bcrypt.compare(password_patient,compte.pswd);
             if(samePsword){
                 console.log("success")
                 req.session.IsAuthId = compte.idp;
@@ -175,9 +180,9 @@ exports.SendCode =async function(req,res){
         emailNotfound = email+" est jamais ete inscrit dans notre hopital";
         return res.redirect("/forgotpswd")
     }else{
-        // generate the code
-        let code = Math.floor(Math.random() * 900000) + 100000;
-         // send the code 
+        // generate the code 
+        let code = generateRandomNumber();
+        // send the code
         emailSender.sendmail(emailSender.transporter ,emailSender.init(email,"CODE DE CONFIRMATION",`CE CODE SERA PAS VALIDE SI VOUS NE L'UTILIZEZ
         PAS DANS 5 MINUTES <br> <strong>Le code : ${code}</strong>`));
          req.session.userCode = code.toString();
@@ -225,7 +230,7 @@ exports.UpdatePatientPassword = async function(req ,res){
     //hash the password
     const hashedPassword =await bcrypt.hash(newpassword,10)
     //update the password
-    await pool.query("UPDATE patients SET pswd = ? WHERE idp =? ", [hashedPassword , userId])
+    await pool.query("UPDATE patients SET pswd = ? WHERE idp =?", [hashedPassword , userId])
     from1 = "display:flex;"
     from2 = "display:none;"
     from3 = "display:none;"
@@ -259,7 +264,7 @@ exports.SendCodeD =async function(req,res){
             isSec = true;
         } 
     }
-        let code = Math.floor(Math.random() * 900000) + 100000;
+        let code = generateRandomNumber();
          // send the code 
         emailSender.sendmail(emailSender.transporter ,emailSender.init(email,"CODE DE CONFIRMATION",`CE CODE SERA PAS VALIDE SI VOUS NE L'UTILIZEZ
         PAS DANS 5 MINUTES <br> <strong>Le code : ${code}</strong>`));
@@ -284,7 +289,6 @@ exports.verifySendCodeD =function(req,res){
     //get the code from the input
     const {code}=req.body ; 
     // verify the existence of the UserCode(if not send a message)
-    // const localCode = localStorage.getItem("UserCode")
     if(req.session.isSec === false){
         if(!req.session.docCode){
             fromD1 = "display:none;";
@@ -377,7 +381,7 @@ exports.signup =async function (req ,res){
     //verify that the email is a valid one (else stop)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        errArray =[]
+        errArray =[];
         const errorArray = errors.array();
         errorArray.forEach(error => {
             errArray.push(error.msg)
@@ -393,13 +397,50 @@ exports.signup =async function (req ,res){
         }
         //hash the password
         const hashedPassword =await bcrypt.hash(password,10)
-        //insert the values into the db
-        await pool.query('INSERT INTO `patients`( `nom`, `prenom`, `birthdate`, `phone`, `ncin`, `pswd`, `email`) VALUES (?,?,?,?,?,?,?);',[fname , name , Bday.toString() , phone ,cin ,hashedPassword,email ]);
-        return res.redirect("/");
-    }
-    /*TODO:
-    //get the id again
-    store the user id in the session storage */
-}
+        const code = generateRandomNumber();
+        emailSender.sendmail(emailSender.transporter ,emailSender.init(email,"CODE DE CONFIRMATION",`CE CODE SERA PAS VALIDE SI VOUS NE L'UTILIZEZ
+        PAS DANS 5 MINUTES <br> <strong style = "background : lightred ;">Le code : ${code}</strong>`));
 
+        req.session.UserInfos = [name , fname , Bday.toString(), phone ,cin ,hashedPassword , email];
+        req.session.codeSignup = code.toString();
+        return res.redirect("/signup/confirmEmail");
+}}
+
+
+/***********************************************************************************************************/
+// get route for consfirming the email
+let counter = 3; 
+exports.ShowConfirmSignUp = function(req, res){
+    res.render("confirmEmail", {counter : counter , emailNotfound : emailNotfound});
+}
+/***********************************************************************************************************/
+
+exports.ConfirmSignUp =async function (req,res){
+    let chances = 3;
+    const UserInfo = req.session.UserInfos;
+    const {code} = req.body;
+    console.log(UserInfo[1]);
+    if(!UserInfo){
+        return redirect("/signup")
+    }else{
+        if(code === req.session.codeSignup){
+            const uuid = crypto.randomUUID();
+            const id = uuid.substring(0, 10);
+            // const id = crypto.randomUUID();
+            await pool.query('INSERT INTO `patients`(`idp`,`nom`, `prenom`, `birthdate`, `phone`, `ncin`, `pswd`, `email`) VALUES (?,?,?,?,?,?,?,?);',[id ,UserInfo[0],UserInfo[1],UserInfo[2],UserInfo[3],UserInfo[4],UserInfo[5],UserInfo[6]]);
+            req.session.IsAuthId = id;
+            return res.redirect("/home");
+        }else{
+            counter =counter-1;
+            if(counter === 0){
+                delete req.session.UserInfos;
+                counter = 3;
+                return res.redirect("/");
+            }else{
+                emailNotfound = "Le code vous avez saisir est incorecte"
+                return res.redirect("/signup/confirmEmail");
+            }
+        }
+    } 
+}
 /************************************************************************************************* */

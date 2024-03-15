@@ -14,7 +14,7 @@ router.use(session({
       httpOnly : true , 
       sameSite : true
     }
-  }));
+}));
 // globale variables
 const cin = /^\d{12}$/;
 // routes here ⏬
@@ -46,6 +46,8 @@ router.post("/signup", [
     check("name").isAlpha().withMessage("Name should be formed with alphabet"),
     check("fname").isAlpha().withMessage("Family name should be formed with alphabet")
 ],controlers.signup);
+router.get("/signup/confirmEmail",controlers.redirectIfIsLogedIn,controlers.ShowConfirmSignUp);
+router.post("/signup/confirmEmail",controlers.redirectIfIsLogedIn,controlers.ConfirmSignUp);
 //home route
 router.get("/home",controlers.redirectIfnotLogedIn,controlers.showhome);
 
