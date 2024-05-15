@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/patient.css">
+    <title>Patient</title>
+</head>
+<body>
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/iconsP/icons8-user-50.png" alt="User image">
+                <div>
+                    <h2><%= nom %> <%= prenom %></h2>
+                    <p><%= email.substring(0,20) + "..." %></p>
+                </div>
+            </div>
+
+            <ul class="UL_aside">
+                <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+                <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Reserver</li></a>
+                <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Reservation</li></a>
+                <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+            </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+    </aside>
+
+    <main>
+        <header>
+            <h2>Paramètre</h2>
+        </header>
+
+        <div class="Codeholder ">
+            <div class="params">
+
+                <div class="choseparams">
+
+                    <div class="imgcontainerparams">
+                        <img src="/iconsP/settings-iceblue.svg" alt="" class="imgchose">
+                    </div>
+                    <div class="textparams">
+                        <a href="/patient/Settings/modifyinfop"><h2 class="otherbtns">Paramètres de compte</h2></a>
+                        <p>Modifier les détails du compte & changer le mot de passe.</p>
+                    </div>
+                </div>
+
+                <div class="choseparams">
+                    <div class="imgcontainerparams">
+                        <img src="/iconsP/view-iceblue.svg" alt="" class="imgchose">
+                    </div>
+                    <div class="textparams">
+                        <a href="/patient/Settings/viewdetails"><h2 class="otherbtns">Voir les détails du compte</h2></a>
+                        <p>Voir les informations personnelles du compte</p>
+                    </div>
+                </div>
+                
+                <div class="choseparams">
+                    <div class="imgcontainerparams">
+                        <img src="/iconsP/delete-iceblue.svg" alt="" class="imgchose">
+                    </div>
+                    <div class="textparams">
+                        <form action="/patient/deleteacount" method="post">
+                            <button type="submit" class="deleteCompte" >Supprimer le compte</button>
+                        </form>
+                        <p>Cela va supprimer définitivement votre compte !</p>
+                    </div>
+                </div>
+            </div>
+            <div class="separator"></div>
+        
+</div>
+        
+</main>
+
+</div>
+</body>
+</html>    

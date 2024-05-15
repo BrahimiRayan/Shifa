@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/patient.css" />
+    <link rel="stylesheet" href="/css/patientReserve.css" />
+    <title>shifa</title>
+  </head>
+  <body>
+    <div class="liner">
+        <aside>
+                <div class="user">
+                    <img src="/iconsP/icons8-user-50.png" alt="User image">
+                    <div>
+                        <h2><%= nom %> <%= prenom %></h2>
+                        <p><%= email.substring(0, 20) + '...' %></p>
+                    </div>
+                </div>
+    
+                <ul class="UL_aside">
+                  <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+                  <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Reserver</li></a>
+                  <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Reservation</li></a>
+                  <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+              </ul>
+    
+            <form action="/logout" method="post">
+                <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+            </form>
+            <div class="spacer"></div>
+        </aside>
+    
+        <main>
+            <header>
+              <h2><a href="/patient/reserver">Réserver</a> | Confirmer</h2>
+            </header>
+    
+            <div class="Codeholder">
+            <div class="informations_confirmation">
+            <section class="section_logo">
+              <h1 class="logo">Shifa logo</h1>
+              <span>votre sante en ligne</span>
+            </section>
+            <div class="paragraphes">
+              <div class="important">
+                <div></div>
+                <p>important !</p>
+              </div>
+              <p class="p1">
+                Une fois le rendez-vous validé, celui-ci sera enregistré automatiquement
+              </p>
+              <p class="p2">
+                et vous pourrez l'annuler en accédant à la section "Mes réservations".
+              </p>
+            </div>
+          </div>
+
+          <table class="confirmation_table">
+            <thead>
+              <th>N° rendez-vous</th>
+              <th>Date</th>
+              <th>heure</th>
+              <th>Service</th>
+              <th>Le concernée</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <td><%= ticket[5] %></td>
+              <td><%= ticket[1] %></td>
+              <td><%= ticket[2] %></td>
+              <td><%= ticket[0] %></td>
+              <td><%= ticket[3] %></td>
+              <td>
+                <div class="confirmation_btns">
+                    <div class="btn_annuler">
+                      <a href="/patient/reserver">Annuler</a>
+                      <div></div>
+                    </div>
+                    <form action="/patient/reserver/confirm" method="post">
+                    <button type="submit" class="btn_valider">
+                      <p>Valider</p>
+                      <div></div>
+                    </button>
+                    </form>
+                  </div>
+              </td>
+            </tbody>
+          </table>
+          
+
+          <div class="confirmation_informations">
+            <div class="infocontainer">
+              <h1 class="infotit">N-rendez-vous :</h1>
+              <p class="infoshower"><%= ticket[5] %></p>
+            </div>
+            <div class="infocontainer">
+              <h1 class="infotit">Date : </h1>
+              <p class="infoshower"><%= ticket[1] %></p>
+            </div>
+            <div class="infocontainer">
+              <h1 class="infotit">heure : </h1>
+              <p class="infoshower"><%= ticket[2] %></p>
+            </div>
+            <div class="infocontainer">
+              <h1 class="infotit">Service : </h1>
+              <p class="infoshower"><%= ticket[0] %></p>
+            </div>
+            <div class="infocontainer">
+              <h1 class="infotit">Concerne : </h1>
+              <p class="infoshower"><%= ticket[3] %></p>
+            </div>
+
+
+            
+            <div class="confirmation_btns">
+              <div class="btn_annuler">
+                <a href="/patient/reserver">Annuler</a>
+                <div></div>
+              </div>
+              <form action="/patient/reserver/confirm" method="post">
+              <button type="submit" class="btn_valider">
+                <p>Valider</p>
+                <div></div>
+              </button>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="separator"></div>
+      </main>
+    </div>
+    <script>
+    </script>
+  </body>
+</html>

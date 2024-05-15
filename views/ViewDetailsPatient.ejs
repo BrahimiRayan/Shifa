@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/patient.css">
+    <title>Patient</title>
+</head>
+<body class="ajustments">
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/iconsP/icons8-user-50.png" alt="User image">
+                <div>
+                    <h2><%= user[0].nom %> <%= user[0].prenom %></h2>
+                    <p><%const email = user[0].email  %> <%= email.substring(0, 20) + '...' %></p>
+                </div>
+            </div>
+
+            <ul class="UL_aside">
+                <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+                <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Reserver</li></a>
+                <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Reservation</li></a>
+                <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+            </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+    </aside>
+
+    <main>
+        <header class="phone_v_1">
+            <h2><a href="/patient/Settings">Paramètre</a> | Mes informations</h2>
+        </header>
+
+        <div class="Codeholder">
+            <div class="bluish">
+
+            
+            <div class="infoholder">
+                <div class="imageinfo">
+                    <img src="/iconsP/254119-P4HLSR-898-removebg-preview.png" alt="">
+                </div>
+
+                <div class="infopresentaion">
+                    <p>Voici les détails exhaustifs de votre compte, que vous pouvez <a href="/patient/Settings/modifyinfop">modifier</a> ou corriger en cas d'erreurs ou d'inexactitudes. N'hésitez pas à prendre le temps nécessaire pour <a href="/patient/Settings/modifyinfop">mettre à jour</a> vos informations personnelles.</p>
+                    <!-- <p>Vous trouvez ici tous les information de votre compte , vous devrez verifier que sont bien regler car elle seront votre representatif dans notre hopital merci de <a href="/patient/Settings/modifyinfop">modifier</a> les information incomplet. </p> -->
+                    
+                </div>
+
+                <div class="infop userp">
+                    <h3>Utulisateur</h3>
+                    <p>Nom : <strong><%= user[0].nom %></strong></p>
+                    <p>Prénom : <strong><%= user[0].prenom %></strong></p>
+                </div>
+
+                <div class="infop comp">
+                    <h3>Utile de communication </h3>
+                    <p>Numero de telephone : <strong><%= user[0].phone %></strong></p>
+                    <p>Email electronique : <strong><%= user[0].email %></strong></p>
+                </div>
+
+                <div class="infop persp">
+                    <h3>Informations perssonel </h3>
+                    <%             
+                        const d = user[0].birthdate
+                        const date = new Date(d);
+                        date.setDate(date.getDate() + 1);
+                        const bdate =date.toISOString().split('T')[0]; 
+                    %>
+                    <p>Date de naissance : <strong><%= bdate %></strong></p>
+                    <p>Numero de CIN : <strong><%= user[0].ncin %></strong></p>
+                    <p>Adresse : <strong><%= user[0].address || "-- --" %></strong></p>
+                    <div class="children">
+                        <h3>Les enfants : </h3>
+                        <% if (enf.length === 0) { %>
+                            <p>Vide</p>
+                        <% } %>
+                        
+                        <% if (enf.length != 0) { %>
+                            <% for( let i = 0; i < enf.length; i++ ) { %>
+                                <p><%=i +1%>. <%= enf[i].nom%> <%= enf[i].prenom%></p>
+                            <% } %>
+                        <% } %>
+                       
+                    </div>
+                    
+                </div>
+
+                <div class="infop rdvp">
+                    <h3>Informations sur les rendez-vous</h3>
+                    <p>Nombre de réservations : <strong><%= nmbr[0].nbr %></strong></p>
+                </div >
+
+                <div class="infop serviceClient">
+                    <h3>Service Client </h3>
+                    <p>Vous rencontrez des problèmes ? Vous pouvez nous contacter sur <a href="mailto:shifa.rdv.service@gmail.com">shifa.rdv.service@gmail.com</a> ou sur <a href="tel:0558892122">05 58 89 21 22</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+    </div>
+    </main>
+    
+    </div>
+    </body>
+    </html>    

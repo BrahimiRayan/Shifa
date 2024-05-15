@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="/css/admin/adminstyle.css"> -->
+    <link rel="stylesheet" href="/css/admin/admin.css" />
+    <title>Page Admin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/icons/business-manager-or-management-18880.svg"
+            alt="User image"
+          />
+          <div>
+            <h2><%= admin[0].nom %> <%= admin[0].prenom %></h2>
+            <p><%= admin[0].email.substring(0, 20) + '...' %></p>
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+            <li><img src="/icons/dashboard-svgrepo-com.svg" alt=""><a href="/admin/accueil">Accueil</a></li>
+            <li><img src="/icons/doctor-svgrepo-com.svg" alt=""><a href="/admin/listdocs">Medcins</a></li>
+            <li><img src="/icons/office-secretary-svgrepo-com.svg" alt=""><a href="/admin/listsec">Secritaires</a></li>
+            <li><img src="/icons/fever-flu-ill-sick-svgrepo-com.svg" alt=""><a href="/admin/listpat">Patients</a></li>
+            <li><img src="/icons/opened-book-3163.svg" alt=""><a href="/admin/services">Services</a></li>
+            <li><img src="/icons/settings-svgrepo-com.svg" alt=""><a href="/admin/Settings">Settings</a></li>
+            
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+      </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Liste Patients</h2>
+        </header>
+
+        <div class="Codeholder">
+          <nav class="navdoc">
+            <form action="/admin/searchpatient" method="post">
+                <input type="text" name="searchbar" id="searchbar" placeholder="Nom" class="recherchedocs">
+            </form>
+
+            <div class="optionBtn">
+                <form action="/admin/snomP" method="post">
+                    <input type="submit" class="choixsl selected" id="choixl" value="Nom">
+                </form>
+
+                <form action="/admin/smatriculeP" method="post">
+                    <input type="submit" class="choixsl" id="choix2" value="Email"  >
+                </form>
+            </div>
+        </nav>
+          <div class="cardholder">
+            <% for( let i = 0; i < patients.length; i++ ) { 
+                var address = "--";
+                var today = new Date();
+                var thisyear = today.getFullYear();
+
+                var date = new Date(patients[i].birthdate);
+                var year = date.getFullYear();
+                var Age = parseInt(thisyear) -  parseInt(year);
+
+                if (patients[i].address !== null) {
+                  address =patients[i].address.substring(0,15) + "..."  ;
+                }
+            %>
+            
+                <div class="card">
+                <div class="cardfirst">
+                  <div class="imageholder">
+
+                  </div>
+                  <h2><%= patients[i].nom %> <%= patients[i].prenom %></h2>
+                  <p><%=patients[i].email.substring(0,15) + "..." %></p>
+
+                  <form action="/admin/deletepatient" method="post">
+                    <button type="submit" class="subbtn" name="deletepatient" value="<%=patients[i].idp %>">Supprimer</button>
+                  </form>
+                </div>
+                
+                <div class="cardsecond">
+                  <div class="infocolection">
+                    <p class="title">NCIN</p>
+                    <p class="info"><%=patients[i].ncin %></p>
+                  </div>
+                  <div class="infocolection">
+                    <p class="title">Numero telephone</p>
+                    <p class="info"><%=patients[i].phone %></p>
+                  </div>
+                  <div class="infocolection">
+                    <p class="title">Address</p>
+                    <p class="info"><%=address %></p>
+                  </div>
+                  <div class="infocolection">
+                    <p class="title">Age</p>
+                    <p class="info"><%=Age %> ans</p>
+                  </div>
+                </div>
+
+              </div>
+          <% } %>
+
+          </div>
+          
+        </div>
+      </main>
+    </div>
+
+    <script>
+    const choix1btn = document.getElementById('choixl');
+    const choix2btn = document.getElementById('choix2');
+    const searchbar = document.getElementById("searchbar")
+
+    choix1btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix3', "nom");
+        updateSelectedButton();
+    });
+
+    choix2btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix3', "matricule");
+        updateSelectedButton();
+    });
+
+    function updateSelectedButton() {
+        const selectedChoix = localStorage.getItem("selectedchoix3");
+        if (selectedChoix === "nom") {
+            searchbar.setAttribute("placeholder" , "Nom")
+            choix2btn.classList.remove("selected");
+            choix1btn.classList.add("selected");
+        } else {
+            searchbar.setAttribute("placeholder" , "Email")
+            choix1btn.classList.remove("selected");
+            choix2btn.classList.add("selected");
+        }
+    }
+
+    // Initial setup when the page loads
+    updateSelectedButton();  
+    </script>
+
+  </body>
+</html>

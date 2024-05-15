@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/admin/admin.css" />
+    <title>Page Admin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/icons/business-manager-or-management-18880.svg"
+            alt="User image"
+          />
+          <div>
+            <h2><%= admin[0].nom %> <%= admin[0].prenom %></h2>
+            <p><%= admin[0].email.substring(0, 20) + '...' %></p>
+          </div>
+        </div>
+        <ul class="UL_aside">
+            <li><img src="/icons/dashboard-svgrepo-com.svg" alt=""><a href="/admin/accueil">Accueil</a></li>
+            <li><img src="/icons/doctor-svgrepo-com.svg" alt=""><a href="/admin/listdocs">Medcins</a></li>
+            <li><img src="/icons/office-secretary-svgrepo-com.svg" alt=""><a href="/admin/listsec">Secritaires</a></li>
+            <li><img src="/icons/fever-flu-ill-sick-svgrepo-com.svg" alt=""><a href="/admin/listpat">Patients</a></li>
+            <li><img src="/icons/opened-book-3163.svg" alt=""><a href="/admin/services">Services</a></li>
+            <li><img src="/icons/settings-svgrepo-com.svg" alt=""><a href="/admin/Settings">Settings</a></li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+      </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Paramètre</h2>
+        </header>
+
+        <div class="Codeholder">
+            <div class="params">
+                <div class="walp"></div>
+
+                <div class="form_container">
+                    <div class="warning">
+                      Nous vous remercions de veiller à la précision de vos informations. Des données exactes garantissent un service optimal pour vous et les autres utilisateurs. Veuillez vérifier et mettre à jour vos informations si nécessaire.
+                    </div>
+
+                    <form action="/admin/Settings" method="post" class="formulaire">
+
+                        <div class="wina">
+                            <div class="text">Nom</div>
+                            <div class="g1">
+                                <input type="text" class="inp" id="name" minlength="2" name="name" value=<%= admin[0].nom %> required readonly>
+                                <button type="button" class="btnS" id="b1"></button>
+                             </div>
+
+                            <div class="text">Prenom</div>
+                            <div class="g1">
+                                <input type="text" class="inp" id="fname" minlength="2" name="fname" value=<%= admin[0].prenom %> required readonly>
+                                <button type="button" class="btnS" id="b2"></button>
+                             </div>
+                        </div>
+
+                        <div class="wina">
+                            <div class="text">Email</div>
+                            <div class="g1">
+                                <input type="email" class="inp" id="email" minlength="8" name="email" value=<%= admin[0].email %> required readonly>
+                                <button type="button" class="btnS" id="b3"></button>
+                             </div>
+                            <div class="text">Nouveau mot de passe</div>
+                            <div class="g1">
+                                <input type="text" class="inp" id="matricule" name="matricule" placeholder="Nouveau Mots de passe" minlength="8" required readonly>
+                                <button type="button" class="btnS" id="b4"></button>
+                            </div>
+                        </div>
+                        <button type="submit" class="validate" id="validate">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </main>
+    </div>
+    <script>
+
+        var nom = document.getElementById("name")
+        var fnom = document.getElementById("fname")
+        var email = document.getElementById("email")
+        var matricule = document.getElementById("matricule")
+        var b1 = document.getElementById("b1")
+        var b2 = document.getElementById("b2")
+        var b3 = document.getElementById("b3")
+        var b4 = document.getElementById("b4")
+        var validate = document.getElementById("validate");
+
+        b1.addEventListener("click" , function(){
+          nom.classList.add("hovered");
+          nom.removeAttribute("readonly");
+        });
+
+        b2.addEventListener("click" , function(){
+          fnom.classList.add("hovered");
+          fnom.removeAttribute("readonly");
+        });
+
+        b3.addEventListener("click" , function(){
+          email.classList.add("hovered");
+          email.removeAttribute("readonly");
+        });
+
+        b4.addEventListener("click" , function(){
+          matricule.classList.add("hovered");
+          matricule.removeAttribute("readonly");
+        })
+
+        validate.addEventListener("click" , function(){
+          nom.classList.remove("hovered");
+          nom.setAttribute("readonly");
+          fnom.classList.remove("hovered");
+          fnom.setAttribute("readonly");
+          email.classList.remove("hovered");
+          email.setAttribute("readonly");
+          matricule.classList.remove("hovered");
+          matricule.setAttribute("readonly");
+        })
+    </script>
+  </body>
+</html>

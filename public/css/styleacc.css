@@ -6,22 +6,25 @@
   font-family: "Montserrat", sans-serif;
 }
 :root {
-  /* --lineaire: linear-gradient(to bottom, rgb(0, 187, 189) 15%,rgb(0, 130, 208) 85%);  */
-  --lineaire: linear-gradient(320deg, rgb(0, 238, 255),rgb(0, 0, 0) ); 
+  --lineaire: linear-gradient(320deg, srgb(0, 238, 255),rgb(0, 0, 0) ); 
+  --lineaire: linear-gradient(to bottom, rgb(0, 187, 189) 15% , rgb(0, 130, 208) 85% ); 
+  --lineaire: linear-gradient(to bottom, rgb(0, 187, 189) , rgb(0, 34, 139)90% ); 
+
 }
+@media (width > 768px) {
+  
+
   body {
 
   color: white;
   height: 100vh;
+  overflow-y: hidden;
   background: var(--lineaire);
   position: relative;
 }
 .container {
   height: 100%;
-
- 
   position: relative;
-
 }
 #image{
 
@@ -29,11 +32,11 @@
   width: 614px;
   background-image: url("../img/image.png");
   background-repeat: no-repeat;
-background-size: contain;
-position: absolute;
-right: 0;
-bottom: 0;
-z-index: 1;
+  background-size: contain;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 
 }
  #blanc{
@@ -42,15 +45,11 @@ z-index: 1;
   width: 890px;
   background-image: url("../img/blanc.png");
   background-repeat: no-repeat;
-background-size: 100% 100%;
-position: absolute;
-right:0px;
-bottom: 0;
-
-
+  background-size: 100% 100%;
+  position: absolute;
+  right:0px;
+  bottom: 0;
  }
-
-
 
 header {
   height: 78px;
@@ -65,11 +64,11 @@ h1 {
   text-indent: 100%;
   overflow: hidden;
   text-wrap: nowrap;
+  font-size: 0;
   background-image: url("../img/logo.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position-y: center;
-
 }
 
 @keyframes batement {
@@ -123,21 +122,16 @@ h2 {
 }
 p {
   font-size: 20px;
-
   margin-bottom: 50px;
   padding-left: 50px;
 }
 .sous-titre{
-
-
   font-weight: 700;
-
 }
 
 .btn-main {
   background-color: #ffffff;
   color: rgb(7, 95, 149);
-  /* border: 1px #ffffff solid; */
   border-radius: 100px;
   padding: 13px;
   font-size: 20px;
@@ -213,7 +207,7 @@ main a:hover {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
-bottom: 5px;
+bottom: 30px;
   left: 580px;
 }
 
@@ -229,27 +223,28 @@ display: flex;
 }
 #email{
 
-
-background-image:url("../img/enveloppe.png") ;
-height: 40px;
-width: 40px;
-background-repeat: no-repeat;
-background-size: contain;
-margin-left: 20px;
+  float: left;
+  background-image:url("../img/enveloppe.png") ;
+  height: 40px;
+  width: 40px;
+  margin-top: -10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 20px;
 
 
 }
 
 .emailcontent{
-
-font-size:13px;
+/* padding-top: 20px; */
+font-size:15px;
 margin-left: 10px;
-margin-top: 10px;
+/* margin-bottom: -20px; */
 
 }
 #tl{
-
-
+  margin-top: -10px;
+  float: left;
   background-image:url("../img/tl.png") ;
   height: 40px;
   width: 40px;
@@ -261,9 +256,9 @@ margin-top: 10px;
 
 .tlcontent{
 
-  font-size:13px;
+  font-size:15px;
   margin-left: 10px;
-  margin-top: 10px;
+
   
 
 }
@@ -320,4 +315,224 @@ position: absolute;
   100% {
     clip-path: inset(0 0 0 0); /* Affiche l'image entièrement */
   }
+}
+
+}
+
+@media (width <= 768px) {
+  
+  body {
+
+    color: white;
+    height: 100vh;
+    overflow-y: hidden;
+    background: var(--lineaire);
+    position: relative;
+  }  
+
+  .container {
+    height: 100%;
+    position: relative;
+  }
+
+  header {
+    height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section_logo {
+    display: flex;
+    padding-left: 6px;
+  }
+
+  h1 {
+    width: 80px;
+    height: 50px;
+    text-indent: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    margin-left: 5px;
+    font-size: 0;
+    background-image: url("../img/logo.png");
+    background-repeat: no-repeat;
+    background-size: 99%;
+    background-position-y: center;
+  }
+
+  span {
+    align-self: center;
+    font-size: 8px;
+    padding-bottom: 10px;
+    font-weight: 500;
+  }
+
+  ul li {
+    display: inline-block;
+    list-style: none;
+    margin-right: 8px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  ul {
+    margin-bottom: 15px;
+    margin-right: 5px;
+  }
+
+  ul li:nth-child(1){
+    margin-right: 10px;
+  }
+
+  main{
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .animated-text{
+    text-align: center;
+    display: block;
+    font-size: 36px;
+    font-family: cursive;
+    margin: 10px auto;
+  }
+
+  #coeur{
+ 
+    display: inline-block;
+    height: 30px;
+    width:30px ;
+    
+    background-image: url("../img/coeur1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: batement 1s 4;
+  }
+ 
+  @keyframes batement {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .paragraphe{
+    margin-bottom: 30px;
+    padding: 15px;
+    text-align: center;
+  }
+  .sous-titre{
+    margin-bottom: 30px;
+    text-align: center;
+    text-wrap: wrap;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .btn-main{
+    background-color: #ffffff;
+    color: rgb(7, 95, 149);
+    border-radius: 100px;
+    width: 230px;
+    text-align: center;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 800;
+    margin: 10px auto;
+    margin-bottom: 40px;
+    transition: all 300ms ease-out;
+    display: block;
+  }
+
+  .btn-main:focus{
+      background-color: rgb(45, 155, 224);
+      color: white;
+  }
+
+  #image{
+    height: 320px;
+    width: 90%;
+    background-image: url("../img/image.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    z-index: 1;
+    background-position: bottom;
+  }
+
+  #blanc{
+    overflow: hidden;
+    height: 365px;
+    width: 100%;
+    background-image: url("../img/blanc.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    background-position: bottom;
+    right:0px;
+    bottom: 0;
+  }
+
+  #contact{
+    width: 100%;
+    height: 40px;
+    /* margin-top: 65px; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  #email{
+    background-image:url("../img/enveloppe.png") ;
+    height: 30px;
+    width:30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 20px;
+    float: left;
+    /* margin-bottom: 20px; */
+  }
+
+  .emailcontent{
+    display:inline-block;
+    margin-top: 5px;
+    font-size:13px;
+    margin-left: 10px;
+    margin-top: 10px;
+    
+    }
+
+    #tl{
+      float: left;
+      background-image:url("../img/tl.png") ;
+      height: 30px;
+      width: 30px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-top: 10px;
+      margin-left: 20px;
+    
+    }
+    
+    .tlcontent{
+      display:inline-block;
+      margin-top: 15px;
+      font-size:13px;
+      margin-left: 10px;      
+    
+    }
 }

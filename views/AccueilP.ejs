@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/patient.css">
+    <title>Patient</title>
+</head>
+<body>
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/iconsP/icons8-user-50.png" alt="User image">
+                <div>
+                    <h2><%= nom %> <%= prenom %></h2>
+                    <p><%= email.substring(0, 20) + '...' %></p>
+                </div>
+            </div>
+
+        <ul class="UL_aside">
+            <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+            <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Réserver</li></a>
+            <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Réservations</li></a>
+            <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+        </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+    </aside>
+
+    <main>
+        <header>
+            <h2>Accueil</h2>
+        </header>
+
+        <div class="Codeholder">
+            <div class="dashboard_holder">
+
+                <div class="displayBoard">
+                    <h2>Bienvenu</h2>
+                    <p class="namepatient"><%= nom %> <%= prenom %></p>
+                    <p class="textDahboard"> Notre équipe médicale qualifiée s'engage à vous offrir des soins personnalisés et attentifs à chaque étape de votre parcours de soins.
+                        
+                        <br>Nous nous efforçons de rendre votre expérience de réservation de rendez-vous aussi simple et pratique que possible.</p>
+                    <ul class="contact">
+                        <li><a href="">05 58 89 21 22</a></li>
+                        <li><a href="mailto:shifa.rdv.service@gmail.com">shifa.rdv.service@gmail.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="infoBoard">
+                <div class="fourCardinfoholder">
+                    <p class="title">Information</p>
+                    <div class="foursatat">
+                        <div>
+                            <img src="/iconsP/book-svgrepo-com.svg" alt="Totale reservation" width="36px" height="36px">
+                            <p class="fixing">Totale Réservation</p>
+                            <h3><%= totale %></h3>
+                        </div>
+                        <div>
+                            <img src="/iconsP/calendar-xmark-svgrepo-com.svg" alt="" width="36px" height="36px">
+                            <p class="fixing">Dernière Réservation</p>
+                            <h3 class="last_rdv"><%= derniereRs %></h3>
+                        </div>
+                        <div>
+                            <img src="/iconsP/calendar-exclamation-svgrepo-com.svg" alt="" width="36px" height="36px">
+                            <p class="fixing">prochaines RDVs</p>
+                            <h3><%= NprocheRDV || "0" %></h3>
+                        </div>
+                        <div>
+                            <img src="/iconsP/reserved-svgrepo-com.svg" alt="" width="46px" height="46px">
+                            <a href="/patient/myreservations" class="lined"><p class="fixing">Mes Réservations</p></a>  
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="tablehplder">
+                    <p class="title">Votre prochaine réservation : </p>
+                    <div class="table">
+                        <table class="tableinfo">
+                            <tr>
+                                <th>N° Réservation</th>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Service</th>
+                            </tr>
+                            <tr>
+                                <td><%= nextrdv[0].idrdv %></td>
+                                <td><%= nextrdv[0].date_rdv %></td>
+                                <td><%= nextrdv[0].heur_debut_rdv %></td>
+                                <td><%= service[0].service_name %></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </main>
+    
+    </div>
+    </body>
+    </html>

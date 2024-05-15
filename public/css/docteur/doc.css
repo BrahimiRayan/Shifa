@@ -1,0 +1,1056 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+}
+
+*{
+    scroll-behavior: smooth;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #c2e1e410 #c2e1e40a;
+}
+
+*::-webkit-scrollbar {
+    width: .09vw; 
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #c2e1e410;
+}
+
+*::-webkit-scrollbar-track {
+    background-color:  #c2e1e410; /* Hide the track */
+}
+
+:root{
+    --liniarColor : linear-gradient(320deg, rgb(0, 238, 255), rgb(0, 0, 0));
+    --bgColor : rgba(77, 231, 239, 0.672);
+    --bgColor : rgb(255, 255, 255);
+    --bgColor2 : rgb(209, 235, 235);
+    --fontColor : rgb(42, 42, 42);
+}
+
+
+body {
+    height: 100vh;
+    width: 100%;
+    background: var(--bgColor);
+    backdrop-filter: blur(90px);
+    overflow-x: hidden; /* to prevent horizontal scrollbar */
+    position: relative;
+
+}
+
+aside {
+    
+    width: 7%;
+    padding: 30px 15px;
+    background-color: rgba(255, 255, 255, 0.226);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width 400ms;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    float: left;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
+    width: 60px;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 8px;
+    margin-inline: auto;
+    /* background-color: aliceblue; */
+    transition: width 300ms;
+}
+
+.user div{
+    margin-right: 25px;
+}
+
+.user img{
+    width: 50px;
+    height: 50px;
+}
+
+.user div>h2 {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+}
+.user div>p {
+    font-size: 11px;
+    color: rgb(146, 146, 146);
+}
+
+.UL_aside{
+    list-style: none;
+    
+}
+
+.UL_aside li {
+    width: max-content;
+    /* width: 110%; */
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+    margin:30px 0;
+    margin-left: -12px;
+    cursor: pointer;
+    padding-left: 30px;
+    padding-right: 100%;
+    background-color: transparent;
+    padding-block: 5px;
+    transition: background-color 500ms ease-out , border-left 200ms ease;
+    /* border-left: 3px solid; */
+}
+
+.UL_aside li:hover{
+    border-left: 1px solid gray;
+    background-color: rgba(10, 135, 245, 0.266);
+    
+}
+
+.UL_aside li img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.UL_aside li a {
+    text-decoration: none;
+    /* font-size: 1px; */
+    color: rgb(81, 80, 80);
+    display: none;
+}
+
+.Logout{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 17px;
+    padding: 6px 0;
+    /* width: 60%; */
+    width: 66%;
+    overflow: hidden;
+    margin-left: 12px;
+    border-radius: 8px;
+    border: none;
+    background: rgb(255, 2, 36);
+    color: #eee;
+    /* width: 100%; */
+}
+.Logout i {
+    width: 28px;
+    height: 28px;
+    margin-left: 12px;
+    margin-top: 8px;
+    
+    color: aliceblue;
+}
+
+.Logout p {
+    
+    margin-left: 22px;
+}
+
+.spacer{
+    height: 10px;
+    width: 100%;
+
+}
+
+aside:hover{
+    width: 19%;
+}
+
+aside:hover + main {
+    margin-left: 20%;
+}
+
+
+aside:hover .user {
+    width: 90%;
+    /* width: max-content; */
+    background-color: #c2e1e4;
+}
+aside:hover .UL_aside li a {
+    display: block;
+}
+
+aside:hover .UL_aside li{
+    justify-content: flex-start;
+}
+
+main{
+    height: 100%;
+    margin-left: 7%;
+    transition: margin-left 300ms;
+}
+
+header{
+    padding: 8px ;
+    background-color: rgb(255, 255, 255);
+    position: sticky;
+    z-index: 100;
+    top: 0;
+
+}
+
+h2{
+    font-weight: 600;
+}
+
+header h2{
+    font-weight: 700;
+    color: black;
+}
+
+header h2 a{
+    text-decoration: none;
+    color: #5fd3de;
+}
+
+aside:hover + main {
+   margin-left: 19%;
+}
+
+
+.Codeholder {
+  margin-inline: 1%;
+  margin-block: 5px;
+  height: 97vh;
+  background-color: rgba(230, 228, 228, 1);
+  background-color: rgba(220, 232, 255, 0.5);
+  overflow: auto;
+}
+
+.Codeholder::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.codeholderexeption{
+    height: 90vh;
+}
+/* *******************************code commance ici : ************************* */
+.information_medecin {
+  height: 80%;
+  background-color: rgba(10, 153, 215, 0.61);
+  border-radius: 14px;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  color: #fff;
+  position: relative;
+  background-image: url("/medecin_images/bgrd_medecins.png");
+  background-repeat: no-repeat;
+  background-size: 30%;
+  background-position: 99% center;
+  /* background-position: center; */
+}
+.paragraphes {
+  
+  padding: 60px 0 0 90px;
+  font-size: 20px;
+}
+.logo {
+  width: 100px;
+  height: 75px;
+  text-indent: 100%;
+  overflow: hidden;
+  text-wrap: nowrap;
+  /* margin-top: 5px; */
+  background-image: url("/../images/logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: center;
+}
+
+.section_logo span {
+  color: #ececed;
+  /* margin-top: 6px; */
+  align-self: center;
+  font-size: 10px;
+  padding-bottom: 13px;
+}
+.section_logo {
+  display: flex;
+  padding-left: 25px;
+  position: absolute;
+}
+
+.info_general {
+  height: 47%;
+  position: relative;
+}
+.boxs_medecin_info {
+  height: 130px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+  margin: -70px auto;
+}
+.boxs_medecin_info .box {
+  width: 300px;
+  height: 100%;
+  margin-inline: 20px;
+  background-color: rgba(255, 255, 255, 0.874);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  box-shadow: 4px 4px 10px -8px;
+  transition: all 300ms ;
+  position: relative;
+  
+}
+
+.boxs_medecin_info .box:hover{
+  transform: scale(1.04,1.04);
+}
+
+
+.sidebar{
+  height: 100%;
+  width: 2%;
+  position: absolute;
+  border-radius: 4px;
+  transition: all 300ms ;
+  z-index: 0;
+}
+
+.bluesidebar{
+  background: #5fd3de;
+}
+.redsidebar{
+  background-color: tomato;
+}
+.yellowsidebar{
+  background-color: rgb(255, 255, 39);
+}
+
+.box2:hover > .bluesidebar{
+  width: 100%;
+  background: rgba(95, 212, 222, 0.5);
+}
+.box1:hover > .redsidebar{
+  width: 100%;
+  background: rgba(255, 99, 71, 0.5);
+}
+.box3:hover > .yellowsidebar{
+  width: 100%;
+  background-color: rgba(255, 255, 39,0.5);
+}
+
+.bgFixed{
+  margin-left: 3%;
+  z-index: 4;
+}
+.bgrd_medecins {
+  height: 100%;
+  width: 500px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url("/medecin_images/bgrd_medecins.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+.paragraphes .p1 {
+  font-size: 28px;
+  font-weight: 300;
+  margin-left: -2%;
+}
+.paragraphes .p2 {
+  
+  width: 71%;
+  margin-left: 1%;
+  font-size:16px;
+}
+.paragraphes span {
+  /* text-shadow: 3px 3px 18px rgba(244, 243, 255, 0.838); */
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.bagrd_patient_auj {
+  width: 70px;
+  height: 70px;
+  /* background-color: rgba(226, 149, 149, 0.5); */
+  background-image: url("/medecin_images/patient_auj.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  border-radius: 50%;
+}
+.bagrd_patient_attent {
+  width: 70px;
+  height: 70px;
+  /* background-color: rgba(133, 190, 223, 0.5); */
+  background-image: url("/medecin_images/patient_attent.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  border-radius: 50%;
+}
+.bagrd_patient_prochaine {
+  z-index: 4;
+  width: 70px;
+  height: 70px;
+  /* background-color: rgba(212, 155, 69, 0.5); */
+  background-image: url("/medecin_images/prochaine_rdv.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  border-radius: 50%;
+}
+
+
+.right_info {
+  margin-right: 20px;
+  font-size: 16px;
+  text-align: center;
+  z-index: 4;
+  /* background-color: red; */
+}
+
+.right_info p{
+  color: rgb(89, 89, 89);
+  margin-bottom: 15px;
+}
+
+.right_info span {
+  color: rgb(50, 50, 50);
+  font-size: 22px;
+  font-weight: 600;
+}
+.bottom_info {
+  display: flex;
+  height: 50%;
+  margin-top: 1%;
+}
+
+.patients {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 10px;
+}
+
+.bottom_info .profile {
+  color: gray;
+  width: 38%;
+  margin-left: 1%;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: -4px -6px 10px -8px;
+}
+.img_docteur {
+  width: 100px;
+  height: 100px;
+  background-image: url("/medecin_images/doct.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.patient {
+  background-color: #ffff;
+  height: 23%;
+  display: grid;
+  grid-template-columns: repeat(5, 17.5%);
+  text-align: center;
+  margin-bottom: 8px;
+  align-items: center;
+  box-shadow: 4px 4px 10px -8px;
+  transition: all 300ms;
+}
+
+.patient:hover{
+  transform: scale(1.03,1.03);
+  background: #75757528;
+}
+
+.img_patient {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  box-shadow: 0.5px 0.5px 6px gray;
+  background-image: url("/medecin_images/man_6997674.png");
+  background-repeat: no-repeat;
+  background-size: 97%;
+  background-position: center;
+}
+
+.img_Son{
+  background-image: url("/medecin_images/granddaughter_4547184.png"); 
+}
+.patient div {
+  margin-inline: 30px;
+}
+.info_profil {
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-around;
+}
+.info_profil span {
+  font-size: 17px;
+  color: rgb(45, 45, 45);
+  /* color: red; */
+  font-weight: 600;
+}
+.info_profil div {
+  margin: 8px;
+}
+.mon_profile {
+  /* color: red; */
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.email_docteur{
+  font-size: 13px;
+}
+
+.noPatient{
+  text-align: center;
+}
+
+.nothing{
+  height: 80%;
+  width: 100%;
+  background-image: url("/medecin_images/images.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/* ********************** page reservation_medecin ************************ */
+
+.cover_medecin_reservation {
+  display: flex;
+  height: 100%;
+}
+.img_medecin_reservation {
+  width: 40%;
+  /* margin: 15px;
+  border-radius: 10px; */
+  background-color: rgba(31, 179, 191, 0.9);
+  background-image: url("/medecin_images/Remove-bg.ai_1713687515817.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.info_medecin_reservation {
+  width: 60%;
+  /* background-color: red; */
+}
+.reservation_titre {
+  font-size: 25px;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+}
+.cover_select {
+  /* background-color: green; */
+  display: flex;
+  justify-content: space-around;
+  height: 20%;
+  margin-top: 10px;
+}
+.cover_select label,
+.dates_et_heures p {
+  display: block;
+  font-size: 20px;
+  font-weight: 200;
+  margin-block: 10px;
+  margin-left: 10px;
+}
+.dates_et_heures p {
+  margin-left: 60px;
+}
+
+.dates_et_heures {
+  height: 50%;
+  /* background-color: red; */
+}
+.dates_et_heures .dates {
+  /* background-color: green; */
+  height: 49%;
+}
+.dates_et_heures .heures {
+  /* background-color: yellow; */
+  height: 49%;
+  margin-top: 1%;
+}
+.cartes_cover {
+  /* background-color: grey; */
+  height: 60%;
+  display: flex;
+  margin-inline: 20px;
+}
+.cartes {
+  height: 100%;
+  display: flex;
+  /* background-color: red; */
+  overflow-x: scroll;
+  width: 100%;
+  margin-inline: 20px;
+}
+.cartes::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.carte,.carteTime {
+  background-color: #bacafc;
+  min-width: 200px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.carte:hover , .carteTime:hover{
+  transform: scale(1.05 , 1.05);
+}
+
+.selectedcarte{
+  background-color: #5fd3de;
+}
+
+.btn_scroll {
+  color: red;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+.btn_submit {
+  margin: 30px auto;
+  display: block;
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
+  background-color: rgba(31, 179, 191, 0.9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#patient ,#service{
+  width: 250px;
+  border-radius: 8px;
+  height: 35px;
+  text-align: center;
+  border: 1px solid gray;
+  outline:none;
+}
+
+
+/* **************************************la page medecin_medrcins*************************************************** */
+
+.recherche {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15%;
+  padding-inline: 30px;
+  padding-top: 50px;
+}
+
+.Description{
+  padding-inline: 30px;
+  padding-top: 30px;
+}
+
+.Description h2{
+  font-size: 32px;
+  color: rgb(109 109 109);
+  margin-bottom: 10px;
+}
+
+.Description p {
+  font-size: 14px;
+  color: gray;
+}
+
+.bare_recherche {
+  height: 35px;
+  width: 300px;
+  outline: none;
+  border-radius: 15px;
+  opacity: 0.5;
+  border: 1px solid #a0a0a0;
+  padding: 0 20px;
+  background-image: url("/adminpics/search-sort-svgrepo-com.svg");
+  background-repeat: no-repeat;
+  background-position: 97% center;
+  background-size: contain;
+}
+.type_recherche {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.type_recherche .choix {
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  /* background-color: white; */
+  border: 1px solid rgb(214, 214, 214);
+  outline: none;
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 300ms;
+}
+
+.selected{
+  background-color: #59BCC2 ;
+  color: white;
+  border: 0;
+}
+
+.liste_medecins {
+  height: 75%;
+  /* background-color: grey; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 5px 20px;
+  overflow-y: scroll;
+  margin-top: 20px;
+}
+.liste_medecins .box_medecin {
+  background-color: #fdfdfd;
+  /* background-color: green; */
+  margin: 5px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid rgba(0, 0, 0, 0.235); */
+  box-shadow: 0px 3px 8px #59BCC2;
+  border-radius: 20px;
+  transition: all 300ms;
+}
+
+.liste_medecins .box_medecin:hover{
+ transform: scale(0.95 , 0.95); 
+}
+.liste_medecins::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.box_medecin .img_doc {
+  box-shadow: 0.5px 0.5px 4px rgb(41, 41, 41);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin: auto;
+  background-image: url("/medecin_images/img_doc.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.box_medecin div {
+  margin-block: 8px;
+}
+.box_medecin .nom_doc {
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+.box_medecin .email {
+  margin: auto;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  color: gray;
+}
+.box_medecin .service {
+  margin: auto;
+  text-align: center;
+  color: #2d9ddc;
+  font-weight: 600;
+}
+.box_medecin .contact {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-inline: 8px;
+}
+
+.box_medecin .contact a{
+  background-color: #ccebfa;
+  /* text-align: center; */
+  /* border: none; */
+  border-radius: 30px;
+  padding: 0 15px;
+  display: flex;
+  gap: 5px;
+}
+
+.icon {
+  width: 25px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 0px center;
+}
+
+.icon_appeler {
+  background-image: url("/medecin_images/telephone.svg");
+}
+.icon_envoyer {
+  background-image: url("/medecin_images/envoyer.svg");
+}
+
+.liste_medecins a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #6c75a4;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* **************************************la page medecin_patients*************************************************** */
+
+.liste_patients {
+  height: 100%;
+  /* background-color: grey; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 5px 20px;
+  overflow-y: scroll;
+  margin-top: 20px;
+}
+.Codeholderpatient{
+  background-color: #2d9cdc39;
+  border-radius: 20px
+}
+.liste_patients .box_patient {
+  background-color: #ffffff;
+  box-shadow: 0.5px 0.5px 8px rgba(128, 128, 128, 0.561);
+  /* background-color: green; */
+  margin: 5px;
+  padding: 10px;
+  height: 230px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 400ms;
+}
+
+.liste_patients .box_patient:hover{
+  transform: scale(0.98 , 0.98);
+}
+
+.liste_patients::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.img_patient {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin: auto;
+  background-image: url("/medecin_images/img_patient.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.nom_patient {
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.email {
+  margin: auto;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: gray;
+}
+.btn_consulter {
+  margin: auto;
+  text-align: center;
+  display: block;
+  padding: 5px;
+  border: none;
+  border-radius: 7px;
+  width: 150px;
+  background-color: #2fa5e0;
+  cursor: pointer;
+  margin-top: 15px;
+  color: white;
+  font-weight: 600;
+}
+.cover {
+  height: 75%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 5px 20px;
+  position: relative;
+}
+
+.display_info {
+  width: 400px;
+  height: 300px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  margin-left: 380px;
+  margin-top: 80px;
+  text-align: center;
+  display: none;
+  box-shadow: 0.5px 0.5px 8px #66a2c0;
+  border-radius: 20px;
+  transition: all 300ms;
+}
+
+.display_info:hover{
+  transform: scale(0.95 , 0.95);
+  box-shadow: 0.8px 0.5px 8px #3f91ba;
+}
+
+.display_info div {
+  margin: 10px auto;
+}
+.info_perso {
+  height: 100px;
+  display: flex;
+}
+
+.info_perso div {
+  width: 100px;
+}
+
+.age,
+.ncin,
+.ntel {
+  font-weight: 700;
+}
+
+/* settings  */
+.params{
+  display: grid;
+  grid-template-columns: 45% 55%;
+  height: 95%;
+}
+
+.image{
+  background-color: #2d9ddc;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-image: url("/medecin_images/paramsImage.svg");
+  background-size: 97%;
+  background-repeat: no-repeat;
+  background-position:center 30%;
+}
+
+.warning{
+  margin: 10px auto;
+  width: 90%;
+  padding: 20px;
+  height: 130px;
+  background-color: rgb(255, 135, 113);
+  color: white;
+  font-weight: 400;
+  border-radius: 20px;
+  /* padding: 10px; */
+}
+
+.formulaire{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.formulaire >div {
+  margin: 10px;
+}
+
+.formulaire >div > label{
+  display: block;
+  margin-left: 5px;
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(144, 144, 144);
+  margin-bottom: 4px;
+}
+
+.inp{
+  width: 95%;
+  height: 45px;
+  border-radius: 6px;
+  outline: none;
+  text-indent: 10px;
+  font-size: 15px;
+  border: 2px solid rgb(186, 186, 186);
+  transition: border 300ms;
+  color: rgb(54, 54, 54);
+}
+
+.validate{
+  margin-left: 80%;
+  margin-top: 20%;
+  border-radius: 10px;
+  background-color: #2d9ddc;
+  color: white;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 140px;
+  height: 45px;
+  transition: transform 300ms;
+}
+
+.validate:hover{
+  transform: scale(0.97,0.97);
+}
+
+.inp:hover {
+  border: 2px solid lightblue;
+}
+
+.inp:focus , .inp:focus-within{
+  border: 2px solid lightgreen;
+}
+
+
+.emptyP{
+  margin-left: 50%;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/secritaire/sec.css" />
+    <title>page d'acceuil pour un secretaire</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+            <img
+            src="/sec_images/img_sec.png"
+            alt="User image"
+            class="pngimage"
+          />
+          <div>
+            <h2><%= sec[0].nom %> <%= sec[0].prenom %></h2>
+            <p><%= sec[0].email.substring(0,15) + "..." %></p>
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+          <li>
+            <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/sec/accueil">Accueil</a>
+          </li>
+          <li>
+            <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a
+              href="/sec/reserver"
+              >Reserver</a
+            >
+          </li>
+          <li>
+            <img
+              src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg"
+              alt=""
+            /><a href="/sec/patients">Patients</a>
+          </li>
+          <li>
+            <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/sec/medcins"
+              >Medcins</a
+            >
+          </li>
+          <li>
+            <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a
+              href="/sec/settings"
+              >Settings</a
+            >
+          </li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Patients</h2>
+        </header>
+        <div class="Codeholder">
+          <nav class="recherche">
+            <form action="/sec/searchPatientSec" method="post">
+              <input
+                placeholder="Rechercher par nom ou prenom ..."
+                type="text"
+                name="name"
+                id=""
+                class="bare_recherche"
+              />
+            </form>
+          </nav>
+
+          <div class="patients">
+            <% for( let i = 0; i < patients.length; i++ ) { %>
+                <div class="patient">
+                    <div class="img"></div>
+                    <div class="nom_prenom_email">
+                      <div class="nom_prenom"><%= patients[i].nom %> <%= patients[i].prenom %></div>
+                      <div class="email"><%= patients[i].email.substring(0,40) + "..." %></div>
+                    </div>
+      
+                    <div class="cover_info">
+                      <div class="nom_info">Ncin</div>
+                      <div class="valeur"><%= patients[i].ncin %></div>
+                    </div>
+                    <div class="cover_info">
+                      <div class="nom_info">N-Tel</div>
+                      <div class="valeur"><%= patients[i].phone %></div>
+                    </div>
+                    <div class="cover_info">
+                      <div class="nom_info">Age</div>
+                      <div class="valeur"><% var date = new Date( patients[i].birthdate).getFullYear() ; var today = new Date().getFullYear() ; var age = parseInt(today) - parseInt(date); %><%= age %> ans</div>
+                    </div>
+                    <div class="cover_btn">
+                      <a href="mailto:<%= patients[i].email %>" class="btn_contacter">Contacter</a>
+                    </div>
+                  </div>
+            <% } %>
+
+
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

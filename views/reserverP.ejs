@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/patient.css" />
+    <link rel="stylesheet" href="/css/patientReserve.css" />
+    <title>shifa</title>
+  </head>
+  <body>
+    <div class="liner">
+        <aside>
+                <div class="user">
+                    <img src="/iconsP/icons8-user-50.png" alt="User image">
+                    <div>
+                        <h2><%= nom %> <%= prenom %></h2>
+                        <p><%= email.substring(0, 20) + '...' %></p>
+                    </div>
+                </div>
+    
+                <ul class="UL_aside">
+                  <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+                  <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Réserver</li></a>
+                  <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Réservations</li></a>
+                  <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+              </ul>
+    
+            <form action="/logout" method="post">
+                <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+            </form>
+
+            <div class="spacer"></div>
+        </aside>
+    
+        <main>
+            <header>
+                <h2>Réserver</h2>
+            </header>
+    
+        <div class="Codeholder">
+              <div class="informations_services">
+            <section class="section_logo">
+              <h1 class="logo">Shifa logo</h1>
+              <span>votre sante en ligne</span>
+            </section>
+            <div class="paragraphes">
+              <p class="p1">Sélectionnez un service que vous souhaitez consulter !</p>
+              <p class="p2">
+                
+              </p>
+            </div>
+          </div>
+
+          <div class="services">
+            <div class="service service1">
+              <p>Ophtalmologie</p>
+              <div></div>
+            </div>
+            <div class="service service2">
+              <p>Cardiologie</p>
+              <div></div>
+            </div>
+            <div class="service service3">
+              <p>Orthopédie</p>
+              <div></div>
+            </div>
+            <div class="service service4">
+              <p>Radiologie</p>
+              <div></div>
+            </div>
+            <div class="service service5">
+              <p>Pédiatrie</p>
+              <div></div>
+            </div>
+            <div class="service service6">
+              <p>Consultation générale</p>
+              <div></div>
+            </div>
+            <div class="service service7">
+              <p>Neurologie</p>
+              <div></div>
+            </div>
+            <div class="service service8">
+              <p>Dermatologie</p>
+              <div></div>
+            </div>
+            <div class="service service9">
+              <p>Odontologie</p>
+              <div></div>
+            </div>
+            <div class="service service10">
+              <p>Psychiatrie</p>
+              <div></div>
+            </div>
+          </div>
+
+          <form action="/patient/reserver" method="post" >
+            <input type="hidden" id="hiddenserv" name="hiddenserv">
+            <button class="btn" type="submit">
+                choisir une date
+                <div></div>
+            </button>
+          </form>
+          <div class="separator"></div>
+    </div>
+  </main>
+</div>
+    <script>
+      const hiddenDate = document.getElementById("hiddenserv")  
+      const services = document.getElementsByClassName("services")[0];
+      services.addEventListener("click", (e) => {
+        var target = e.target;
+
+        if (
+          target.classList.contains("service") ||
+          target.parentElement.classList.contains("service")
+        ) {
+          for (let i = 0; i < services.children.length; i++) {
+            if (services.children[i].classList.contains("service_checked")) {
+              services.children[i].classList.remove("service_checked");
+            }
+          }
+          if (target.parentElement.classList.contains("service")) {
+            target = target.parentElement;
+          }
+          target.classList.toggle("service_checked");
+        }
+
+        if(target.classList.contains("service")){
+          hiddenDate.value = target.textContent.trim()
+          console.log(hiddenDate.value);
+        }else if( target.parentElement.classList.contains("service")){
+          hiddenDate.value = target.parentElement.textContent.trim()
+          console.log(hiddenDate.value);
+        }
+    });
+    </script>
+  </body>
+</html>

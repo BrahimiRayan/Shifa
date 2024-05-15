@@ -1,0 +1,803 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+
+h2 {
+  font-size: 24px;
+}
+
+ul , p{
+  margin: 0;
+  padding: 0;
+}
+.special {
+  scroll-behavior: smooth;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #c2e1e410 #c2e1e40a;
+}
+
+.special::-webkit-scrollbar {
+  width: 0.09vw;
+}
+
+.special::-webkit-scrollbar-thumb {
+  background-color: #c2e1e410;
+}
+
+.special::-webkit-scrollbar-track {
+  background-color: #c2e1e410; /* Hide the track */
+}
+
+:root {
+  --liniarColor: linear-gradient(320deg, rgb(0, 238, 255), rgb(0, 0, 0));
+  --bgColor: rgba(77, 231, 239, 0.672);
+  --bgColor: rgb(255, 255, 255);
+  --bgColor2: rgb(209, 235, 235);
+  --fontColor: rgb(42, 42, 42);
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background: var(--bgColor);
+  backdrop-filter: blur(90px);
+  overflow-x: hidden; /* to prevent horizontal scrollbar */
+  position: relative;
+}
+
+aside {
+  width: 7%;
+  padding: 30px 15px;
+  background-color: rgba(255, 255, 255, 0.226);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 400ms;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  float: left;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 100%; */
+  width: 60px;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 8px;
+  margin-inline: auto;
+  /* background-color: aliceblue; */
+  transition: width 300ms;
+}
+
+.user div {
+  margin-right: 25px;
+}
+
+.user img {
+  width: 50px;
+  height: 50px;
+}
+
+.user div > h2 {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+}
+.user div > p {
+  font-size: 11px;
+  color: rgb(146, 146, 146);
+}
+
+.UL_aside {
+  list-style: none;
+}
+
+.UL_aside li {
+  width: max-content;
+  /* width: 110%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+  margin-left: -12px;
+  cursor: pointer;
+  padding-left: 30px;
+  padding-right: 100%;
+  background-color: transparent;
+  padding-block: 5px;
+  transition: background-color 500ms ease-out, border-left 200ms ease;
+  /* border-left: 3px solid; */
+}
+
+.UL_aside li:hover {
+  border-left: 1px solid gray;
+  background-color: rgba(10, 135, 245, 0.266);
+}
+
+.UL_aside li img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.UL_aside li a {
+  text-decoration: none;
+  /* font-size: 1px; */
+  color: rgb(81, 80, 80);
+  display: none;
+}
+
+.Logout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 17px;
+  padding: 6px 0;
+  /* width: 60%; */
+  width: 66%;
+  overflow: hidden;
+  margin-left: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgb(255, 2, 36);
+  color: #eee;
+  /* width: 100%; */
+}
+.Logout i {
+  width: 28px;
+  height: 28px;
+  margin-left: 12px;
+  margin-top: 8px;
+
+  color: aliceblue;
+}
+
+.Logout p {
+  margin-left: 22px;
+}
+
+.spacer {
+  height: 10px;
+  width: 100%;
+}
+
+aside:hover {
+  width: 19%;
+}
+
+aside:hover + main {
+  margin-left: 20%;
+}
+
+aside:hover .user {
+  width: 90%;
+  /* width: max-content; */
+  background-color: #c2e1e4;
+}
+aside:hover .UL_aside li a {
+  display: block;
+}
+
+aside:hover .UL_aside li {
+  justify-content: flex-start;
+}
+
+main {
+  height: 100%;
+  margin-left: 7%;
+  transition: margin-left 300ms;
+}
+
+header {
+  padding: 8px;
+  background-color: rgb(255, 255, 255);
+  position: sticky;
+  z-index: 100;
+  top: 0;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+header h2 {
+  font-weight: 700;
+  color: black;
+}
+
+header h2 a {
+  text-decoration: none;
+  color: #5fd3de;
+}
+
+aside:hover + main {
+  margin-left: 19%;
+}
+
+.Codeholder {
+  margin-inline: 1%;
+  margin-block: 5px;
+  /* remove this  */
+  background-color: #eee;
+  background-color: rgba(220, 232, 255, 0.5);
+  /* border: 1px solid; */
+}
+
+.Codeholder {
+  margin-inline: 1%;
+  margin-block: 5px;
+  height: 90vh;
+}
+
+.Codeholder::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* ******************************* la page secretaire-reservation ********************************* */
+.cover_secretaire_reservation {
+  display: flex;
+  height: 100%;
+}
+.inscreption_patient {
+  width: 40%;
+  background-color: rgba(31, 179, 191, 0.9);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.info_medecin_reservation {
+  width: 60%;
+  /* background-color: red; */
+}
+.reservation_titre {
+  font-size: 27px;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 300;
+}
+.cover_select {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  height: 20%;
+  margin-top: 10px;
+}
+.cover_select label,
+.dates_et_heures p {
+  font-size: 20px;
+  font-weight: 200;
+  margin-inline: 60px;
+}
+.dates_et_heures p {
+  margin-left: 60px;
+}
+.cover_select select {
+  width: 200px;
+  height: 30px;
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid rgb(182, 182, 182);
+  padding-inline-start: 20px;
+  background-color: #f5f4f4;
+  margin-inline: 50px;
+}
+.dates_et_heures {
+  height: 50%;
+  /* background-color: red; */
+}
+.dates_et_heures .dates {
+  /* background-color: green; */
+  height: 49%;
+}
+.dates_et_heures .heures {
+  /* background-color: yellow; */
+  height: 49%;
+  margin-top: 1%;
+}
+.cartes_cover {
+  /* background-color: grey; */
+  height: 60%;
+  display: flex;
+  margin-inline: 20px;
+}
+.cartes {
+  height: 100%;
+  display: flex;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+  width: 100%;
+  margin-inline: 20px;
+}
+.cartes::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.carte {
+  background-color: #c9d6ff;
+  min-width: 200px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.carte:hover , .carteTime:hover{
+  transform: scale(1.05 , 1.05);
+}
+
+.btn_scroll {
+  color: red;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+.btn_submit {
+  margin: 30px auto;
+  display: block;
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
+  background-color: rgba(31, 179, 191, 0.9);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 400ms;
+}
+
+.btn_submit:hover{
+  transform: scale(1.07, 1.07);
+}
+
+.bgrd_img {
+  height: 120px;
+  width: 250px;
+  margin: 30px auto;
+  background-image: url("/sec_images/bgd_img.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  /* background-color: red; */
+}
+.info_inputs {
+  /* background-color: red; */
+  width: 250px;
+  height: 200px;
+  margin: auto;
+}
+.input_champ {
+    width: 100%;
+    height: 43px;
+    font-size: 14px;
+    margin-block: 10px;
+    outline: none;
+    padding-inline: 50px;
+    border-radius: 5px;
+    border: none;
+    text-indent: 8px;
+    background-repeat: no-repeat;
+    background-size: 43px;
+    background-position: 2px center;
+}
+
+
+input[type="date"] {
+  text-indent: 5px;
+}
+
+.carteTime{
+  background-color: #c9d6ff;
+  min-width: 200px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.ligne {
+  height: 2px;
+  width: 250px;
+  background-color: #ffff;
+  margin: 135px auto;
+}
+
+.input_nom {
+  background-image: url("/sec_images/icon_nom.png");
+}
+.input_prenom {
+  background-image: url("/sec_images/Prenom.png");
+}
+.input_age {
+  color: gray;
+  background-image: url("/sec_images/date_de_naissance.png");
+}
+.input_ncin {
+  background-image: url("/sec_images/Ncin.png");
+}
+
+.input_age::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+
+/* ***************************** la page secretaire_reservation ********************************* */
+.info_secretaire {
+  background-color: rgba(10, 153, 215, 0.71);
+  height: 32%;
+  border-radius: 20px;
+  position: relative;
+}
+.logo {
+  width: 100px;
+  height: 75px;
+  text-indent: 100%;
+  overflow: hidden;
+  text-wrap: nowrap;
+  background-image: url("/images/logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: center;
+}
+.section_logo span {
+  color: #c9d6ff;
+  align-self: center;
+  font-size: 10px;
+  padding-bottom: 13px;
+}
+.section_logo {
+  display: flex;
+  padding-left: 25px;
+  position: absolute;
+}
+.paragraphes {
+  /* background-color: red; */
+  display: inline-block;
+  margin: 60px auto;
+  width: 50%;
+  text-align: center;
+  color: #fff;
+}
+.p1 {
+  font-size: 30px;
+  font-weight: 500;
+}
+.p1 .nom_secretaire {
+  font-weight: 700;
+}
+.p2 {
+  font-size: 17px;
+  margin-left: 24%;
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+}
+.bgrd_img_info_secretaire {
+  width: 300px;
+  height: 100%;
+  background-image: url("/sec_images/bgrd_img_secretaire.png");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
+.secretaire_boxes {
+  display: flex;
+  align-items: center;
+  height: 120px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  justify-content: space-between;
+  padding-inline: 30px;
+}
+.secretaire_boxes .box {
+  width: 250px;
+  height: 80%;
+  display: flex;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 0.4px 0.6px 8px rgb(178, 178, 178);
+  border-radius: 10px;
+  transition: all 300ms;
+}
+.secretaire_boxes .box:hover {
+  transform: scale(0.98 ,0.98);
+  box-shadow: 0.4px 0.4px 9px rgb(38, 164, 254);
+}
+.box_info {
+  padding-left: 10px;
+  text-align: center;
+}
+.box_info p {
+  padding-bottom: 10px;
+  padding-top: 15px;
+  font-weight: 400;
+}
+.box_info span {
+  font-size: 25px;
+  font-weight: 600;
+}
+.box_icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: 15px;
+  right: 7px;
+  background-image: url("/sec_images/icon_sec_box.png");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  border-radius: 50%;
+}
+.box_icon1 {
+  background-color: #e7bb65;
+}
+.box_icon2 {
+  background-color: #64c64b;
+}
+.box_icon3 {
+  background-color: #159eda;
+}
+.box_icon4 {
+  background-color: #f49797;
+}
+.bottom_info {
+  display: flex;
+  height: 40%;
+  padding-inline: 10px;
+}
+
+.profile .img_secretaire {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-image: url("/sec_images/img_sec.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90%;
+  margin: 10px auto;
+  box-shadow: 0.5px 0.5px 4px 1px grey;
+}
+.profile .email_secretaire {
+  font-size: 13px;
+  font-weight: 400;
+  color: gray;
+}
+.secretaire_info {
+  /* background-color: red; */
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+.cover_ncin,
+.cover_matricule,
+.cover_Ntel {
+  width: 100px;
+  /* background-color: green; */
+  text-align: center;
+  padding-top: 10px;
+}
+.secretaire_info span {
+  font-weight: 300;
+  color: gray;
+}
+.secretaire_info p {
+  margin-bottom: 5px;
+}
+.nom_secretaire {
+  margin-block: 10px;
+}
+
+.secretaire_services {
+  width: 60%;
+  overflow-y: scroll;
+  /* background-color: red; */
+}
+.secretaire_services::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.bottom_info .profile {
+  border-radius: 10px;
+  width: 35%;
+  margin-left: 1%;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: -0.2px 0.5px 10px -6px;
+  transition: all 300ms;
+}
+
+.bottom_info .profile:hover{
+  transform: scale(0.98 ,0.98);
+  box-shadow: 0.4px 0.4px 9px rgb(38, 164, 254);
+}
+
+.bottom_info .secretaire_services {
+  width: 65%;
+}
+.sec_service {
+  background-color: #ffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 4px 4px 10px -8px;
+  height: 52px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sec_service div {
+  width: 100px;
+  text-align: center;
+}
+
+.pngimage{
+  width: 32px;
+  height: 32px;
+}
+
+.sec_icon {
+  width: 70px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 35%;
+  background-position: center;
+}
+.sec_service .capacite {
+  width: 140px;
+}
+.top_div {
+  position: sticky;
+  height: 60px;
+  border-radius: 0;
+  /* border-block: 1px solid rgb(187, 187, 187); */
+  top: 0;
+}
+.serv {
+  background-image: url("");
+}
+
+.selectedcarte{
+  background-color: #159eda;
+}
+
+/* ******************************* la page secretaire_patient ************************************** */
+.patients {
+  height: 96%;
+  width: 95%;
+  margin:0 auto;
+  display: grid;
+  grid-template-columns: repeat(3 ,1fr);
+  gap: 20px;
+  padding: 5px;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+.patient {
+  background-color: #fff;
+  border-radius: 10px;
+  /* margin: 0 16px 6px 0; */
+  padding-block: 7px;
+  box-shadow: 0px 3px 8px #59bcc2;
+  border-radius: 20px;
+  transition: all 300ms;
+  cursor: pointer;
+  height: 270px;
+}
+
+.nom_prenom{
+  font-weight: 600;
+  font-size: 18px;
+}
+
+
+.patient:hover {
+  transform: scale(0.98, 0.98);
+}
+.patients::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.recherche {
+  height: 10%;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.iDidntfoundAname{
+  height: 30px;
+}
+
+.bare_recherche {
+  height: 35px;
+  width: 400px;
+  outline: none;
+  border-radius: 15px;
+  opacity: 0.5;
+  border: 1px solid #a0a0a0;
+  padding: 0 20px;
+  background-image: url(/adminpics/search-sort-svgrepo-com.svg);
+  background-repeat: no-repeat;
+  background-position: 97% center;
+  background-size: contain;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  background-color: #b3e2e5;
+  box-shadow: 0.5px 0.5px 4px rgb(41, 41, 41);
+  border-radius: 50%;
+  margin-right: 10px;
+  background-image: url("/sec_images/icon_pat.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 8px auto;
+}
+.email {
+  font-size: 13px;
+  font-weight: 400;
+  color: gray;
+  margin-top: 5px;
+}
+.cover_info {
+  display: flex;
+  justify-content: space-around;
+  padding-inline: 20px;
+  margin-block: 5px;
+  text-align: center;
+}
+.valeur {
+  width: 100px;
+  /* background-color: red; */
+  font-weight: 200;
+}
+.nom_info {
+  width: 80px;
+  font-weight: 500;
+  /* background-color: yellow; */
+}
+.btn_contacter {
+  width: 130px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  text-decoration: none;
+  padding-top: 2px;
+  text-align: center;
+  background-color: #5fd3de;
+  color: #fff;
+  display: block;
+  cursor: pointer;
+}
+.cover_btn {
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  width: 120px;
+  
+}
+.nom_prenom_email {
+  text-align: center;
+}

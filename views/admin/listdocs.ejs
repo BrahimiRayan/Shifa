@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin/adminstyle.css">
+    <title>Aside reference</title>
+</head>
+<body>
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/icons/business-manager-or-management-18880.svg" alt="User image">
+                <div>
+                    <h2><%= admin[0].nom %> <%= admin[0].prenom %></h2>
+                    <p><%= admin[0].email.substring(0, 20) + '...' %></p>
+                </div>
+            </div>
+
+        <ul class="UL_aside">
+            <li><img src="/icons/dashboard-svgrepo-com.svg" alt=""><a href="/admin/accueil">Accueil</a></li>
+            <li><img src="/icons/doctor-svgrepo-com.svg" alt=""><a href="/admin/listdocs">Medcins</a></li>
+            <li><img src="/icons/office-secretary-svgrepo-com.svg" alt=""><a href="/admin/listsec">Secritaires</a></li>
+            <li><img src="/icons/fever-flu-ill-sick-svgrepo-com.svg" alt=""><a href="/admin/listpat">Patients</a></li>
+            <li><img src="/icons/opened-book-3163.svg" alt=""><a href="/admin/services">Services</a></li>
+            <li><img src="/icons/settings-svgrepo-com.svg" alt=""><a href="/admin/Settings">Settings</a></li>
+            
+        </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <!-- <div class="spacer"></div> -->
+    </aside>
+
+    <main>
+        <header>
+            <h2>Liste Medcins</h2>
+        </header>
+
+        <div class="Codeholder">
+
+            <nav class="navdoc">
+                <form action="/admin/searchdocs" method="post">
+                    <input type="text" name="searchbar" id="searchbardoc" placeholder="Nom" class="recherchedocs">
+                </form>
+
+                <div class="optionBtn">
+                    <form action="/admin/snom" method="post">
+                        <input type="submit" class="choixsl" id="nombtn" value="Nom">
+                    </form>
+                    <form action="/admin/sservice" method="post">
+                        <input type="submit" class="choixsl" id="servicebtn" value="Service">
+                    </form>
+                    <form action="/admin/smatricule" method="post">
+                        <input type="submit" class="choixsl selected" id="matbtn" value="Matricule"  >
+                    </form>
+                </div>
+            </nav>
+
+            <div class="tabholder">
+            <table class="docsTab">
+                <thead>
+                    <tr>
+                        <th class="nomth">Nom et Prenom</th>
+                        <th>Email</th>
+                        <th>Matricule</th>
+                        <th>Service</th>
+                        <th class="delviewth"><p>Action</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let i = 0; i < docs.length; i++ ) { 
+                          var spacing = ""
+                          if(docs[i].nomserv.length >= 17){
+                            spacing = "..."
+                          }
+                        %>
+                        <tr>
+                            <td class="nomtd"><%= docs[i].nom %> <%= docs[i].prenom %></td>
+                            <td><%= docs[i].email.substring(0, 20) + '...' %></td>
+                            <td><%= docs[i].matricule %></td>
+                            <td><%= docs[i].nomserv.substring(0, 15) + spacing %></td>
+                            <td class="delViewBtns">
+                                <form action="/deldocs" method="post">
+                                    <button type="submit" class="del" name="deldoc" value="<%= docs[i].iddoc %>">Supprimer</button>
+                                </form>
+                                <form action="/viewdoc/<%=docs[i].iddoc%>" method="get">
+                                    <button type="submit" class="view">Voir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        
+    </main>
+
+
+    <div class="secondAside">
+        <div class="cntr" id="cntr">
+        <h2>Ajouter un medcin</h2>
+        <img src="/adminpics/doctor-svgrepo-com (1).svg" alt="">
+
+        <form action="/admin/inscriptionDocteur" method="post">
+
+            <div class="firstCollection" id="firstCollection">
+                <input type="text" id="nom" name="name" placeholder="Nom" required minlength="3" autocomplete="off">
+                <input type="text" id="prenom" name="fname" placeholder="Prenom" required minlength="3" autocomplete="off">
+                <input type="date" id="bdate" name="bdate" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" required minlength="8" autocomplete="off" min="1910-01-01" max="2006-12-31">
+                <button type="button" class="styledbtn next" id="next1"></button>
+            </div>
+
+            <div class="SecondCollection hidden" id="SecondCollection">
+                <input type="email" id="email" name="email" placeholder="Email" minlength="8" required autocomplete="off">
+                <input type="text" id="phone" name="phone" placeholder="Numero de telephone" minlength="10" required autocomplete="off">
+                <input type="text" id="ncin" name="ncin" placeholder="Numero CIN" minlength="12" maxlength="12" required autocomplete="off">
+                <div class="btnholder">
+                    <button type="button" class="styledbtn back" id="back1"></button>
+                    <button type="button" class="styledbtn next" id="next2"></button>
+                </div>
+            </div>
+
+            <div class="thirdCollection hidden" id="thirdCollection">
+                <select name="" id="serviceSelecter" required>
+                    <option value="" selected disabled>Selectioner le service</option>
+                    <% for( let j = 0; j < services.length; j++ ) { %>
+                        <option value="<%= services[j].idserv %>"><%= services[j].nomserv %></option>
+                    <% } %>
+                </select>
+                <input type="hidden" name="services" id="service" >
+                <div class="btnholder">
+                    <button type="button" class="styledbtn back" id="back2"></button>
+                    <input type="submit" class="styledbtn" value="submit">
+                </div>
+            </div>
+        </form>
+
+        <div class="bolls">
+        <div class="rounded turn"></div>    
+        <div class="rounded"></div>    
+        <div class="rounded"></div>    
+        </div>
+    </div>
+
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const aside = document.querySelector('aside');
+    const liner = document.querySelector('.liner');
+    const cntr = document.getElementById("cntr");
+    const next1 = document.getElementById("next1");
+    const next2 = document.getElementById("next2");
+    const back1 = document.getElementById("back1");
+    const back2 = document.getElementById("back2");
+    const col1 = document.getElementById("firstCollection")
+    const col2 = document.getElementById("SecondCollection")
+    const col3 = document.getElementById("thirdCollection")
+    const selectElement = document.getElementById('serviceSelecter');
+    const hiddenInput = document.getElementById('service');
+    const choix1btn = document.getElementById("nombtn");
+    const choix2btn = document.getElementById("servicebtn");
+    const choix3btn = document.getElementById("matbtn");
+    const searchbardoc = document.getElementById("searchbardoc")
+    var rounded = document.getElementsByClassName("rounded");
+
+
+    choix1btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix', "nom");
+        updateSelectedButton();
+    });
+
+    choix2btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix', "service");
+        updateSelectedButton();
+    });
+
+    choix3btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix', "matricule");
+        updateSelectedButton();
+    });
+
+    function updateSelectedButton() {
+        const selectedChoix = localStorage.getItem("selectedchoix");
+        if (selectedChoix === "nom") {
+            searchbardoc.setAttribute("placeholder" , "Nom")
+            choix2btn.classList.remove("selected");
+            choix3btn.classList.remove("selected");
+            choix1btn.classList.add("selected");
+        } else if(selectedChoix === "matricule"){
+            searchbardoc.setAttribute("placeholder" , "Matricule")
+            choix1btn.classList.remove("selected");
+            choix2btn.classList.remove("selected");
+            choix3btn.classList.add("selected");
+        }else{
+            searchbardoc.setAttribute("placeholder" , "Service")
+            choix1btn.classList.remove("selected");
+            choix3btn.classList.remove("selected");
+            choix2btn.classList.add("selected");
+        }
+    }
+    updateSelectedButton();
+
+    selectElement.addEventListener('change', function() {
+        hiddenInput.value = this.value;
+    });
+
+    next1.addEventListener("click" , function(){
+        rounded[1].classList.add("turn");
+        col1.classList.remove("showen")
+        col1.classList.add("hidden")
+        col2.classList.remove("hidden")
+        col2.classList.add("showen")
+    });
+
+    next2.addEventListener("click" , function(){
+        rounded[2].classList.add("turn");
+        col2.classList.remove("showen")
+        col2.classList.add("hidden");
+        col3.classList.remove("hidden");
+        col3.classList.add("showen");
+    });
+
+    back1.addEventListener("click" , function(){
+        rounded[1].classList.remove("turn");
+        col2.classList.add("hidden")
+        col2.classList.remove("showen")
+        col1.classList.remove("hidden")
+        col1.classList.add("showen")
+    });
+
+    back2.addEventListener("click" , function(){
+        rounded[2].classList.remove("turn");
+        col3.classList.remove("showen")
+        col3.classList.add("hidden")
+        col2.classList.remove("hidden")
+        col2.classList.add("showen")
+    });
+
+    aside.addEventListener('mouseover', function() {
+        liner.style.transition = 'grid-template-columns 0.3s ease';
+        liner.style.gridTemplateColumns = '19% 76% 7%';
+        cntr.classList.add("hidden")
+    });
+
+    aside.addEventListener('mouseout', function() {
+        liner.style.transition = 'grid-template-columns 0.3s ease';
+        liner.style.gridTemplateColumns = '7% 65% 30%';
+        cntr.classList.remove("hidden")
+    });
+});
+
+</script>
+</body>
+</html>

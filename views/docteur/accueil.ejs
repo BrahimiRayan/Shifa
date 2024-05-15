@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/docteur/doc.css" />
+    <title>Page Medcin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img src="/medecin_images/img_doc.svg" alt="User image" />
+          <div>
+            <h2><%= doc[0].nom %> <%= doc[0].prenom %></h2>
+            <p><%= doc[0].email.substring(0 , 15) + "..." %></p> 
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+          <li>
+            <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/doc/accueil">Accueil</a>
+          </li>
+          <li>
+            <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a
+              href="/doc/reserver"
+              >Reserver</a
+            >
+          </li>
+          <li>
+            <img
+              src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg"
+              alt=""
+            /><a href="/doc/patients">Patients</a>
+          </li>
+          <li>
+            <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/doc/medcins"
+              >Medcins</a
+            >
+          </li>
+          <li>
+            <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a
+              href="/doc/settings"
+              >Settings</a
+            >
+          </li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Accueil</h2>
+        </header>
+
+        <div class="Codeholder">
+          <div class="info_general">
+            <div class="information_medecin">
+              <section class="section_logo">
+                <h1 class="logo">Shifa logo</h1>
+                <span>Votre santé en ligne</span>
+              </section>
+              <div class="paragraphes">
+                <p class="p1">Bienvenue <span>Dr <%= doc[0].nom %> <%= doc[0].prenom %></span></p>
+                <p class="p2"> Nous vous souhaitons une excellente journée de travail, remplie de bonheur et de succès dans votre pratique médicale !</p>
+              </div>
+              <!-- <div class="bgrd_medecins"></div> -->
+            </div>
+            <div class="boxs_medecin_info">
+              <div class="box box1">
+                <div class="sidebar redsidebar"></div>
+                <div class="bagrd_patient_auj bgFixed"></div>
+                <div class="right_info">
+                  <p> patients d'aujourd'hui</p>
+                  <span><%= nbrpToday[0].nbr %></span>
+                </div>
+              </div>
+              <div class="box box2">
+                <div class="sidebar bluesidebar"></div>
+                <div class="bagrd_patient_attent bgFixed"></div>
+                <div class="right_info">
+                  <p>Les patient dont 15 jours</p>
+                  <span><%= nbrp15d[0].nbr %></span>
+                </div>
+              </div>
+              <div class="box box3">
+                <div class="sidebar yellowsidebar"></div>
+                <div class="bagrd_patient_prochaine bgFixed"></div>
+                <div class="right_info">
+                  <p>Nombre patients passés</p>
+                  <span><%= nbrptot[0].nbr %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom_info">
+            
+            <% if (todaypatients4.length === 0 && childeren.length === 0) { %>
+              <div class="patients noPatient">
+                <div class="nothing"></div>
+                <p>Aucun patient trouvé. Restez en attente !</p>
+              
+            <% } %>
+
+            <% if (todaypatients4.length !== 0 || childeren.length !== 0) { %>
+              <div class="patients">
+            <% } %>
+            
+                <% if (todaypatients4.length >= 4) { %>
+                <% for( let i = 0; i < 4; i++ ) {var aging = new Date().getFullYear() - new Date(todaypatients4[i].birthdate).getFullYear()%>
+                  
+                  <div class="patient">
+                    <div class="img_patient"></div>
+                      <div class="number">0<%= i %></div>
+                      <div><%= todaypatients4[i].nom%> <%= todaypatients4[i].prenom%></div>
+                      <div><%= aging %> ans</div>
+                      <div><%= todaypatients4[i].ncin%></div>
+                    </div>
+                  
+                <% } %>
+            <% } %>
+
+            <% if (todaypatients4.length < 4) { var left = 4 - todaypatients4.length; %>
+              <% for(var j = 0; j < todaypatients4.length; j++ ) { 
+                var aged = new Date().getFullYear() - new Date(todaypatients4[j].birthdate).getFullYear()
+                %>
+                
+                  <div class="patient">
+                    <div class="img_patient"></div>
+                    <div class="number">0<%= j + 1 %> </div>
+                    <div><%= todaypatients4[j].nom%> <%= todaypatients4[j].prenom%></div>
+                    <div><%= aged %> ans</div>
+                    <div><%= todaypatients4[j].ncin%></div>
+                  </div>
+                
+              <% } %>
+              
+              
+              <% if (childeren.length > 0 && todaypatients4.length < 4 ) { if (left > childeren.length) {
+                   left = childeren.length
+                } %>
+                
+                <% for( let k = 0; k < left; k++) { var age = new Date().getFullYear() - new Date(childeren[k].bdate).getFullYear()%>
+                    <div class="patient">
+                      <div class="img_patient img_Son"></div>
+                      <div class="number">0<%= j +1  %></div>
+                      <div><%= childeren[k].nom  %> <%= childeren[k].prenom  %></div>
+                      <div><%= age %> ans</div>
+                      <div></div>
+                   </div>
+                <% } %>  
+              <% } %>
+              <% } %>
+            </div>
+
+
+
+
+            <div class="profile">
+              <div class="img_docteur"></div>
+              <div class="nom_docteur">Dr <%= doc[0].nom %> <%= doc[0].prenom %></div>
+              <div class="email_docteur"><%= doc[0].email.substring(0,15) + "..." %></div>
+              <div class="info_profil">
+                <div class="info_left">
+                  <span>Spécialité</span>
+                  <div class="specialite"><%= service[0].nomserv %></div>
+                  <span>Numéro téléphone</span>
+                  <div class="numero_tel"><%= doc[0].phone %></div>
+                </div>
+                <div class="info_right">
+                  <span>Matricule</span>
+                  <div class="matricule"><%= doc[0].matricule %></div>
+                  <span>N° CIN</span>
+                  <div class="ncin"><%= doc[0].ncin %></div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

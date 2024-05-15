@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/secritaire/sec.css" />
+    <title>Page Admin</title>
+
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/sec_images/img_sec.png"
+            alt="User image"
+            class="secimage"
+          />
+          <div>
+            <h2><%= sec[0].nom %> <%= sec[0].prenom %></h2>
+            <p><%= sec[0].email.substring(0,15) + "..." %></p>
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+          <li>
+            <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/sec/accueil">Accueil</a>
+          </li>
+          <li>
+            <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a
+              href="/sec/reserver"
+              >Reserver</a
+            >
+          </li>
+          <li>
+            <img
+              src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg"
+              alt=""
+            /><a href="/sec/patients">Patients</a>
+          </li>
+          <li>
+            <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/sec/medcins"
+              >Medcins</a
+            >
+          </li>
+          <li>
+            <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a
+              href="/sec/settings"
+              >Settings</a
+            >
+          </li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Rendez-vous</h2>
+        </header>
+
+
+        <% if (Isresereved)  { %>
+            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content danger">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel"><strong style="color: rgb(36, 216, 36);">Succès</strong></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      Le rendez-vous est prêt <strong style="color: rgb(80, 245, 80);">correctement</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+      <% } %>
+          
+
+
+        <div class="Codeholder" >
+          <form class="cover_secretaire_reservation" action="/reservation/temp" method="post">
+            <div class="inscreption_patient">
+              <div class="bgrd_img"></div>
+              <div class="info_inputs">
+                <input
+                  placeholder="Nom"
+                  class="input_champ input_nom"
+                  type="text"
+                  autocomplete="off"
+                  name="name"
+                  required
+                />
+                <input
+                  placeholder="Prenom"
+                  class="input_champ input_prenom"
+                  type="text"
+                  autocomplete="off"
+                  name="fname"
+                  required
+                />
+                <input
+                  placeholder="Age"
+                  class="input_champ input_age"
+                  name="bdate"
+                  type="date"
+                />
+                <input
+                  placeholder="Ncin"
+                  class="input_champ input_ncin"
+                  type="text"
+                  autocomplete="off"
+                  name="ncin"
+                  required
+                  maxlength="12"
+                  minlength="12"
+                />
+              </div>
+              <div class="ligne"></div>
+            </div>
+            <div class="info_medecin_reservation">
+              <p class="reservation_titre">
+                prendre un rendez-vous pour un patient
+              </p>
+              <div class="cover_select">
+                <label for="service">Choisir un service</label>
+                <select name="service" id="service">
+                    <option selected disabled>Choisir Un Service</option>
+                    <% for( let i = 0; i < services.length; i++ ) { %>
+                        <option value="<%= services[i].idserv %>"><%= services[i].nomserv %></option>
+                    <% } %>
+                </select>
+                <input type="hidden" id="SelectedService" name="service">
+              </div>
+              <div class="dates_et_heures">
+                <div class="dates">
+                  <p>Choisir une date</p>
+                  <div class="cartes_cover">
+                    <button class="btn_scroll btn_scroll_left">
+                      <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <div class="cartes" id="dates-container">
+
+                    </div>
+                    <input type="hidden" name="date" id="date">
+                    <button class="btn_scroll btn_scroll_right">
+                      <i class="fas fa-angle-double-right"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="heures">
+                  <p>Choisir une heure</p>
+                  <div class="cartes_cover">
+                    <button class="btn_scroll btn_scroll_left2">
+                      <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <div class="cartes" id="hours-container"></div>
+                    <input type="hidden" name="time" id="time">
+                    <button class="btn_scroll btn_scroll_right2">
+                      <i class="fas fa-angle-double-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <input class="btn_submit" type="submit" value="Valider" />
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const btnScrollLeft = document.querySelector(".btn_scroll_left");
+      const btnScrollRight = document.querySelector(".btn_scroll_right");
+      const btnScrollLeft2 = document.querySelector(".btn_scroll_left2");
+      const btnScrollRight2 = document.querySelector(".btn_scroll_right2");
+      const dates = document.querySelector(".cartes");
+      const heures = document.querySelector(".heures .cartes");
+      function scrollLeft(e) {
+        e.preventDefault();
+        dates.scrollBy(-350, 0);
+      }
+      function scrollRight(e) {
+        e.preventDefault();
+        dates.scrollBy(350, 0);
+      }
+      function scrollLeft2(e) {
+        e.preventDefault();
+        heures.scrollBy(-350, 0);
+      }
+      function scrollRight2(e) {
+        e.preventDefault();
+        heures.scrollBy(350, 0);
+      }
+      btnScrollLeft.addEventListener("click", scrollLeft);
+      btnScrollRight.addEventListener("click", scrollRight);
+      btnScrollLeft2.addEventListener("click", scrollLeft2);
+      btnScrollRight2.addEventListener("click", scrollRight2);
+
+      const dateInput = document.getElementsByClassName("input_age")[0];
+      dateInput.placeholder = "";
+      dateInput.addEventListener("click", () => {
+        dateInput.showPicker();
+      });
+
+      function getFormattedDate(date) {
+      const year = date.getFullYear();
+      let month = (date.getMonth() + 1).toString();
+      let day = date.getDate().toString();
+      month = month.length === 1 ? '0' + month : month;
+      day = day.length === 1 ? '0' + day : day;
+      return `${year}-${month}-${day}`;
+}
+
+    const datesContainer = document.getElementById("dates-container");      
+    function generateDates() {
+        const today = new Date();
+        for (let i = 1; i <= 15; i++) {
+        const nextDate = new Date(today);
+        nextDate.setDate(today.getDate() + i);
+        const formattedDate = getFormattedDate(nextDate);
+        const div = document.createElement('div');
+        div.classList.add('carte');
+        div.textContent = formattedDate;
+        datesContainer.appendChild(div);
+        }
+    }
+
+  generateDates();
+
+
+  const hoursContainer = document.getElementById("hours-container");
+
+  function generateHours() {
+    for (let i = 6; i <= 22; i++) {
+      const hourStart = `${i.toString().padStart(2, '0')}:00`;
+      const hourEnd = `${(i + 1).toString().padStart(2, '0')}:00`;
+      const formattedHour = `${hourStart}-${hourEnd}`;
+      const div = document.createElement('div');
+      div.classList.add('carteTime');
+      div.setAttribute('datavalue', `${i}:00:00`); // Pour la valeur de temps
+      
+      div.textContent = formattedHour;
+      hoursContainer.appendChild(div);
+    }
+  }
+
+  generateHours();
+
+  var service = document.getElementById("service");
+  var hiddenserv = document.getElementById("SelectedService");
+
+  service.addEventListener("change" , function(){
+    hiddenserv.value = service.value;
+  });
+
+  var date = document.getElementById("date")
+  datesContainer.addEventListener("click" , function(e){
+    var target = e.target
+    var child = datesContainer.children
+    if(target.classList.contains("carte")){
+      date.value = target.textContent.trim();
+      for (let i = 0; i < child.length; i++) {
+        child[i].classList.remove("selectedcarte");
+      }
+      target.classList.add("selectedcarte");
+    }
+    console.log(date.value)
+  });
+
+  var time = document.getElementById("time")
+  hoursContainer.addEventListener("click" , function(e){
+    var target = e.target
+    var child = hoursContainer.children;
+    if(target.classList.contains("carteTime")){
+      time.value =  target.getAttribute("datavalue")
+      for (let i = 0; i < child.length; i++) {
+        child[i].classList.remove("selectedcarte");
+      }
+      target.classList.add("selectedcarte");
+    }
+    console.log(time.value)
+  });
+
+</script>
+
+ </script>
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var myModal = new bootstrap.Modal(document.getElementById('alertModal'), {
+              keyboard: false
+            });
+            myModal.show();
+          });
+        </script>
+  </body>
+</html>

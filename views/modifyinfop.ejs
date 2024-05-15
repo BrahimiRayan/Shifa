@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/patient.css">
+    <title>Patient</title>
+</head>
+<body class="ajustments">
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/iconsP/icons8-user-50.png" alt="User image">
+                <div>
+                    <h2><%= patient[0].nom %> <%= patient[0].prenom %></h2>
+                    <p><%= patient[0].email.substring(0, 20) + '...' %></p>
+                </div>
+            </div>
+
+            <ul class="UL_aside">
+                <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+                <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Reserver</li></a>
+                <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Reservation</li></a>
+                <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+            </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i><p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+    </aside>
+
+    <main>
+        <header class="phone_v_2">
+            <h2><a href="/patient/Settings">Paramètres</a> | Modifier informations</h2>
+        </header>
+
+        <div class="Codeholder">
+           <div class="modifyinfoHolder">
+                <div class="modifyDecoration">
+                    <div class="simpleinfoShower">
+                        <img src="/iconsP/icons8-user-100.png" alt="" >
+                        <h2><%= patient[0].nom %> <%= patient[0].prenom %></h2>
+                        <p>Numero <%= patient[0].ncin %></p>
+                    </div>
+                </div>
+
+            <div class="changerInfos">
+                <div class="personalInfo">
+                    <h3>Informations Personnelles</h3>
+                    <p>Modifiez vos Informations Personnelles ici.</p>
+                    <div class="inputsHolderM">
+                        <form action="/patient/Settings/perssonelle" method="post">
+                            <Label>Nom</Label>
+                            <input type="text" name="name" value="<%= patient[0].nom %>" minlength="2" required>
+
+                            <Label>Prénom</Label>
+                            <input type="text" name="fname" value="<%= patient[0].prenom %>" minlength="2" required>
+
+                            <Label>Date de naissance</Label>
+                            <%  
+                                const d =patient[0].birthdate
+                                const date = new Date(d); // Create a Date object
+                                date.setDate(date.getDate() + 1); // Add one day to the date
+                                let rdvdate = date.toISOString().split('T')[0];%>
+                            <input type="date" name="bdate" pattern="\d{4}-\d{2}-\d{2}" required minlength="8" autocomplete="off" value =<%= rdvdate %> class="dateINP" min="1910-01-01" max="2006-12-31"/>
+                            
+                            <Label>Numéro de CIN</Label>
+                            <input type="text" name="ncin" value="<%= patient[0].ncin %>" minlength="12" maxlength="12" required>
+
+                            <Label>Numéro téléphone</Label>
+                            <input type="text" name="phone" value="<%= patient[0].phone %>" minlength="10" required>
+
+                            <Label>Adresse</Label>
+                            <input type="text" name="address" value="<%= patient[0].address %>" minlength="4">
+
+                            <button type="submit">Valider</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="enfantsInfo">
+                    <h3>Inscription des enfants</h3>
+                    <p>Avez vous des Enfants ? vous pouvez les inscrire ici.</p>
+                    <div class="inputsHolderM">
+                        <form action="/patient/Settings/addChild" method="post">
+                            <Label>Nom</Label>
+                            <input type="text" name="cname" placeholder="Nom de l'enfant" required minlength="2" autocomplete="off">
+
+                            <Label>Prénom</Label>
+                            <input type="text" name="cfname" placeholder="prenom de l'enfant" required minlength="2" autocomplete="off">
+
+                            <Label>Date de naissance</Label>
+                            <input type="date" name="cbdate" pattern="\d{4}-\d{2}-\d{2}" required minlength="8" autocomplete="off" value="<%= patient[0].birthdate %>" min="2007-01-01" max="2024-04-06">
+
+                            <button type="submit">Valider</button>
+                        </form>
+                </div>
+                
+            </div> 
+            
+            <div class="SucurityInfo">
+                <h3>Sécurité</h3>
+                    <p>Vous pouvez changer votre mot de passe ici.</p>
+                    <div class="inputsHolderM">
+                        <form action="/patient/Settings/Securite" method="post">
+                            <Label>Email</Label>
+                            <input type="email" value="<%= patient[0].email %>" required minlength="10" autocomplete="off" readonly>
+
+                            <Label>Mot de passe</Label>
+                            <input type="password" name="newpswd" minlength="8" autocomplete="off" required>
+
+                            <button type="submit" class="phone_pusher">Valider</button>
+                        </form>
+                </div>
+            </div>
+
+           </div>
+           <!-- <div class="separator"></div> -->
+     </div>
+            
+    </main>
+
+    </div>
+</body>
+</html>        

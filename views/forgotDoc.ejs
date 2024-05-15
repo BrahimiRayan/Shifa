@@ -20,14 +20,23 @@
       <h1 class="logo">Shifa logo</h1></a>
       <span>votre sante en ligne</span>
     </section>
-    <div class="alert_container">
+
     <% if (emailNotfound)  { %>
-        <div class="alert alert-danger alert-dismissible fade show absoluteposition" id="warning" role="alert">
-          <%=emailNotfound%>
-         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-       </div>
+      <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content danger">
+            <div class="modal-header">
+              <h5 class="modal-title" id="alertModalLabel">Erreur</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= emailNotfound %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% } %>
-    </div>  
+
     <main>
         <h2>Vous avez oblieer votre<strong> Mot de pass </strong>?</h2>
         <label for="email" style=<%= form1 %>>Email:</label>
@@ -42,7 +51,7 @@
 <label for="code" style=<%= form2 %>>Code:</label>
 <!-- it should be hidden until the user send his email -->
     <form action="/Dforgotpswd/config" method="post" style=<%= form2 %>>
-        <input type="text" id="code" name="code" placeholder="Voir votre email box">
+        <input type="text" id="code" name="code" placeholder="Voir votre email box" autocomplete="off">
         <a href="/auth">vous sevienez?</a>
         <button type="submit" class="btn btn-primary btn-costum">
             <i class="fas fa-arrow-right"></i>
@@ -50,14 +59,23 @@
     </form>
     <label for="code" style=<%= form3 %>>Noveux Mot de Pass:</label>
     <form action="/Dforgotpswd/config/changepswd" method="post" style=<%= form3 %>>
-        <input type="text" id="new" name="newpassword" placeholder="le noveux password ici " minlength="8">
+        <input type="text" id="new" name="newpassword" placeholder="le noveux password ici " minlength="8" autocomplete="off">
         <a href="/auth">vous sevienez?</a>
         <button type="submit" class="btn btn-primary btn-costum">VALIDER</button>
     </form>
     </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('alertModal'), {
+          keyboard: false
+        });
+        myModal.show();
+      });
+</script>
 </body>
 </html>

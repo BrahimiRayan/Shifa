@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/admin/admin.css" />
+    <title>Page Admin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/icons/business-manager-or-management-18880.svg"
+            alt="User image"
+          />
+          <div>
+            <h2><%= user[0].nom %> <%= user[0].prenom %></h2>
+            <p><%= user[0].email.substring(0, 20) + '...' %></p>
+          </div>
+        </div>
+        <ul class="UL_aside">
+            <li><img src="/icons/dashboard-svgrepo-com.svg" alt=""><a href="/admin/accueil">Accueil</a></li>
+            <li><img src="/icons/doctor-svgrepo-com.svg" alt=""><a href="/admin/listdocs">Medcins</a></li>
+            <li><img src="/icons/office-secretary-svgrepo-com.svg" alt=""><a href="/admin/listsec">Secritaires</a></li>
+            <li><img src="/icons/fever-flu-ill-sick-svgrepo-com.svg" alt=""><a href="/admin/listpat">Patients</a></li>
+            <li><img src="/icons/opened-book-3163.svg" alt=""><a href="/admin/services">Services</a></li>
+            <li><img src="/icons/settings-svgrepo-com.svg" alt=""><a href="/admin/Settings">Settings</a></li>
+            
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+      </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header class="headerAccueil">
+          <h2>Accueil</h2>
+          <div class="adminAcueilTime">
+            <p><% var date = new Date() %><%= date.getDate() %> / <%= date.getMonth() %> / <%= date.getFullYear() %></p>
+            <div class="imgDate"></div>
+          </div>
+        </header>
+
+        <div class="Codeholder">
+            <h2 class="infoH2">Information général sur <strong>L'Hopital</strong></h2>
+          <div class="boxes">
+            <div class="box box1">
+              <p>Nombre service <div>Total</div></p>
+              <div class="box_info">
+                <span><%= nbrserv[0].totserv %></span>
+                <div class="icon icon_service"></div>
+              </div>
+            </div>
+            <div class="box box2">
+              <p>Nombre patient <div>Total</div></p>
+              <div class="box_info">
+                <span><%= nbrpatient[0].totpatient %></span>
+                <div class="icon icon_patient"></div>
+              </div>
+            </div>
+            <div class="box box3">
+              <p>Nombre docteur <div>Total</div></p>
+              <div class="box_info">
+                <span><%= nbrmedcin[0].totdoc %></span>
+                <div class="icon icon_docteur"></div>
+              </div>
+            </div>
+            <div class="box box4">
+              <p>Nombre secrétaire <div>Total</div></p>
+              <div class="box_info">
+                <span><%= nbrsec[0].totsec %></span>
+                <div class="icon icon_secritaire"></div>
+              </div>
+            </div>
+          </div>
+          <h2 class="infoH2">Information général sur les <strong>Rendez-vous</strong></h2>
+          <div class="boxes_reservation">
+            <div class="box first_box_res">
+              <p>Nombre réservation Total</p>
+              <div class="box_info">
+                <span><%= nbrrdv[0].totrdv %></span>
+              </div>
+            </div>
+            <div class="box">
+              <p>Nombre réservation dans prochains 15 jours</p>
+              <div class="box_info">
+                <span><%= nbrrdv15d[0].totnext15d %></span>
+              </div>
+            </div>
+            <div class="box last_box_res">
+              <p>Nombre réservation d'Aujourd'hui Total</p>
+              <div class="box_info">
+                <span><%= nbrrdvtoday[0].tottodayrdv %></span>
+              </div>
+            </div>
+          </div>
+          <h2 class="infoH2">Information général sur les <strong>services</strong></h2>
+          <table class="admin_table_information">
+            <thead>
+              <th>Service</th>
+              <th>capacité horaire</th>
+              <th>Nombre docteur</th>
+              <th>capacité journalière</th>
+              <th>Réservation Total</th>
+            </thead>
+            <tbody>
+              <% for( let i = 0; i < serviceinfos.length; i++ ) { %>
+                  <tr>
+                    <td><%= serviceinfos[i].nomserv %></td>
+                    <td><%= serviceinfos[i].patient_in_hour %> Pat/H</td>
+                    <td><%= serviceinfos[i].nombreDocs %></td>
+                    <td><%= parseInt(serviceinfos[i].patient_in_hour) * 24 %> Pat</td>
+                    <td><%= serviceinfos[i].nombreRdvs || 0 %></td>
+                  </tr>
+              <% } %>
+
+              </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+
+<!-- METTER L'EMAIL UNIQUE ON THE BDD
+    VERIFY THIS FUNCTION == generateRandomNumber();
+    acueill medcin probleme d'un patient...
+-->

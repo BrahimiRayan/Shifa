@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/docteur/doc.css"/>
+    <title>Medcins</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img src="/medecin_images/img_doc.svg" alt="User image" />
+          <div>
+            <h2><%= doc[0].nom %> <%= doc[0].prenom %></h2>
+            <p><%= doc[0].email.substring(0 , 15) + "..." %></p> 
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+            <li>
+              <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/doc/accueil">Accueil</a>
+            </li>
+            <li>
+              <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a href="/doc/reserver" >Reserver</a>
+            </li>
+            <li>
+              <img src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg" alt="" /><a href="/doc/patients">Patients</a>
+            </li>
+            <li>
+              <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/doc/medcins">Medcins</a>
+            </li>
+            <li>
+              <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a href="/doc/settings">Settings</a>
+            </li>
+          </ul>
+          
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Medcins</h2>
+        </header>
+
+        <div class="Codeholder">
+          <nav class="recherche">
+            <form action="/doc/barSearch" method="post" >
+              <input
+                type="text"
+                name="term"
+                id="inp"
+                class="bare_recherche"
+                
+              />
+            </form >
+            <div class="type_recherche">
+              <form action="/doc/nom" method="post">
+                <button type="submit" class="choix" id="name">Nom</button>
+              </form>
+              <form action="/doc/service" method="post">
+                <button type="submit" class="choix" id="serv">Service</button>
+              </form>
+            </div>
+          </nav>
+          <div class="liste_medecins">
+            <% for( let i = 0; i < docs.length; i++ ) { %>
+                <div class="box_medecin">
+                    <div class="img_doc"></div>
+                    <div class="nom_doc">Dr <%= docs[i].nom %> <%= docs[i].prenom %></div>
+                    <div class="email"><%= docs[i].email %></div>
+                    <div class="service"><%= docs[i].nomserv %></div>
+                    <div class="contact">
+                      <a href="tel:<%= docs[i].phone %>" class="appeler">
+                              <span class="icon icon_appeler"></span>
+                              <div>Appeler</div>
+                      </a>
+      
+                      <a href="mailto:<%= docs[i].email %>" class="envoyer" >
+                              <span class="icon icon_envoyer"></span>
+                              <div>Envoyer</div>
+                      </a>
+                    </div>
+                  </div>
+            <% } %>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      var nom = document.getElementById("name");
+      var service = document.getElementById("serv");
+      var inp = document.getElementById("inp");
+
+      console.log(localStorage.getItem("selected"))
+      if(localStorage.getItem("selected") === "nom"){
+        service.classList.remove("selected");
+        inp.setAttribute('placeholder', 'Nom');
+        nom.classList.add("selected");
+      }else{
+        nom.classList.remove("selected");
+        inp.setAttribute('placeholder', 'Service');
+        service.classList.add("selected");
+      }
+
+      nom.addEventListener("click" , function(){
+        localStorage.setItem("selected","nom");
+      });
+
+      service.addEventListener("click" , function(){
+        localStorage.setItem("selected","service")
+      });
+    </script>
+  </body>
+</html>

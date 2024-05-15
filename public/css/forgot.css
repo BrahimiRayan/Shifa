@@ -6,7 +6,7 @@
 
 :root {
     /* --lineaire: linear-gradient(to bottom, rgb(0, 187, 189) 15%,rgb(0, 130, 208) 85%);  */
-    --lineaire: linear-gradient(320deg, rgb(0, 238, 255),rgb(0, 0, 0) ); 
+    --lineaire: linear-gradient(to bottom, rgb(0, 187, 189) , rgb(0, 34, 139)90% ); 
   }
 
 body{
@@ -33,6 +33,7 @@ main{
     padding-left: 25px;
   }
   .section_logo h1 {
+    font-size: 0;
     width: 100px;
     height: 75px;
     text-indent: 100%;

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/patient.css">
+    <title>Patient</title>
+</head>
+<body class="ajustments">
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/iconsP/icons8-user-50.png" alt="User image">
+                <div>
+                    <h2><%= nom %> <%= prenom %></h2>
+                    <p><%= email.substring(0, 20) + '...' %></p>
+                </div>
+            </div>
+
+            <ul class="UL_aside">
+              <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+              <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Reserver</li></a>
+              <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Reservation</li></a>
+              <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+          </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+    </aside>
+
+    <main>
+        <header >
+            <h2 class="ht">Mes reservation</h2>
+        </header>
+
+        <div class="Codeholder">
+            <div class="reservation">
+    
+                <!-- <div  class="row mb-3"> -->
+    
+                    <div class="filteroptions">
+                        <div class="col-md-6 filter">
+                          <!-- Date filtering options -->
+                          <form id="myForm" method="post" action="/patient/myreservation/filter">
+                            <input type="hidden" name="filterchose" id="filterchose">
+                            <label for="optionDesc" class="labelreservations">Plus récents</label>
+                            <input type="radio" id="optionDesc" class="radioFilter" name="selectedOption" value="DESC" checked > 
+                            <label for="optionAsc" class="labelreservations">Plus anciens</label>
+                            <input type="radio" id="optionAsc" class="radioFilter" name="selectedOption" value="ASC" <%= old %>> 
+                        </form>
+                        
+                          
+                        </div>
+                        <div class="col-md-6">
+
+                        <form action="/patient/myreservation" method="post" class="filter">
+                          <label for="searchInput" class="labelreservations labelreservations2">Recherche par service:</label>
+                          <input type="text" class="form-control formSearchService" id="searchInput" name="searchInput" placeholder="Service...">
+                          <input type="submit" style="display: none;">
+                        </form>
+                        </div>
+                    </div>
+
+                <div class="container">
+                    <div class="row" >
+                      <div class="col-md-8 special" >
+                        
+                        <% if (rdvs.length === 0) { %>
+                           <div class="isVide"><h4>Oopss!</h4><p>Aucune réservation trouvée...</p></div>
+                        <table class="table table-hover custom-table" style="display: none;"> 
+                        <% } %>
+                        <% if (rdvs.length != 0) { %>
+                          <table class="table table-hover custom-table">
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Heure</th>
+                              <th>Service</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          
+                            <% for( let i = 0; i < rdvs.length; i++ ) { let rdvdate = "" ; let dis = ""; %>
+                              <tbody>
+                                <%
+                                   const d = rdvs[i].date_rdv
+                                   if (d != "") {
+                                    const date = new Date(d); // Create a Date object
+                                    date.setDate(date.getDate() + 1); // Add one day to the date
+                                    rdvdate = date.toISOString().split('T')[0];
+                                   }
+
+                                    const currentDate = new Date();
+
+                                    const formattedCurrentDate = currentDate.toISOString().slice(0,10);
+
+                                    if(formattedCurrentDate > rdvdate){
+                                        dis = "disabled";
+                                    }
+                                    
+                                    %>
+
+                                    <tr>
+                                        <td><%= rdvdate %></td>
+                                        <td><%= rdvs[i].heur_debut_rdv %></td>
+                                        <td><%= rdvs[i].nomserv %></td>
+                                        <td>
+                                        <form action="/deleterdv/<%= rdvs[i].idrdv %>" method="post" style=<%= statu %>>
+                                            <button type="submit" class="deleteReservationBtn <%= dis %>" <%= dis %> name = "rdv" value ="<%= rdvs[i].idrdv %>">Supprimer</button>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            <% } %>
+                          <% } %> 
+                        </table>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Representative Image -->
+                        <% if (rdvs.length != 0) { %>
+                        <div class="custom-image">
+                          <img src="/iconsP/Rectangle 116.png" class="img-fluid" alt="Representative Image">
+                        </div>
+                        <% } %>
+
+                      </div>
+                    </div>
+                  </div>
+            </div>
+    
+</div>
+        
+</main>
+
+</div>
+
+<script>
+  
+
+  document.querySelectorAll("input[name='selectedOption']").forEach(radio => {
+    radio.addEventListener("change", (event) => {
+         // Prevent default form submission behavior
+        if (radio.checked) {
+            console.log(radio.value); // Ensure the correct value is logged
+            document.getElementById("myForm").submit();
+            event.preventDefault();
+        }
+    });
+});
+</script>
+</body>
+</html>

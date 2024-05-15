@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/docteur/doc.css" />
+    <title>Page Medcin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img src="/medecin_images/img_doc.svg" alt="User image" />
+          <div>
+            <h2><%= doc[0].nom %> <%= doc[0].prenom %></h2>
+            <p><%= doc[0].email.substring(0 , 15) + "..." %></p> 
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+            <li>
+              <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/doc/accueil">Accueil</a>
+            </li>
+            <li>
+              <img src="/medecin_images/reserve-svgrepo-com.svg" alt="/doc/reserver" /><a
+                href=""
+                >Reserver</a
+              >
+            </li>
+            <li>
+              <img
+                src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg"
+                alt=""
+              /><a href="/doc/patients">Patients</a>
+            </li>
+            <li>
+              <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/doc/medcins"
+                >Medcins</a
+              >
+            </li>
+            <li>
+              <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a
+                href="/doc/settings"
+                >Settings</a
+              >
+            </li>
+          </ul>
+  
+          <form action="/logout" method="post">
+            <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+          </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Reservation</h2>
+        </header>
+
+        <div class="Codeholder codeholderexeption">
+            
+          <div class="cover_medecin_reservation">
+            <div class="img_medecin_reservation"></div>
+            <form action="/doc/reserver" method="post" class="info_medecin_reservation">
+              <p class="reservation_titre">
+                Prendre un rendez-vous pour un patient
+              </p>
+
+              <div class="cover_select">
+
+                <div>
+                  <label for="patient">Patient</label>
+                  <select name="patient" id="patient" required>
+                    <% if (normalPassedPatients.length > 0) { %>
+                      <option disabled selected>Patients normaux</option>
+                        <% for( let i = 0; i < normalPassedPatients.length; i++ ) { %>
+                          <option value=<%= normalPassedPatients[i].idp %> ><%= normalPassedPatients[i].nom.toUpperCase() %> <%= normalPassedPatients[i].prenom %></option>
+                        <% } %>
+                    <% } %>
+                    
+                    <% if (childeren.length > 0) { %>
+                      <option disabled>ENFANTS</option>
+                        <% for( let i = 0; i < childeren.length; i++ ) { %>
+                          <option class="enf" value=<%= childeren[i].idenf %> dataparents=<%= childeren[i].idp %>><%= childeren[i].nom.toUpperCase() %> <%= childeren[i].prenom %></option>
+                        <% } %>
+                    <% } %>
+
+                    <% if (patienttemp.length > 0) { %>
+                      <option disabled>Patients temporaires</option>
+                        <% for( let i = 0; i < patienttemp.length; i++ ) { %>
+                          <option value=<%= patienttemp[i].idtemp %> class="temp" ><%= patienttemp[i].nom.toUpperCase() %> <%= patienttemp[i].prenom %></option>
+                        <% } %>
+                    <% } %>
+                    
+                  </select>
+                  <input type="hidden" name="patient" id="patient">
+                  <input type="hidden" name="temp" id="temp">
+                  <input type="hidden" name="enfant" id="enfant">
+                </div>
+
+                <div>
+
+                  <label for="service">Service</label>
+                  <input type="text" name="service" id="service" value=<%= service[0].nomserv %> placeholder=<%= service[0].nomserv %> readonly/>
+
+                </div>
+              </div>
+
+              <div class="dates_et_heures">
+                <div class="dates">
+                  <p>Choisissez une date</p>
+                  <div class="cartes_cover">
+                    <button class="btn_scroll btn_scroll_left">
+                      <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <div class="cartes" id="dates-container"></div>
+                    <input type="hidden" name="date" id="date">
+                    <button class="btn_scroll btn_scroll_right">
+                      <i class="fas fa-angle-double-right"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="heures">
+                  <p>Choisissez une heure</p>
+                  <div class="cartes_cover">
+                    <button class="btn_scroll btn_scroll_left2">
+                      <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <div class="cartes" id="hours-container"></div>
+                    <input type="hidden" name="time" id="time">
+                    <button class="btn_scroll btn_scroll_right2">
+                      <i class="fas fa-angle-double-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <input class="btn_submit" type="submit" value="Valider" />
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const btnScrollLeft = document.querySelector(".btn_scroll_left");
+      const btnScrollRight = document.querySelector(".btn_scroll_right");
+      const btnScrollLeft2 = document.querySelector(".btn_scroll_left2");
+      const btnScrollRight2 = document.querySelector(".btn_scroll_right2");
+      const dates = document.querySelector(".cartes");
+      const heures = document.querySelector(".heures .cartes");
+      
+      function scrollLeft(e) {
+        e.preventDefault();
+        dates.scrollBy(-350, 0);
+      }
+      function scrollRight(e) {
+        e.preventDefault();
+        dates.scrollBy(350, 0);
+      }
+      function scrollLeft2(e) {
+        e.preventDefault();
+        heures.scrollBy(-350, 0);
+      }
+      function scrollRight2(e) {
+        e.preventDefault();
+        heures.scrollBy(350, 0);
+      }
+      btnScrollLeft.addEventListener("click", scrollLeft);
+      btnScrollRight.addEventListener("click", scrollRight);
+      btnScrollLeft2.addEventListener("click", scrollLeft2);
+      btnScrollRight2.addEventListener("click", scrollRight2);
+
+      function getFormattedDate(date) {
+      const year = date.getFullYear();
+      let month = (date.getMonth() + 1).toString();
+      let day = date.getDate().toString();
+      month = month.length === 1 ? '0' + month : month;
+      day = day.length === 1 ? '0' + day : day;
+      return `${year}-${month}-${day}`;
+}
+
+const datesContainer = document.getElementById("dates-container");
+function generateDates() {
+    const today = new Date();
+    for (let i = 1; i <= 15; i++) {
+      const nextDate = new Date(today);
+      nextDate.setDate(today.getDate() + i);
+      const formattedDate = getFormattedDate(nextDate);
+      const div = document.createElement('div');
+      div.classList.add('carte');
+      div.textContent = formattedDate;
+      datesContainer.appendChild(div);
+    }
+  }
+
+  generateDates();
+
+  const hoursContainer = document.getElementById("hours-container");
+
+  function generateHours() {
+    for (let i = 6; i <= 22; i++) {
+      const hourStart = `${i.toString().padStart(2, '0')}:00`;
+      const hourEnd = `${(i + 1).toString().padStart(2, '0')}:00`;
+      const formattedHour = `${hourStart}-${hourEnd}`;
+      const div = document.createElement('div');
+      div.classList.add('carteTime');
+      div.setAttribute('datavalue', `${i}:00:00`); // Pour la valeur de temps
+      
+      div.textContent = formattedHour;
+      hoursContainer.appendChild(div);
+    }
+  }
+
+  generateHours();
+
+// const patientSelect = document.getElementById('patient');
+const patientInput = document.getElementById('patient');
+const enfantInput = document.getElementById('enfant');
+const tempInput = document.getElementById('temp');
+
+patientInput.addEventListener('change', function() {
+  const selectedOption = this.options[this.selectedIndex];
+  const selectedValue = selectedOption.value;
+
+  if (selectedOption.classList.contains("enf")) {
+    console.log("enf");
+    patientInput.value = selectedValue;
+    enfantInput.value = selectedOption.getAttribute("dataparents");
+  } else if (selectedOption.classList.contains("temp")) {
+    tempInput.value = "temp";
+    patientInput.value = selectedValue;
+  } else {
+    patientInput.value = selectedValue;
+  }
+
+  
+});
+
+
+  var date = document.getElementById("date")
+  datesContainer.addEventListener("click" , function(e){
+    var target = e.target
+    var child = datesContainer.children
+    if(target.classList.contains("carte")){
+      date.value = target.textContent.trim();
+      for (let i = 0; i < child.length; i++) {
+        child[i].classList.remove("selectedcarte");
+      }
+      target.classList.add("selectedcarte");
+    }
+  });
+
+  var time = document.getElementById("time")
+  hoursContainer.addEventListener("click" , function(e){
+    var target = e.target
+    var child = hoursContainer.children;
+    if(target.classList.contains("carteTime")){
+      time.value =  target.getAttribute("datavalue")
+      for (let i = 0; i < child.length; i++) {
+        child[i].classList.remove("selectedcarte");
+      }
+      target.classList.add("selectedcarte");
+    }
+  });
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/docteur/doc.css" />
+    <title>Docteurs</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/medecin_images/img_doc.svg"
+            alt="User image"
+          />
+          <div>
+            <h2><%= doc[0].nom %> <%= doc[0].prenom %></h2>
+            <p><%= doc[0].email.substring(0 ,15) +"..." %></p>
+          </div>
+        </div>
+       
+        <ul class="UL_aside">
+            <li>
+              <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/doc/accueil">Accueil</a>
+            </li>
+            <li>
+              <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a href="/doc/reserver" >Reserver</a>
+            </li>
+            <li>
+              <img src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg" alt="" /><a href="/doc/patients">Patients</a>
+            </li>
+            <li>
+              <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/doc/medcins">Medcins</a>
+            </li>
+            <li>
+              <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a href="/doc/settings">Settings</a>
+            </li>
+          </ul>
+          
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+      <main>
+        <header>
+          <h2>Paramètre</h2>
+        </header>
+
+        <div class="Codeholder">
+            <div class="params">
+                <div class="image"></div>
+
+                <div class="form_container">
+                    <div class="warning">
+                      Nous vous remercions de veiller à la précision de vos informations. Des données exactes garantissent un service optimal pour vous et les autres utilisateurs. Veuillez vérifier et mettre à jour vos informations si nécessaire.
+                    </div>
+
+                    <form action="/doc/settings" method="post" class="formulaire">
+
+                        <div> 
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" class="inp" name="name" value=<%= doc[0].nom %> autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="fname">Prénom</label>
+                            <input type="text" id="fname" class="inp" name="fname" value=<%= doc[0].prenom %> autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="inp" name="email" value=<%= doc[0].email %> minlength="8" autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="phone">Numero Tel.</label>
+                            <input type="text" id="phone" class="inp" name="phone" value=<%= doc[0].phone %> minlength="10" autocomplete="off" required>
+                        </div>
+
+                        <div>
+                            <label for="ncin">Numero Cin</label>
+                            <input type="text" id="ncin" class="inp" name="ncin" value=<%= doc[0].ncin %> readonly minlength="12" maxlength="12" autocomplete="off"  required>
+                        </div>
+
+                        <div>
+                            <label for="pswd">Neveau Mot de passe</label>
+                            <input type="text" id="pswd" name="pswd" class="inp" minlength="8" autocomplete="off" >
+                        </div>
+
+                        <button type="submit" class="validate" id="validate">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

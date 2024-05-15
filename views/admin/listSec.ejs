@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="correct-integrity-value" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin/adminstyle.css">
+    <title>Aside reference</title>
+</head>
+<body>
+    <div class="liner">
+    <aside>
+            <div class="user">
+                <img src="/icons/business-manager-or-management-18880.svg" alt="User image">
+                <div>
+                    <h2><%= admin[0].nom %> <%= admin[0].prenom %></h2>
+                    <p><%= admin[0].email.substring(0, 20) + '...' %></p>
+                </div>
+            </div>
+
+            <ul class="UL_aside">
+                <li><img src="/icons/dashboard-svgrepo-com.svg" alt=""><a href="/admin/accueil">Accueil</a></li>
+                <li><img src="/icons/doctor-svgrepo-com.svg" alt=""><a href="/admin/listdocs">Medcins</a></li>
+                <li><img src="/icons/office-secretary-svgrepo-com.svg" alt=""><a href="/admin/listsec">Secritaires</a></li>
+                <li><img src="/icons/fever-flu-ill-sick-svgrepo-com.svg" alt=""><a href="/admin/listpat">Patients</a></li>
+                <li><img src="/icons/opened-book-3163.svg" alt=""><a href="/admin/services">Services</a></li>
+                <li><img src="/icons/settings-svgrepo-com.svg" alt=""><a href="/admin/Settings">Settings</a></li>
+                
+            </ul>
+
+            <form action="/logout" method="post">
+                <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+            </form>
+
+        <!-- <div class="spacer"></div> -->
+    </aside>
+
+    <main>
+        <header>
+            <h2>Liste secritaire</h2>
+        </header>
+
+        <div class="Codeholder">
+
+            <!-- <h1>Liste de Medcins</h1> -->
+            <nav class="navdoc">
+                <form action="/admin/searchsec" method="post">
+                    <input type="text" name="searchbar" id="searchbar" placeholder="Nom" class="recherchedocs">
+                </form>
+
+                <div class="optionBtn">
+                    <form action="/admin/snomS" method="post">
+                        <input type="submit" class="choixsl selected" id="choixl" value="Nom">
+                    </form>
+                    <form action="/admin/smatriculeS" method="post">
+                        <input type="submit" class="choixsl" id="choix2" value="Matricule"  >
+                    </form>
+                </div>
+            </nav>
+
+            <div class="tabholder">
+            <table class="docsTab">
+                <thead>
+                    <tr>
+                        <th class="nomth">Nom et Prenom</th>
+                        <th>Email</th>
+                        <th>Matricule</th>
+                        <th>Numero</th>
+                        <th class="delviewth"><p>Action</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let i = 0; i < admins.length; i++ ) { %>
+                        <tr>
+                            <td class="nomtd"><%= admins[i].nom %> <%= admins[i].prenom %></td>
+                            <td><%= admins[i].email %></td>
+                            <td><%= admins[i].matricule %></td>
+                            <td><%= admins[i].phone %></td>
+                            <td class="delViewBtns">
+                                <form action="/delsec" method="post">
+                                    <button type="submit" name="delsec" value="<%= admins[i].idsec %>" class="del">Supprimer</button>
+                                </form>
+    
+                                <form action="/viewsec/<%= admins[i].idsec %>">
+                                    <button type="submit" class="view">Voir</button>
+                                </form>
+                            
+                            </td>
+                        </tr>
+                    <% } %>
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+        </div>
+        
+    </main>
+
+
+    <div class="secondAside">
+        <div class="cntr" id="cntr">
+        <h2>Ajouter un Secritaire</h2>
+        <img src="/adminpics/secritaire.svg" alt="">
+
+        <form action="/admin/inscriptionsec" method="post">
+            <div class="firstCollection" id="firstCollection">
+
+                <input type="text" name="name" id="nom" placeholder="Nom" required minlength="3" autocomplete="off">
+                <input type="text" name="fname" id="prenom" placeholder="Prenom" required minlength="3" autocomplete="off">
+                <input type="date" name="bdate" id="bdate" required>
+                <button type="button" class="styledbtn next" id="next1"></button>
+            </div>
+
+            <div class="SecondCollection hidden" id="SecondCollection">
+                <input type="email" name="email" id="email" placeholder="Email" minlength="8" required autocomplete="off">
+                <input type="text" name="phone" id="phone" placeholder="Numero de telephone" minlength="10" required autocomplete="off">
+                <input type="text" name="ncin" id="ncin" placeholder="Numero CIN" minlength="12" maxlength="12" required autocomplete="off">
+                <div class="btnholder">
+                    <button type="button" class="styledbtn back" id="back1"></button>
+                    <button type="submit" class="styledbtn">Valider</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const aside = document.querySelector('aside');
+    const liner = document.querySelector('.liner');
+    const cntr = document.getElementById("cntr");
+    const next1 = document.getElementById("next1");
+    const back1 = document.getElementById("back1");
+    const col1 = document.getElementById("firstCollection")
+    const col2 = document.getElementById("SecondCollection")
+    const selectElement = document.getElementById('serviceSelecter');
+    const hiddenInput = document.getElementById('service');
+    const choix1btn = document.getElementById('choixl');
+    const choix2btn = document.getElementById('choix2');
+    const searchbar = document.getElementById("searchbar")
+
+    choix1btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix2', "nom");
+        updateSelectedButton();
+    });
+
+    choix2btn.addEventListener("click", function(event) {
+        localStorage.setItem('selectedchoix2', "matricule");
+        updateSelectedButton();
+    });
+
+    function updateSelectedButton() {
+        const selectedChoix = localStorage.getItem("selectedchoix2");
+        if (selectedChoix === "nom") {
+            searchbar.setAttribute("placeholder" , "Nom")
+            choix2btn.classList.remove("selected");
+            choix1btn.classList.add("selected");
+        } else {
+            searchbar.setAttribute("placeholder" , "Matricule")
+            choix1btn.classList.remove("selected");
+            choix2btn.classList.add("selected");
+        }
+    }
+
+    // Initial setup when the page loads
+    updateSelectedButton();
+
+    next1.addEventListener("click" , function(){
+        col1.classList.remove("showen")
+        col1.classList.add("hidden")
+        col2.classList.remove("hidden")
+        col2.classList.add("showen")
+    });
+
+    back1.addEventListener("click" , function(){
+        col2.classList.add("hidden")
+        col2.classList.remove("showen")
+        col1.classList.remove("hidden")
+        col1.classList.add("showen")
+    });
+
+
+    aside.addEventListener('mouseover', function() {
+        liner.style.transition = 'grid-template-columns 0.3s ease';
+        liner.style.gridTemplateColumns = '19% 76% 7%';
+        cntr.classList.add("hidden")
+    });
+
+    aside.addEventListener('mouseout', function() {
+        liner.style.transition = 'grid-template-columns 0.3s ease';
+        liner.style.gridTemplateColumns = '7% 65% 30%';
+        cntr.classList.remove("hidden")
+    });
+});
+
+</script>
+</body>
+</html>

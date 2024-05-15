@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/secritaire/sec.css" />
+    <title>Page secritaire</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/sec_images/img_sec.png"
+            alt="User image"
+            class="pngimage"
+          />
+          <div>
+            <h2><%= sec[0].nom %> <%= sec[0].prenom %></h2>
+            <p><%= sec[0].email.substring(0,15) + "..." %></p>
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+          <li>
+            <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/sec/accueil">Accueil</a>
+          </li>
+          <li>
+            <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a
+              href="/sec/reserver"
+              >Reserver</a
+            >
+          </li>
+          <li>
+            <img
+              src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg"
+              alt=""
+            /><a href="/sec/patients">Patients</a>
+          </li>
+          <li>
+            <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/sec/medcins"
+              >Medcins</a
+            >
+          </li>
+          <li>
+            <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a
+              href="/sec/settings"
+              >Settings</a
+            >
+          </li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Accueil</h2>
+        </header>
+
+        <div class="Codeholder">
+          <div class="info_secretaire">
+            <section class="section_logo">
+              <h1 class="logo">Shifa logo</h1>
+              <span>votre sante en ligne</span>
+            </section>
+            <div class="paragraphes">
+              <p class="p1">
+                Bienvenue <span class="nom_secretaire"><%= sec[0].nom %> <%= sec[0].prenom %></span>
+              </p>
+              <p class="p2"> Nous vous souhaitons une excellente journée de travail, remplie de bonheur et de succès.</p>
+            </div>
+            <div class="bgrd_img_info_secretaire"></div>
+          </div>
+          <div class="secretaire_boxes">
+            <div class="box">
+              <div class="box_info">
+                <p>Nombre de patient</p>
+                <span><%= numberOfpatient[0].nbr %></span>
+              </div>
+              <div class="box_icon box_icon1"></div>
+            </div>
+            <div class="box">
+              <div class="box_info">
+                <p>Nombre de medcins</p>
+                <span><%= nombreOFdocs[0].nbr %></span>
+              </div>
+              <div class="box_icon box_icon2"></div>
+            </div>
+            <div class="box">
+              <div class="box_info">
+                <p>Nombre de service</p>
+                <span><%= numberservices[0].nbr %></span>
+              </div>
+              <div class="box_icon box_icon3"></div>
+            </div>
+            <div class="box">
+              <div class="box_info">
+                <p>Nombre Reservation</p>
+                <span><%= nombreOFreservation[0].nbr %></span>
+              </div>
+              <div class="box_icon box_icon4"></div>
+            </div>
+          </div>
+
+          <div class="bottom_info">
+            <div class="secretaire_services">
+              <div class="sec_service top_div">
+                <div ><img src="/sec_images/img-out-box-svgrepo-com.svg" class="iDidntfoundAname" alt=""></div>
+                <div>Service</div>
+                <div class="capacite">Capacite horaire</div>
+                <div>Patient par jour</div>
+              </div>
+              <!-- ;LCLS -->
+              <% for( let i = 0; i < services.length; i++ ) { %>
+                <div class="sec_service ">
+                  <div class=""><img class="pngimage" src="/service_icon_new/<%= services[i].nomserv%>.png" alt=""></div>
+                  <div><%= services[i].nomserv %></div>
+                  <div><%= services[i].patient_in_hour %></div>
+                  <div><% var patInday = parseInt(services[i].patient_in_hour) * 24 %> <%= patInday %> pat</div>
+                </div>
+              <% } %>
+
+              <!-- SKLDMSK -->
+            </div>
+            <div class="profile">
+              <div class="img_secretaire"></div>
+              <div class="nom_secretaire"><%= sec[0].nom %> <%= sec[0].prenom %></div>
+              <div class="email_secretaire"><%= sec[0].email %></div>
+              <div class="secretaire_info">
+                <div class="cover_ncin">
+                  <p>Ncin</p>
+                  <span><%= sec[0].ncin %></span>
+                </div>
+                <div class="cover_matricule">
+                  <p>Matricule</p>
+                  <span> <%= sec[0].matricule %></span>
+                </div>
+                <div class="cover_Ntel">
+                  <p>N-Tel</p>
+                  <span> <%= sec[0].phone %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

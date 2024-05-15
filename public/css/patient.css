@@ -1,0 +1,1442 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+}
+
+.special{
+    scroll-behavior: smooth;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #c2e1e410 #c2e1e40a;
+}
+
+.special::-webkit-scrollbar {
+    width: .09vw; 
+}
+
+.special::-webkit-scrollbar-thumb {
+    background-color: #c2e1e410;
+}
+
+.special::-webkit-scrollbar-track {
+    background-color:  #c2e1e410; /* Hide the track */
+}
+
+:root{
+    --liniarColor : linear-gradient(320deg, rgb(0, 238, 255), rgb(0, 0, 0));
+    --bgColor : rgba(77, 231, 239, 0.672);
+    --bgColor : rgb(255, 255, 255);
+    --bgColor2 : rgb(209, 235, 235);
+    --fontColor : rgb(42, 42, 42);
+}
+
+@media (width > 768px) {
+body {
+    height: 100vh;
+    width: 100%;
+    background: var(--bgColor);
+    backdrop-filter: blur(90px);
+    overflow-x: hidden; /* to prevent horizontal scrollbar */
+    position: relative;
+
+}
+
+aside {
+    
+    width: 7%;
+    padding: 30px 15px;
+    background-color: rgba(255, 255, 255, 0.226);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width 400ms;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    float: left;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
+    width: 60px;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 8px;
+    margin-inline: auto;
+    /* background-color: aliceblue; */
+    transition: width 300ms;
+}
+
+.user div{
+    margin-right: 25px;
+}
+
+
+
+.user div>h2 {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+}
+.user div>p {
+    font-size: 11px;
+    color: rgb(146, 146, 146);
+}
+
+.UL_aside{
+    list-style: none;
+    
+}
+
+.UL_aside li {
+    width: max-content;
+    /* width: 110%; */
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+    margin:30px 0;
+    margin-left: -12px;
+    cursor: pointer;
+    padding-left: 30px;
+    padding-right: 100%;
+    background-color: transparent;
+    padding-block: 5px;
+    transition: background-color 500ms ease-out , border-left 200ms ease;
+    /* border-left: 3px solid; */
+}
+
+.UL_aside li:hover{
+    border-left: 1px solid gray;
+    background-color: rgba(10, 135, 245, 0.266);
+    
+}
+
+.UL_aside li img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.UL_aside a {
+    text-decoration: none;
+    /* font-size: 1px; */
+    color: rgb(81, 80, 80);
+    text-indent: 100%;
+    font-size: 0px;
+    white-space: nowrap;
+}
+
+.Logout{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 17px;
+    padding: 6px 0;
+    /* width: 60%; */
+    width: 66%;
+    /* height:30px; */
+    /* gap: 22px; */
+    overflow: hidden;
+    /* margin-left: 30px; */
+    margin-left: 20px;
+    border-radius: 8px;
+    border: none;
+    background: rgb(255, 2, 36);
+    color: #eee;
+    /* width: 100%; */
+}
+.Logout i {
+    width: 28px;
+    height: 28px;
+    margin-left: 12px;
+    margin-top: 8px;
+    color: aliceblue;
+}
+
+.Logout p {
+    margin-left: 22px;
+}
+
+.spacer{
+    height: 10px;
+    width: 100%;
+
+}
+
+aside:hover{
+    width: 19%;
+}
+
+aside:hover + main {
+    margin-left: 20%;
+}
+
+
+aside:hover .user {
+    width: 90%;
+    /* width: max-content; */
+    background-color: #c2e1e4;
+}
+aside:hover .UL_aside a {
+    text-indent: 0;
+    font-size: 16px;
+}
+
+aside:hover .UL_aside li{
+    justify-content: flex-start;
+}
+
+main{
+    height: 100%;
+    margin-left: 7%;
+    transition: margin-left 300ms;
+}
+
+header{
+    padding: 8px ;
+    background-color: rgb(255, 255, 255);
+    position: sticky;
+    z-index: 100;
+    top: 0;
+
+}
+
+h2{
+    font-weight: 600;
+}
+
+header h2{
+    font-weight: 700;
+    color: black;
+}
+
+header h2 a{
+    text-decoration: none;
+    color: #5fd3de;
+}
+
+aside:hover + main {
+   margin-left: 19%;
+}
+
+.Codeholder{
+    margin-inline: 1%;
+    margin-block: 5px;
+    
+    /* border: 1px solid; */
+}
+
+/* codding start here   */
+
+/****************************************** Accueil */
+
+.dashboard_holder{
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.displayBoard{
+    background-color:#c2e1e4;
+    border-radius: 8px;
+    /* margin-inline: 20px; */
+    height: 50%;
+    /* border: 1px solid; */
+    padding: 40px;
+    background-image: url("../iconsP/b3.jpg");
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+    background-size: 85%;
+    background-position: 100% center;
+}
+
+.displayBoard h2 {
+    color: var(--fontColor);
+}
+
+.contact {
+    margin-top: 30px;
+    list-style: none;
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact li {
+    /* width: 100%; */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 center;
+    
+}
+.contact li:nth-child(1){
+    background-image: url("../iconsP/phone-svgrepo-com.svg");
+}
+
+.contact li:nth-child(2){
+    background-image: url("../iconsP/email-svgrepo-com.svg");
+    margin-right: 170px;
+}
+
+.contact li a {
+   text-decoration: none;
+   margin-left: 30px;
+   color: rgb(21, 141, 152);
+}
+
+.textDahboard{
+    padding: 5px;
+    width: 60%;
+    text-align: left;
+    /* border: 1px solid; */
+}
+
+.namepatient{
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--fontColor);
+}
+
+.infoBoard{
+    background: whitesmoke;
+    height: 50%;
+    /* border: 1px solid ; */
+}
+
+/* information et table  */
+
+.infoBoard{
+    display: flex;
+}
+
+.fourCardinfoholder{
+    width: 50%;
+    height: 100%;
+    background: #c2e1e4;
+}
+
+.foursatat{
+    margin-top: 1rem;
+    padding-left: 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.foursatat div {
+    padding: 3px;
+    text-align: center;
+    width: 90%;
+    height: 110px;
+    border-radius: 7px;
+    background-color: #eee;
+}
+
+.foursatat div h3{
+    color: rgb(42, 41, 41);
+    font-size: 20px;
+}
+
+.title{
+    margin: 10px 0 0 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--fontColor);
+}
+
+.fourCardinfoholder p {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--fontColor);
+}
+
+.foursatat div a p{
+    color: rgb(23, 124, 144);
+}
+.foursatat div a {
+    text-decoration: none;
+}
+
+
+.tablehplder{
+    width: 50%;
+    height: 100%;
+    /* background-color: aquamarine; */
+}
+
+.table{
+    width: 90%;
+    height: 50%;
+    margin: 0 auto;
+    border-radius: 7px;
+    background: rgb(244, 234, 255);
+}
+
+.tableinfo{
+    background-color: white;
+    text-align: center;
+    margin-top: 4rem;
+    height: 100%;
+    width: 100%;
+}
+
+.tableinfo th {
+    border-bottom: 1px solid black;
+}
+/* 8888888888888888888888888888888888888888888888888888888888888888888888888888 */
+p{
+    margin: 0;
+}
+
+h2{
+    line-height: normal;
+    font-size: x-large;
+    margin: 0;
+}
+/* reservation */
+.reservation{
+    width: 100%;
+    height: 91vh;
+    border-top-left-radius: 8px;
+    /* border: 1px solid ; */
+    position: relative;
+    background-color: #c2e1e4;
+    /* background-color: #c2e1e4e7; */
+    /* background: white; */
+}
+
+.radioFilter{
+    margin-top: 7px;
+    width: 20px;
+    height: 20px;
+    accent-color: rgb(0, 0, 0) ;
+    /* background-color: yellow; */
+}
+
+
+
+#myForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.isVide{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    background-image: url(/images/sadEmpty.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.isVide h4 {
+    color: rgb(71, 71, 71);
+    font-weight: 700;
+    margin-left: 45%;
+}
+
+.isVide p {
+    margin-left: 50%;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgb(71, 71, 71);
+}
+.special{
+    /* border: 5px solid; */
+    /* width: 60%; */
+    height: 480px;
+    overflow: scroll;
+}
+
+.custom-table {
+    height: max-content;
+    background-color: rgba(253, 179, 6, 0.76);
+  }
+  .filteroptions{
+    text-align: center;
+    display: flex;
+    width: 85%;
+    margin-left: 5%;
+    padding: 20px;
+  }
+  .filter{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* justify-content: center; */
+  }
+  .selectoption{
+    border-radius: 8px;
+    width: 140px;
+  }
+  .custom-image {
+    position: absolute;
+    top: 10%;
+    right: 20%;
+    box-shadow: -2px 2px 8px rgba(253, 179, 6, 0.441);
+  }
+
+  .formSearchService{
+    /* border: 1px solid #545555; */
+    border-radius: 8px;
+    width: 50%;
+  }
+
+  .custom-table th ,  .custom-table td{
+    text-align: center;
+  }
+
+  .labelreservations{
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: #545555;
+  }
+
+  .deleteReservationBtn{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #eee;
+    background-color: rgb(203, 66, 66);
+  }
+
+  .deleteReservationBtn:hover{
+    background-color:  rgb(211, 11, 11);
+  }
+
+  .disabled{
+    background-color:  rgba(96, 92, 92, 0.594);
+  }
+
+  .disabled:hover{
+    background-color:  rgba(96, 92, 92, 0.694);
+  }
+
+  .emptyright{
+    text-align: left;
+    /* color: aqua; */
+  }
+  .emptyleft{
+    text-align: right;
+  }
+
+/*settings*/
+
+    .choseparams{
+        display: flex;
+        gap: 2rem;
+        width: 80%;
+        height: 80px;
+        border: 1px solid #0303033b;
+        border-radius: 8px;
+        margin: 2rem auto;
+        transition: border 400ms , transform 400ms;
+
+    }
+
+    .choseparams:hover{
+        transform: scale(1.03 , 1.03);
+        border: 1px solid #4366d9f3;
+    }
+
+    .imgcontainerparams{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        width: 60px;
+        height: 60px;
+        background-color: #54555536;
+        margin-left: 1rem;
+    }
+
+    .textparams{
+        margin-top: 5px;
+    }
+
+    .otherbtns{
+        color: rgb(27, 130, 233);
+    }
+
+    .textparams p{
+        color: #545555;
+        font-size: 14px;
+    }
+    .textparams a{
+        text-decoration: none;
+    }
+    
+    .deleteCompte{
+        border: none;
+        font-size: 28px;
+        /* margin-left: 2rem; */
+        font-weight: 600;
+        color: rgb(255, 2, 36);
+        background-color: white;
+    }
+/*Mes information ///////////////////////////////*/
+    .bluish{
+        background-color: #c2e1e4;
+        border-top-left-radius: 8px;
+    }
+    .infoholder{
+        width: 90%;
+        margin: 1rem auto;
+        padding: 2rem;
+        background-color: #c2e1e4;
+        position: relative;
+    }
+
+    .infopresentaion{
+        display: flex;
+        height: 120px;
+        gap: 1rem;
+    }
+
+    .imageinfo{
+        width: 450px;
+        height: 400px;
+        /* border: 2px solid; */
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        /* background-color: rgba(255, 255, 255, 0.333); */
+    }
+
+    .imageinfo img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .infopresentaion p {
+        background-image: url("/iconsP/pointing-right-finger-svgrepo-com.svg");
+        background-repeat: no-repeat;
+        background-position: 8px 2px;
+        background-size: 22px;
+        width: 70%;
+        padding-left: 8px;
+        background-color: #ffffff47;
+        border-radius: 8px;
+        font-size: 18px;
+        /* margin-left: 20px; */
+        /* margin-bottom: 1rem; */
+        text-indent: 34px;
+        color: #545555;
+        /* margin-top: 8px; */
+        margin: 1rem 0;
+    }
+
+    .infopresentaion p a {
+        color: rgb(255,101,132);
+        font-weight: 600;
+    }
+
+    .infop{
+        /* width: 80%; */
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .infop h3 {
+        font-weight: 700;
+        color: #363636;
+        margin-bottom: 10px;
+        margin-left: 34px;
+    }
+
+    .infop p {
+        font-size: 16px;
+        margin-bottom: 5px;
+        margin-left: 42px;
+    }
+    .infop strong{
+        font-weight: 500;
+        color: rgb(67,115,247);
+    }
+    .userp,.comp , .persp,.rdvp ,.children,.serviceClient{
+        
+        background-repeat: no-repeat;
+        background-position: 0 2px;
+        background-size: 22px;
+    }
+    .userp{
+        background-image: url("/infos/user-alt-1-svgrepo-com.svg");
+    }
+    .persp{
+        background-image: url("/infos/information-svgrepo-com.svg");
+    }
+    .comp{
+        background-image: url("/infos/communication-cost-svgrepo-com.svg");
+    }
+    .rdvp{
+        background-size: 20px;
+        background-image: url("/infos/hotel-mobile-svgrepo-com.svg");
+    }
+    .children{
+        background-size: 26px;
+        background-image: url("/infos/children-svgrepo-com.svg");
+    }
+
+    .serviceClient{
+        /* background-size: 26px; */
+        background-image: url("/infos/service-svgrepo-com.svg");
+    }
+
+/*/////////////////////////////////*/
+
+/******************************************* page reservation_service *****************************************/
+.modifyinfoHolder{
+    height: 100%;
+}
+.modifyDecoration{
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(230deg, rgb(71, 180, 190) , rgb(255, 255, 255) );
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    margin-bottom: 20px;
+    /* border-bottom:1px solid #989898ca; */
+    position: relative;
+}
+
+
+
+.simpleinfoShower h2 ,.simpleinfoShower p{
+    margin-left: 12%;
+    
+}
+
+.simpleinfoShower h2 {
+    font-size: 22px;
+    font-weight: 600;
+    /* color: #4f4e4e; */
+    margin-top: 65px;
+}
+
+.simpleinfoShower p {
+    /* margin-top: -20px; */
+    font-size: 13px;
+    font-weight: 400;
+    color: #4f4e4e;
+}
+
+.simpleinfoShower img {
+    height: 94px;
+    width: 94px;
+    /* border: 1px solid gray; */
+    background-color: white;
+     /* background: linear-gradient(320deg, rgb(179, 134, 241) 60%, rgb(255, 255, 255) ); */
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 5px 5px 20px 5px rgb(255, 255, 255);
+    top: 24%;
+    left : 2%
+}
+
+.inputsHolderM form{
+    display: grid;
+    grid-template-columns: 20% 40%;
+    gap: 1rem;
+    padding: 2%;
+    border-bottom:1px solid #989898ca;
+    margin-bottom: 20px;
+}
+
+.inputsHolderM form input[type ="date"]{
+    margin:0 ;
+    padding: 0;
+    text-indent: 38%;
+}
+
+.inputsHolderM form input[type ="email"],.inputsHolderM form input[type ="password"]{
+
+    text-indent: 5%;
+}
+
+.inputsHolderM form input {
+    font-size: 17px;
+    text-indent: 45%;
+    text-align: left;
+    font-weight: 500;
+    color: #363636;
+    height: 35px;
+    /* border-radius: 6px; */
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(27, 144, 183);
+}
+
+
+.inputsHolderM form button{
+    height: 45px;
+    width: 200px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgb(79, 161, 224);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left:150%;
+    margin-top: 15px;
+}
+
+.personalInfo h3 , .personalInfo p
+ ,.enfantsInfo h3 ,.enfantsInfo p
+ ,.SucurityInfo h3 , .SucurityInfo p{
+    margin-left: 2%;
+}
+.personalInfo h3
+,.enfantsInfo h3
+,.SucurityInfo h3  {
+    font-size: 22px;
+    color: rgb(36, 36, 36);
+
+}
+
+.personalInfo p
+,.enfantsInfo p
+, .SucurityInfo p
+{
+    font-size: 14px;
+    color: gray;
+}   
+
+.separator{
+    display: none;
+}
+
+
+}
+
+/*                  Phone version        */
+
+@media (width <= 768px) {
+    
+    body {
+        /* height: 100dvh; */
+        width: 100%;
+        /* background: rgba(77, 231, 239, 0.081); */
+        backdrop-filter: blur(90px);
+        overflow-x: hidden; /* to prevent horizontal scrollbar */
+        position: relative;
+        overflow-y: scroll;
+    }
+    
+    aside {
+        width: 100%;
+        padding: 15px;
+        background-color: rgb(255, 255, 255);
+        height: 70px;
+        display: flex;
+        /* border: 1px solid; */
+
+        transition: width 400ms;
+        overflow: hidden;
+        position: sticky;
+        z-index: 200;
+        top: 98%;
+        
+    }
+
+    main{
+        margin-top: -70px;
+    }
+    
+    .user{
+        display: none;
+    }
+  
+.UL_aside{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+
+.UL_aside li {
+    width: max-content;
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    background-color: transparent;
+    transition: background-color 500ms ease-out , border-left 200ms ease;
+
+}
+
+
+.UL_aside li img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.UL_aside a {
+    text-decoration: none;
+    color: rgb(81, 80, 80);
+    text-indent: 100%;
+    font-size: 0px;
+    white-space: nowrap;
+}
+
+.Logout{
+    height: 40px;
+    width: 50px;
+    font-size: 17px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: none;
+    background: rgb(255, 2, 36);
+    color: #eee;
+}
+
+.Logout i {
+    margin-top: 10px;
+    width: 28px;
+    height: 28px;
+    color: aliceblue;
+}
+
+.Logout p{
+    display: none;
+}
+
+header{
+    padding: 8px ;
+    background-color: rgb(255, 255, 255);
+    position: sticky;
+    z-index: 100;
+    top: 0;
+
+}
+
+header h2{
+    font-weight: 700;
+    color: black;
+}
+
+header h2 a{
+    text-decoration: none;
+    color: #5fd3de;
+}
+
+.dashboard_holder{
+    /* height: 91vh; */
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.displayBoard{
+    background-color:#c2e1e4;
+    border-radius: 8px;
+    /* margin-inline: 20px; */
+    height: 50%;
+    padding: 20px 30px;
+    background-image: url("../iconsP/b3.jpg");
+    background-repeat: no-repeat;
+
+    background-size: 75%;
+    background-position: 100% -20px;
+}
+
+.displayBoard h2 ,.namepatient {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--fontColor);
+}
+
+.lined{
+    text-decoration: none;
+}
+
+.contact {
+    margin-top: 30px;
+    list-style: none;
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+}
+.textDahboard{
+    font-size: 16px;
+    padding-top: 30px;
+    text-align: left;
+}
+
+.contact {
+    margin-top: 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: baseline;
+}
+
+
+.contact li {
+    /* width: 100%; */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0;
+    
+}
+
+.contact li a{
+    color: rgb(21, 141, 152);
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.contact li:nth-child(1){
+    background-image: url("../iconsP/phone-svgrepo-com.svg");
+}
+
+.contact li:nth-child(2){
+    background-image: url("../iconsP/email-svgrepo-com.svg");
+    /* margin-right: 170px; */
+}
+
+
+.infoBoard{
+    /* display: flex; */
+    margin-top: 5px;
+}
+
+.fourCardinfoholder{
+    margin-bottom: 10px;
+    background: #c2e1e4;
+}
+
+.Codeholder{
+    width: 100%;
+    background-color: white;
+}
+
+.foursatat{
+    margin-top: 1rem;
+    padding-left: 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-bottom: 20px;
+}
+
+.foursatat div {
+    padding: 3px;
+    text-align: center;
+    width: 90%;
+    height: 110px;
+    border-radius: 7px;
+    background-color: #eee;
+}
+
+.foursatat div h3{
+    color: rgb(42, 41, 41);
+    font-size: 17px;
+}
+
+.last_rdv{
+    font-size: 16px;
+}
+
+.title{
+    margin: 0 auto;
+    font-size: 18px;
+    width: 97%;
+    height: 40px;
+    border-radius: 10px;
+    background: #c2e1e4;
+    text-align: center;
+    padding-block: 6px;
+    font-weight: 600;
+    color: var(--fontColor);
+}
+
+.filteroptions{
+    margin-top: 20px;
+}
+
+input[type=radio] {
+    box-sizing: border-box;
+    margin-right: 30px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+#myForm label{
+    margin-left:10px;
+    margin-bottom: 15px;
+}
+
+.fixing {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--fontColor);
+}
+
+.title{
+    font-size: 18px;
+}
+
+.tablehplder{
+    width: 100%;
+    height: 100%;
+    /* background-color: aquamarine; */
+}
+
+.table {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 100px;
+    /* margin-top: -50px; */
+    border-radius: 7px;
+    background: rgb(244, 234, 255);
+}
+
+.tableinfo{
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 4rem;
+    height: 100%;
+    width: 100%;
+}
+
+tr:nth-child(1){
+    font-size: 11px;
+}
+
+tr{
+    height: 30px;
+}
+.tableinfo th {
+    border-bottom: 1px solid black;
+}
+
+.custom-table {
+    height: max-content;
+    background-color: rgba(253, 179, 6, 0.76);
+}
+
+.table {
+    font-size: 13px;  
+    margin-top: 10px;
+}
+
+.col-md-8{
+    padding: 0;
+}
+
+.deleteReservationBtn{
+    width: 60px;
+    height: 25px;
+    border-radius: 5px;
+    color: #eee;
+    background-color: rgb(203, 66, 66);
+    border:0;
+    font-size: 10px;
+}
+
+.ht{
+    font-size: 22px;
+}
+
+.deleteReservationBtn:hover{
+    background-color:  rgb(211, 11, 11);
+  }
+
+  .labelreservations2{
+    display: none;
+  }
+
+  .disabled{
+    background-color:  rgba(96, 92, 92, 0.594);
+  }
+
+  .disabled:hover{
+    background-color:  rgba(96, 92, 92, 0.694);
+  }
+
+.container{
+    width: 95%;
+    padding-inline:0 ;
+}
+
+.formSearchService{
+    border-radius: 8px;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+
+  .separator {
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin-top: 88%;
+  }
+
+  .params{
+    padding: 0 15px;
+  }
+
+  .choseparams{
+    padding: 14px 8px;
+    border: 2px solid rgba(128, 128, 128, 0.3);
+    border-radius: 20px;
+
+    margin-bottom: 10px;
+    
+  }
+
+  .img-fluid {
+    max-width: 61%;
+    margin-left: 21%;
+    height: auto;
+    margin-top: -100px;
+}
+
+.formSearchService {
+    border-radius: 8px;
+    width: 80%;
+    height: 30px;
+    background-image: url("/adminpics/search-sort-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-position: 97% center;
+    background-size: contain;
+    margin: 10px auto;
+}
+
+  .imgcontainerparams{
+    display: inline;
+    float: left;
+    text-align: center;
+    margin-top: 8px;
+    margin-right: 15px;
+  }
+
+  .choseparams{
+    margin-top: 10px;
+  }
+
+  .textparams a{
+    color: rgb(27, 130, 233);
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .textparams p{
+    color : rgb(151, 151, 151);
+    font-size: 14px;
+    margin-left: 40px;
+  }
+  .deleteCompte {
+    border: none;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(255, 2, 36);
+    background-color: white;
+}
+
+.imageinfo{
+    position: absolute;
+    bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.imageinfo img {
+    width:300px;
+    height: 250px;
+    /* display: none; */
+}
+
+.infoholder {
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.ajustments{
+    width: 100%;
+    background: white;
+}
+
+
+.infopresentaion {
+        display: flex;
+        margin-top: 15px;
+        gap: 1rem;
+    }
+
+    .infopresentaion p {
+        background-image: url(/iconsP/pointing-right-finger-svgrepo-com.svg);
+        background-repeat: no-repeat;
+        background-position: 8px 2px;
+        background-size: 22px;
+        width: 98%;
+        padding-left: 8px;
+        background-color: #e2272747;
+        border-radius: 8px;
+        font-size: 15px;
+        text-indent: 34px;
+        color: #6b6c6c;
+        margin: 1rem ;
+    }
+
+    .infop{
+        /* border : 1px solid ; */
+        font-size: 14px;
+        padding: 15px;
+        width: 100%;
+    }
+
+    .infop h3{
+        margin-bottom: 8px;
+
+    }
+
+    .infop strong{
+        color: #545555;
+    }
+
+    .infopresentaion p a {
+        color: rgb(255, 101, 132);
+        font-weight: 600;
+    }
+
+    .phone_v_1{
+        font-size: 14px;
+    }
+    .phone_v_2{
+        font-size: 13px;
+        padding-block: 10px;
+    }
+
+    .modifyDecoration {
+        display: flex;
+        flex-direction: column;
+        height: 120px;
+        background: rgb(255, 255, 255);
+        background: linear-gradient(230deg, rgb(71, 180, 190), rgb(255, 255, 255));
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .simpleinfoShower img {
+        height: 70px;
+        width: 70px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        box-shadow: 5px 5px 20px 5px rgba(255, 255, 255, 0.52);
+        top: 24%;
+        left: 4%;
+    }
+
+    .simpleinfoShower h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #5d5d5d;
+        margin-top: 42px;
+        margin-left: 25%;
+    }
+
+    .simpleinfoShower p {
+        margin-left: 28%;
+        font-size: 13px;
+        font-weight: 400;
+        color: #4f4e4e;
+    }
+
+    .personalInfo h3, .enfantsInfo h3, .SucurityInfo h3 {
+        font-size: 16px;
+        color: rgb(36, 36, 36);
+        margin-left: 4%;
+    }
+
+    .personalInfo p, .enfantsInfo p, .SucurityInfo p {
+        font-size: 14px;
+        color: gray;
+        margin-left: 4.7%;
+    }
+
+    .inputsHolderM form {
+        display: grid;
+        grid-template-columns: 38% 55%;
+        gap: 1rem;
+        padding: 2%;
+        border-bottom: 1px solid #989898ca;
+        margin-bottom: 20px;
+    }
+
+    .inputsHolderM form input {
+        font-size: 13px;
+        text-indent: 5%;
+        text-align: left;
+        font-weight: 500;
+        color: #363636;
+        height: 35px;
+        /* border-radius: 6px; */
+        outline: none;
+        border: none;
+        border-bottom: 1px solid rgb(27, 144, 183);
+    }
+
+    .inputsHolderM form input[type ="date"] {
+        margin: 0;
+        padding: 0;
+        text-indent: 0;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .inputsHolderM form button {
+        height: 45px;
+        width: 100px;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        text-align: center;
+        background-color: rgb(79, 161, 224);
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        margin-left: 100%;
+        margin-top: 15px;
+    }
+
+    .inputsHolderM form label{
+        font-size: 15px;
+        margin-top: 15px;
+        margin-left: 2px;
+    }
+
+    .phone_pusher{
+        margin-bottom: 90px;
+    }
+}

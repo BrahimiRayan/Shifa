@@ -1,0 +1,736 @@
+.Codeholder {
+    margin-inline: 1%;
+    margin-block: 5px;
+    height: 90vh;
+    text-align: center;
+  }
+  
+.informations_services {
+    height: 38%;
+    background-color: rgba(10, 153, 215, 0.71);
+    position: relative;
+    margin-bottom: 0.5%;
+    border-radius: 10px;
+    background-image: url("/images/img_services.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+.informations_services .paragraphes {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+    width: 70%;
+    color: #fff;
+    font-weight: 400;
+  }
+  
+.services {
+    height: 48%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+.services .service {
+    margin: 5px;
+    border-radius: 20px;
+    /* a changer */
+    background-image: url("/images/bgrd_service.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 6px 6px 14px -10px;
+    
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform 500ms , background-color 400ms;
+}
+
+.services .service:hover{
+    background-color: #c9d6ff;
+    transform: scale(1.05,1.05);
+}
+
+.service div {
+    width: 70px;
+    height: 70px;
+    /* background-color: #0a99d7; */
+    border-radius: 5px;
+    background-position: center;
+    background-size: contain;
+  }
+.service p {
+    padding-top: 7px;
+  }
+.services .service1 div {
+    background-image: url("/images_services/1.png");
+  }
+.services .service2 div {
+    background-image: url("/images_services/2.png");
+  }
+.services .service3 div {
+    background-image: url("/images_services/3.png");
+  }
+.services .service4 div {
+    background-image: url("/images_services/4.png");
+  }
+.services .service5 div {
+    background-image: url("/images_services/5.png");
+  }
+.services .service6 div {
+    background-image: url("/images_services/6.png");
+}
+
+.services .service7 div {
+    background-image: url("/images_services/7.png");
+}
+.services .service8 div {
+    background-image: url("/images_services/8.png");
+}
+.services .service9 div {
+    background-image: url("/images_services/9.png");
+}
+.services .service10 div {
+    background-image: url("/images_services/10.png");
+}
+.btn {
+    width: 200px;
+    height: 45px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    background-color: #0a99d7;
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.btn div {
+    width: 30px;
+    height: 30px;
+    background-image: url("/icons/fleche.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.service_checked {
+    background-color: rgba(10, 153, 215, 0.71);
+  }
+  
+/*********************************page Patient_reservation_date **********************************/
+  
+.informations_date {
+    height: 30%;
+    background-color: #0a99d7;
+    position: relative;
+    margin-bottom: 0.5%;
+    border-radius: 10px;
+    background-image: url("/images/img_dates.png");
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    background-size: contain;
+  }
+  .informations_date .paragraphes {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+    width: 70%;
+    color: #fff;
+    font-weight: 400;
+  }
+  .logo {
+    width: 100px;
+    height: 75px;
+    text-indent: 100%;
+    font-size: 0px;
+    /* transform: translateX(-9999px); */
+    overflow: hidden;
+    text-wrap: nowrap;
+    background-image: url("/images/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: center;
+  }
+  .section_logo span {
+    color: #c9d6ff;
+    align-self: center;
+    font-size: 10px;
+    padding-bottom: 13px;
+  }
+  .section_logo {
+    display: flex;
+    padding-left: 25px;
+    position: absolute;
+  }
+  
+  .dates {
+    height: 56%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .date {
+    margin: 5px;
+    border-radius: 20px;
+    background-image: url("/images/bgrd_service.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 6px 6px 14px -10px;
+    cursor: pointer;
+    transition: all 400ms;
+  }
+
+  .deniedDate{
+    margin: 5px;
+    border-radius: 20px;
+    background-image: url("/images/bgrd_service.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 6px 6px 14px -10px;
+    cursor: pointer;
+    background-color: #FF5733;
+  }
+
+  .date:hover{
+    background-color: #c9d6ff;
+    transform: scale(1.05,1.05);
+  }
+  .bgdate {
+    background-image: url("/images/date.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+  }
+  .disponible {
+    background-color: rgba(51, 255, 0, 0.22);
+  }
+  .no_disponible {
+    background-color: rgba(219, 18, 18, 0.229);
+  }
+  .date_checked {
+    background-color: rgba(10, 153, 215, 0.71);
+  }
+  
+  .btn_confirmer_date {
+    background-color: rgba(10, 153, 215, 0.71);
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0 auto;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  /******************************************* page reservation_heure *****************************************/
+  .informations_heure {
+    height: 30%;
+    background-color: #0a99d7;
+    position: relative;
+    margin-bottom: 0.5%;
+    border-radius: 10px;
+    background-image: url("/images/img_bgrd_heure.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+  }
+  .informations_heure .paragraphes {
+    /* float: left; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    height: 100%;
+    /* width: 70%; */
+    color: #fff;
+    font-weight: 400;
+  }
+  .informations_heure .paragraphes .p1 {
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .informations_heure .paragraphes .p2 {
+    font-size: 14px;
+  }
+  .heures {
+    height: 100%;
+    /* background-color: red; */
+    border-radius: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(24, 1fr);
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    margin-inline: 100px;
+  }
+  
+  .heures .heure {
+    min-width: 200px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 20px;
+    background-image: url("/images/bgrd_service.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 6px 6px 14px -8px;
+    cursor: pointer;
+  }
+  .heure div {
+    background-image: url("/images/heure.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    /* background-color: red; */
+  }
+  .heures::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  .pourQui {
+    /* background-color: red; */
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .concerne {
+    /* background-color: yellow; */
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 15px auto;
+    width: 40%;
+  }
+  .moi,
+  .enfant {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    /* flex-direction: column; */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-inline: 6px;
+    border-radius: 10px;
+    background-image: url("/images/bgrd_service.png");
+    box-shadow: 6px 6px 14px -10px;
+    transition: transform 400ms;
+    cursor: pointer;
+  }
+
+  .personne:hover{
+    transform: scale(1.05,1.05);
+
+  }
+
+  .moi div,
+  .enfant div {
+    width: 70px;
+    height: 70%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .moi div {
+    background-image: url("/images/img_moi.png");
+  }
+  .enfant div {
+    background-image: url("/images/img_enfants.png");
+  }
+  .heure_checked {
+    background-color: rgba(10, 153, 215, 0.71);
+    transition: all 400ms;
+  }
+  .concerne_checked {
+    background-color: rgba(10, 153, 215, 0.71);
+    transition: all 400ms;
+  }
+  .btn_confirmer_heure {
+    background-color: rgba(10, 153, 215);
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px 0 auto;
+    color: #fff;
+    font-weight: 600;
+  }
+  .concerne_select {
+    position: relative;
+  }
+  .select_enfant {
+    font-size: 16px;
+    position: absolute;
+    top: 40%;
+    margin-inline-start: 20%;
+    height: 40px;
+    width: 250px;
+    outline: none;
+    border-radius: 5px;
+    display: none;
+  }
+
+  .heuresetbtns {
+    height: 20%;
+    display: flex;
+    align-items: center;
+    margin: 0 100px;
+  }
+  .btn_scroll {
+    color: red;
+    /* height: 50px; */
+    font-size: 50px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+/*//////////////////////////////////////////8*/
+
+.informations_confirmation {
+  height: 45%;
+  background-color: #0a99d7;
+  position: relative;
+  margin-bottom: 0.5%;
+  border-radius: 10px;
+}
+.informations_confirmation .paragraphes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  height: 100%;
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+}
+.important div {
+  background-image: url("/images/important.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+}
+.important {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.important p {
+  font-size: 30px;
+  font-weight: 600;
+}
+.paragraphes .p1,
+.paragraphes .p2 {
+  font-size: 20px;
+  font-weight: 200;
+}
+.confirmation_table {
+  margin: 50px 0;
+  height: 100px;
+  border-radius: 20px;
+  background-color: rgba(128, 128, 128, 0.144);
+  box-shadow: 6px 6px 14px -8px;
+}
+th,
+td {
+  width: 250px;
+}
+.confirmation_btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.confirmation_btns button {
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgba(10, 153, 215);
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+}
+.btn_annuler{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 20px;
+  background-color: #d70e0a;
+  height: 35px;
+  width: 100px;
+}
+
+.btn_annuler a{
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn_annuler div {
+  background-image: url("/images/img_annuler.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+.btn_valider div {
+  background-image: url("/images/img_valider.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+}
+
+
+.fa-angle-double-left,.fa-angle-double-right{
+  color: #0a99d7;
+  font-size: 28px;
+}
+
+.denied{
+  background-color: #FF5733;
+}
+
+.separator{
+  display: none;
+}
+
+.confirmation_informations{
+  display: none;
+}
+
+@media (width <= 768px) {
+
+  .liner{
+    overflow-y: scroll;
+  }
+
+  aside {
+    width: 100%;
+    padding: 15px 15px;
+    background-color: rgb(255, 255, 255);
+    height: 70px;
+    display: flex;
+    transition: width 400ms;
+    overflow: hidden;
+    position: sticky;
+    z-index: 200;
+    top: 98%;
+    
+}
+
+  .informations_services {
+    height: 25%;
+    margin-bottom: 13px;
+    background-size: 35%;
+}
+
+.services {
+  height: 100%;
+  display: grid;
+  margin-bottom: 30px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn {
+  width: 200px;
+  height: 45px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  background-color: #0a99d7;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.separator{
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 70px;
+}
+
+.paragraphes .p1, .paragraphes .p2 {
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.p1{
+  margin-top: 10px;
+}
+
+.logo {
+  width: 75px;
+  height: 41px;
+}
+
+.section_logo span {
+  padding-bottom: 9px;
+}
+
+
+
+}
+
+@media (width <= 768px) {
+
+  .informations_date {
+    height: 25%;
+    background-position: 100% center;
+    background-size: 35%;
+}
+
+  .dates {
+    height: 100%;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .date{
+    height: 70px;
+    /* gap: 5px; */
+    margin: 3px;
+  }
+
+  .separator{
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin-top: 70px;
+  }
+
+  .heures {
+    height: 65%;
+    margin: 0;
+}
+
+.heuresetbtns {
+  height: 20%;
+  width: 100%;
+  padding-inline: 10px;
+  margin: 0;
+}
+
+.heures .heure {
+  min-width: 135px;
+  box-shadow: 0.5px 0.5px 8px ;
+}
+
+.informations_heure .paragraphes .p1 {
+  font-size: 16px;
+}
+
+.informations_heure .paragraphes {
+  padding-top: 66px;
+}
+
+
+.informations_heure {
+  background-position: 100% top;
+  background-size: 39%;
+}
+
+.concerne{
+  display: block;
+  width: 50%;
+}
+
+.select_enfant{
+  position: static;
+  margin-inline-start: 3%;
+  width: 208px;
+  margin-bottom: 50px;
+}
+
+.moi, .enfant {
+  margin-block: 15px;
+}
+
+
+.confirmation_table{
+  display: none;
+
+}
+
+.confirmation_btns{
+  margin-top: 30px;
+  margin-left: 22px;
+  justify-content: left;
+  /* margin-bottom: 50px; */
+}
+
+.Codeholder {
+  margin-inline: 0;
+}
+
+.infocontainer{
+  display: flex;
+  gap: 20px;
+  /* justify-content: center; */
+  /* text-align: left; */
+  align-items: center;
+}
+
+.confirmation_informations{
+  display: block;
+  margin: 20px 0 0 20%;
+  
+}
+
+.infotit{
+  font-size: 20px;
+  color: gray;
+  
+}
+
+}
+

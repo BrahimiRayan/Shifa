@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/admin/admin.css" />
+    <title>Page Admin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img
+            src="/icons/business-manager-or-management-18880.svg"
+            alt="User image"
+          />
+          <div>
+            <h2><%= admin[0].nom %> <%= admin[0].prenom %></h2>
+            <p><%= admin[0].email.substring(0, 20) + '...' %></p>
+          </div>
+        </div>
+        <ul class="UL_aside">
+            <li><img src="/icons/dashboard-svgrepo-com.svg" alt=""><a href="/admin/accueil">Accueil</a></li>
+            <li><img src="/icons/doctor-svgrepo-com.svg" alt=""><a href="/admin/listdocs">Medcins</a></li>
+            <li><img src="/icons/office-secretary-svgrepo-com.svg" alt=""><a href="/admin/listsec">Secritaires</a></li>
+            <li><img src="/icons/fever-flu-ill-sick-svgrepo-com.svg" alt=""><a href="/admin/listpat">Patients</a></li>
+            <li><img src="/icons/opened-book-3163.svg" alt=""><a href="/admin/services">Services</a></li>
+            <li><img src="/icons/settings-svgrepo-com.svg" alt=""><a href="/admin/Settings">Settings</a></li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+      </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Services</h2>
+        </header>
+
+        <div class="Codeholder holdercode">
+             <div class="services_holder">
+              <% for( let i = 0; i < services.length; i++) { %>
+                <div class="service">
+                    <button class="mod_btn">Modifier</button>
+                    <img src="/servicesimg/<%= services[i].nomserv %>.png" alt="" class="image_serv">
+                    <h2><%= services[i].nomserv %></h2>
+                    
+                    <p class="nummed">Nombre de Medcins : <span><%= services[i].docs %></span></p>
+
+                    <div class="Capaite_horair">
+                        <p>Capacite Horaire :</p>
+                        <form action="/admin/changeCapHours/<%= services[i].idserv %>" method="post">
+                            <input type="number" name="pat_H" class="NumberPatient capInpt" min="0" value="<%= services[i].patient_in_hour %>" readonly>
+                            <button type="submit" class="valider conf_btn hidebtn">Valider</button>
+                        </form>
+                        <p>Pat/H</p>
+                    </div>
+                  </div>
+                <% } %>
+
+             </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(){
+        var mod = document.getElementsByClassName("mod_btn");
+        var valider = document.getElementsByClassName("valider");
+        var NumberPatient = document.getElementsByClassName("NumberPatient");
+        for(let i = 0 ; i <mod.length ; i ++){
+          mod[i].addEventListener("click" , function(){
+          NumberPatient[i].removeAttribute("readonly");
+          NumberPatient[i].classList.add("modificationMode");
+          mod[i].classList.add("hidebtn");
+          valider[i].classList.remove("hidebtn");
+        });
+        }
+
+        for(let j = 0 ; j< valider.length ; j++){
+          valider[j].addEventListener("click" , function(){
+          NumberPatient[j].setAttribute("readonly");
+          NumberPatient[j].classList.remove("modificationMode");
+          valider[j].classList.add("hidebtn");
+          mod[j].classList.remove("hidebtn");
+        })
+        }
+
+    });
+
+    </script>
+  </body>
+</html>

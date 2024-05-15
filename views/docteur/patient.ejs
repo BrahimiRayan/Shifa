@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/docteur/doc.css" />
+    <title>Page Admin</title>
+  </head>
+  <body>
+    <div class="liner">
+      <aside>
+        <div class="user">
+          <img src="/medecin_images/img_doc.svg" alt="User image" />
+          <div>
+            <h2><%= doc[0].nom %> <%= doc[0].prenom %></h2>
+            <p><%= doc[0].email.substring(0 , 15) + "..." %></p> 
+          </div>
+        </div>
+
+        <ul class="UL_aside">
+          <li>
+            <img src="/medecin_images/dashboard-svgrepo-com.svg" alt="" /><a href="/doc/accueil">Accueil</a>
+          </li>
+          <li>
+            <img src="/medecin_images/reserve-svgrepo-com.svg" alt="" /><a href="/doc/reserver" >Reserver</a>
+          </li>
+          <li>
+            <img src="/medecin_images/fever-flu-ill-sick-svgrepo-com.svg" alt="" /><a href="/doc/patients">Patients</a>
+          </li>
+          <li>
+            <img src="/medecin_images/doctor-svgrepo-com.svg" alt="" /><a href="/doc/medcins">Medcins</a>
+          </li>
+          <li>
+            <img src="/medecin_images/settings-svgrepo-com.svg" alt="" /><a href="/doc/settings">Settings</a>
+          </li>
+        </ul>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+        </form>
+
+        <div class="spacer"></div>
+      </aside>
+
+      <main>
+        <header>
+          <h2>Patients</h2>
+        </header>
+
+        <div class="Codeholder Codeholderpatient">
+          <div class="Description">
+            <h2>Liste des patients</h2>
+            <p>Vous trouverez ici une liste des patients qui sont déjà passés dans vos services.</p>
+          </div>
+
+          <div class="cover">
+            <div class="liste_patients">
+              <% if (patient.length === 0) { %>
+                  <img src="/medecin_images/patient.png" alt="" class="emptyP">
+              <% } %>
+
+              <% for( let i = 0; i < patient.length; i++ ) { %>
+
+                <div class="box_patient">
+                  <div class="img_patient"></div>
+                  <div class="nom_patient"><%= patient[i].nom %> <%= patient[i].prenom %></div>
+                  <div class="email"><%= patient[i].email %></div>
+                  <button class="btn_consulter" value=<%= patient[i].idp %>>Plus</button>
+                </div>
+
+              <% } %>
+            </div>
+
+            <div class="display_info" id="display_info">
+
+            </div>
+            <input type="hidden" id="hiddeninfo" value=<%= patient %>>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+
+      var information = <%- JSON.stringify(patient) %>;
+
+      var info = document.getElementsByClassName("display_info")[0];
+      var liste_patients = document.getElementsByClassName("liste_patients")[0];
+      var btn_consulter = document.getElementsByClassName("btn_consulter");
+
+      for (let i = 0; i < btn_consulter.length; i++) {
+        btn_consulter[i].addEventListener("click" , function(){
+          for (let j = 0; j < information.length; j++) {
+            if (btn_consulter[i].value === information[j].idp) {
+              var pdate = new Date(information[i].birthdate).getFullYear()
+              var curentYear = new Date().getFullYear()
+              var age = curentYear - pdate ; 
+              console.log(pdate)
+              generatePatient(information[j].nom , information[j].prenom , information[j].email ,age , information[j].ncin , information[j].phone);
+            } 
+          }
+        });
+      }
+      
+      window.addEventListener("click", (e) => {
+        var target = e.target;
+        if (
+          target.classList.contains("btn_consulter") ||
+          target.classList.contains("display_info") ||
+          target.parentElement.classList.contains("display_info") ||
+          target.parentElement.parentElement.parentElement.classList.contains("display_info")
+        ) {
+          info.style.display = "block";
+          liste_patients.style.filter = "blur(3px)";
+        } else {
+          info.style.display = "none";
+          liste_patients.style.filter = "blur(0px)";
+          window.location.reload();
+        }
+      });
+
+
+      /* uisdsuidhiasudhisiadiau */
+
+    function generatePatient(nom , prenom ,email, age , ncin , tlfn) {
+      var patientContainer = document.getElementById('display_info');
+      // Create patient div
+      var patientDiv = document.createElement('div');
+
+      patientDiv.classList.add('box_patient');
+
+      // Create img_patient div
+      var imgPatientDiv = document.createElement('div');
+      imgPatientDiv.classList.add('img_patient');
+      patientDiv.appendChild(imgPatientDiv);
+
+      // Create nom_patient div
+      var nomPatientDiv = document.createElement('div');
+      nomPatientDiv.classList.add('nom_patient');
+      nomPatientDiv.textContent = nom + " " + prenom;
+      patientDiv.appendChild(nomPatientDiv);
+
+      // Create email div
+      var emailDiv = document.createElement('div');
+      emailDiv.classList.add('email');
+      emailDiv.textContent = email;
+      patientDiv.appendChild(emailDiv);
+
+      // Create info_perso div
+      var infoPersoDiv = document.createElement('div');
+      infoPersoDiv.classList.add('info_perso');
+
+      // Create age div
+      var ageDiv = document.createElement('div');
+      ageDiv.innerHTML = `<div class="age">Age</div><div>${age}</div>`;
+      infoPersoDiv.appendChild(ageDiv);
+
+      // Create ncin div
+      var ncinDiv = document.createElement('div');
+      ncinDiv.innerHTML = `<div class="ncin">NCIN</div><div>${ncin}</div>`;
+      infoPersoDiv.appendChild(ncinDiv);
+
+      // Create ntel div
+      var ntelDiv = document.createElement('div');
+      ntelDiv.innerHTML = `<div class="ntel">N-tel</div><div>${tlfn}</div>`;
+      infoPersoDiv.appendChild(ntelDiv);
+
+      patientDiv.appendChild(infoPersoDiv);
+
+      // Append patient div to container
+      patientContainer.appendChild(patientDiv);
+  }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="correct-integrity-value"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/patient.css" />
+    <link rel="stylesheet" href="/css/patientReserve.css" />
+    <title>shifa</title>
+  </head>
+  <body>
+    <div class="liner">
+        <aside>
+                <div class="user">
+                    <img src="/iconsP/icons8-user-50.png" alt="User image">
+                    <div>
+                      <h2><%= nom %> <%= prenom %></h2>
+                      <p><%= email.substring(0, 20) + '...' %></p>
+                    </div>
+                </div>
+    
+                <ul class="UL_aside">
+                  <a href="/patient/accueil"><li><img src="/iconsP/icons8-dashboard-layout-48.png" alt="">Accueil</li></a>
+                  <a href="/patient/reserver"><li><img src="/iconsP/icons8-reservation-50.png" alt="">Reserver</li></a>
+                  <a href="/patient/myreservations"><li><img src="/iconsP/icons8-bookmark-48.png" alt="">Mes Reservation</li></a>
+                  <a href="/patient/Settings"><li><img src="/iconsP/icons8-settings-50.png" alt="">Settings</li></a>
+              </ul>
+    
+            <form action="/logout" method="post">
+                <button type="submit" class="Logout"><i class="fas fa-power-off"></i> <p>Logout</p></button>
+            </form>
+            <div class="spacer"></div>
+        </aside>
+    
+        <main>
+            <header>
+              <h2><a href="/patient/reserver">Réserver</a> | Heure</h2>
+            </header>
+    
+            <div class="Codeholder">
+                <div class="informations_heure">
+                    <section class="section_logo">
+                      <h1 class="logo">Shifa logo</h1>
+                      <span>votre sante en ligne</span>
+                    </section>
+                    <div class="paragraphes">
+                      <p class="p1">Choisissez l'heure qui vous convient</p>
+                      <p class="p2">
+                        l'hôpital est disponible 24 heures sur 24 et 7 jours sur 7
+                      </p>
+                    </div>
+                  </div>
+                  <div class="heuresetbtns">
+                    <button class="btn_scroll btn_scroll_left">
+                      <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <div class="heures">
+                        <% for( let i = 7; i < 24; i++ ) { let time = i+":00"; %>
+                          <% if (denied.indexOf(time) !== -1) { %>
+                            <div class="heure denied">
+                              <div></div>
+                              <span><%=time%></span>
+                            </div>
+                          <% } %>
+
+                          <% if (denied.indexOf(time) === -1) { %>
+                            <div class="heure">
+                              <div></div>
+                              <span><%= time%></span>
+                            </div>
+                          <% } %>
+                        <% } %>
+                     </div>
+                    <button class="btn_scroll btn_scroll_right">
+                      <i class="fas fa-angle-double-right"></i>
+                    </button>
+                  </div>
+                  <p class="pourQui">ce rendez-vous pour qui ?</p>
+                  <div class="concerne_select">
+                    <div class="concerne" id="concerne">
+                      <div class="personne moi">
+                        <div></div>
+                        <p>Moi-même</p>
+                      </div>
+                      <div class="personne enfant">
+                        <div></div>
+                        <p>Mon enfant</p>
+                      </div>
+                    </div>
+                    <select class="select_enfant" name="" id="selection">
+                      <option value="" disabled selected>Sélectionnez votre enfant</option>
+                      <% if (enf.length != 0) { %>
+                          <% for( let j = 0; j < enf.length; j++ ) { %>
+                            <option value=<%= enf[j].idenf%>><%= enf[j].nom%> <%= enf[j].prenom%></option>
+                          <% } %>
+                      <% } %>
+                      
+                    </select>
+                  </div>
+                  <form action="/patient/reserver/time" method="post">
+                    <input type="hidden" id="hiddentime" name="hiddentime" >
+                    <input type="hidden" id="hiddenchiled" name="hiddenchiled">
+                    <input type="hidden" id="hiddenchiledValue" name="hiddenchiledValue">
+                    <button class="btn_confirmer_heure" type="submit">Confirmer</button>
+                  </form>
+                  <div class="separator"></div>
+                </div>
+              </main>
+            </div>
+
+<script>
+              const heures = document.getElementsByClassName("heures")[0];
+              const concerne = document.getElementsByClassName("concerne")[0];
+              const enfant = document.getElementsByClassName("enfant")[0];
+              const select = document.querySelector("select");
+              const selection = document.getElementById("selection")
+              const btnScrollLeft = document.querySelector(".btn_scroll_left");
+              const btnScrollRight = document.querySelector(".btn_scroll_right");
+              const hiddentime = document.getElementById("hiddentime");
+              const hiddenchiled = document.getElementById("hiddenchiled");
+              const hiddenchiledValue = document.getElementById("hiddenchiledValue")
+
+              document.addEventListener('DOMContentLoaded', function() {
+              heures.addEventListener("click", (e) => {
+                var target = e.target;
+             
+                if (
+                  target.classList.contains("heure") ||
+                  target.parentElement.classList.contains("heure") 
+                  
+                ) {
+                  for (let i = 0; i < heures.children.length; i++) {
+                    if (heures.children[i].classList.contains("heure_checked")) {
+                      heures.children[i].classList.remove("heure_checked");
+                    }
+                  }
+                  if (target.parentElement.classList.contains("heure")) {
+                    target = target.parentElement;
+                  }
+                  target.classList.toggle("heure_checked");
+                  hiddentime.value = target.textContent.trim();
+                  
+                }
+
+                if(target.classList.contains("denied") ||
+                   target.classList.contains("denied")){
+                    hiddentime.value = "";
+                }
+                console.log(hiddentime.value)
+              });
+              });
+              
+              concerne.addEventListener("click", (e) => {
+                var target = e.target;
+                if (
+                  target.classList.contains("personne") ||
+                  target.parentElement.classList.contains("personne")
+                ) {
+                  for (let i = 0; i < concerne.children.length; i++) {
+                    if (concerne.children[i].classList.contains("concerne_checked")) {
+                      concerne.children[i].classList.remove("concerne_checked");
+                    }
+                  }
+                  if (target.parentElement.classList.contains("personne")) {
+                    target = target.parentElement;
+                  }
+                  target.classList.toggle("concerne_checked");
+                }
+                if (enfant.classList.contains("concerne_checked")) {
+                  select.style.display = "inline-block";
+                } else {
+                  select.style.display = "none";
+                }
+
+                if( target.classList.contains("moi")){
+                  hiddenchiled.value = "moi";
+                  console.log(hiddenchiled.value);
+                }else if (target.classList.contains("enfant")){
+                    selection.addEventListener('change', function() {
+                    var selectedOption = selection.options[selection.selectedIndex];
+                    var selectedText = selectedOption.textContent;
+                    var selectedValue = selectedOption.value;
+                    hiddenchiledValue.value = selectedValue;
+                    hiddenchiled.value = selectedText
+                    console.log(hiddenchiled.value);
+                      });
+                }
+              
+              });
+              function scrollLeft() {
+                heures.scrollBy(-350, 0);
+              }
+              function scrollRight() {
+                heures.scrollBy(350, 0);
+              }
+              btnScrollLeft.addEventListener("click", scrollLeft);
+              btnScrollRight.addEventListener("click", scrollRight);
+            
+            </script>
+          </body>
+        </html>
