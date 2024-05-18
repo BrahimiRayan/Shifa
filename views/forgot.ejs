@@ -38,7 +38,7 @@
     <% } %>
 
     <main>
-        <h2>Vous avez oblieer votre<strong> Mot de pass </strong>?</h2>
+        <h2>Vous avez oublié votre<strong> Mot de Passe </strong>?</h2>
         <label for="email" style=<%= form1 %>>Email:</label>
 
     <form action="/forgotpswd" method="post" style=<%= form1 %>>
@@ -58,7 +58,7 @@
             <i class="fas fa-arrow-right"></i>
         </button>
     </form>
-    <label for="code" style=<%= form3 %>>Noveux Mot de Pass:</label>
+    <label for="code" style=<%= form3 %>>Noveux Mot de Passe:</label>
     <form action="/forgotpswd/config/changepswd" method="post" style=<%= form3 %>>
         <input type="text" id="new" name="newpassword" placeholder="le noveux password ici " autocomplete="off" minlength="8">
         <a href="/auth">vous sevienez?</a>

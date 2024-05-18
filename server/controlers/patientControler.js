@@ -438,7 +438,7 @@ exports.SendCode =async function(req,res){
     // search if the email exists in the db (else send emailNotfound message then stop)
     const [verifyEmail] = await pool.query("Select idp from patients where email = ?",[email]);
     if(verifyEmail.length === 0 ||!verifyEmail){
-        emailNotfound = email+" est jamais ete inscrit dans notre hopital";
+        emailNotfound = email+" est jamais été inscrit dans notre hôpital";
         return res.redirect("/forgotpswd")
     }else{
         // generate the code 
