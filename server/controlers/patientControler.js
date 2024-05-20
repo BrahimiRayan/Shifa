@@ -520,8 +520,8 @@ exports.SendCodeD =async function(req,res){
     let [verifyEmail] = await pool.query("Select iddoc from docteurs where email = ?",[email]);
     if(verifyEmail.length === 0 ||!verifyEmail){
         [verifyEmail] = await pool.query("Select idsec from secritaires where email = ?",[email]);
-        if(!verifyEmail){
-            emailNotfound = email+" Ne recemble pas a un de nous employes !";
+        if(verifyEmail.length === 0 || !verifyEmail){
+            emailNotfound = email +" Ne recemble pas a un de nous employes !";
             return res.redirect("/Dforgotpswd");
         }else{
             isSec = true;
